@@ -13,15 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Authentication.ShopLogin">
+        <activity android:name=".Shops.ShopLogin">
+
+        </activity>
+        <activity android:name=".Shops.ShopRegistration" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Authentication.ShopRegistration" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Customers.Customer_MainActivity"/>
+        <activity android:name=".Customers.Login_customer"/>
+        <activity android:name=".Customers.Customer_registration"/>
+        <activity android:name=".Shops.OrderDetails"/>
+        <activity android:name=".Shops.ShopMainActivity"/>
     </application>
 
 </manifest>
