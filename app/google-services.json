@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "204399657918",
+    "firebase_url": "https://hack-the-crisis-india.firebaseio.com",
+    "project_id": "hack-the-crisis-india",
+    "storage_bucket": "hack-the-crisis-india.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204399657918:android:8730a007d0d4fb05ac6fef",
+        "android_client_info": {
+          "package_name": "com.example.contactlessshopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204399657918-m450ram4a4cjupb3k94qc4b3n64pasm0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-EkajCV1_p7yzTlxen2U9vtXr-kFjtdg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204399657918-m450ram4a4cjupb3k94qc4b3n64pasm0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
