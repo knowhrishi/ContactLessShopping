@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".Customers.Customer_registration">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+
+        android:text="Name: "
+        android:textColor="#000"
+        android:textSize="17dp" />
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""
+        android:id="@+id/name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/opensans_regular"
+        android:text="Email Id:  "
+        android:textColor="#000"
+        android:textSize="17dp" />
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""
+        android:id="@+id/email"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/opensans_regular"
+        android:text="Electricity Bill Cuttomer NO: "
+        android:textColor="#000"
+        android:textSize="17dp" />
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""
+        android:id="@+id/custno"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/opensans_regular"
+        android:text="Password:  "
+        android:textColor="#000"
+        android:textSize="17dp" />
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""
+        android:id="@+id/pass"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/submitbt"/>
+
+</LinearLayout>
