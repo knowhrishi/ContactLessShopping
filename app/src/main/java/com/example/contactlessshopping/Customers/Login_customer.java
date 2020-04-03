@@ -91,6 +91,9 @@ public class Login_customer extends AppCompatActivity {
                            // Intent intent=new Intent(Login_customer.this,Customers);
                            // startActivity(intent);
                             Toast.makeText(Login_customer.this,"Successfull Login",Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(Login_customer.this,Customer_MainActivity.class);
+                            startActivity(intent);
+
 
                         }
                     }
