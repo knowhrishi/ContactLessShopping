@@ -18,9 +18,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class FragmentAccepted extends Fragment {
+public class FragmentDeclined extends Fragment {
     View view;
-
 
     private RecyclerView recyclerView;
     FirebaseAuth auth;
@@ -28,17 +27,17 @@ public class FragmentAccepted extends Fragment {
     private CollectionReference notebookRef = db.collection("orders");
     private OrderAdapater adapter;
 
-    public FragmentAccepted(){}
+    public FragmentDeclined(){}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_accepted_request, container, false);
+        view = inflater.inflate(R.layout.fragment_declined_request, container, false);
         setupRecyclerView();
         return view;
     }
     private void setupRecyclerView() {
-        Query query = notebookRef.whereEqualTo("status", "1");
+        Query query = notebookRef.whereEqualTo("status", "2");
 
         FirestoreRecyclerOptions<OrderModel> options = new FirestoreRecyclerOptions.Builder<OrderModel>()
                 .setQuery(query, OrderModel.class)
@@ -64,4 +63,5 @@ public class FragmentAccepted extends Fragment {
         adapter.stopListening();
     }
 }
+
 

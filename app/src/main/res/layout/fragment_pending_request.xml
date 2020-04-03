@@ -4,10 +4,20 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="PENDING"
-        android:gravity="center"/>
+    <LinearLayout
+        android:id="@+id/ly_list_form"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 
 </RelativeLayout>

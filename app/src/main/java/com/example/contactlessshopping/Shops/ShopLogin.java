@@ -35,7 +35,7 @@ public class ShopLogin extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(ShopLogin.this, ShopRegistration.class));
+            startActivity(new Intent(ShopLogin.this, ShopMainActivity.class));
             finish();
         }
 
@@ -89,7 +89,7 @@ public class ShopLogin extends AppCompatActivity {
                                         Toast.makeText(ShopLogin.this, "Auth Fail", Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(ShopLogin.this, MainActivity.class);
+                                    Intent intent = new Intent(ShopLogin.this, ShopMainActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
