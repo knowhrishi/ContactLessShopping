@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#000a12</color>
     <color name="colorAccent">#4f5b62</color>
 
+    <color name="tabtextcolor">#fff</color>
+    <color name="tabincatorcolor">#263238</color>
+
     <color name="lightgray">#ededed</color>
 
     <color name="red">#F44336</color>
