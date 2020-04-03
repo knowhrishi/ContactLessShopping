@@ -1,4 +1,4 @@
-package com.example.contactlessshopping.Authentication;
+package com.example.contactlessshopping.Shops;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
