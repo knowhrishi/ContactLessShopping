@@ -49,7 +49,7 @@ public class Customer_MainActivity extends AppCompatActivity {
 
     private void init(){
 
-        gridLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL,false);
+        gridLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL,false);
         shoplist.setLayoutManager(gridLayoutManager);
         db = FirebaseFirestore.getInstance();
     }
