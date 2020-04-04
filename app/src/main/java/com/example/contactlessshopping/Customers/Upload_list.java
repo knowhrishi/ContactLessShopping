@@ -267,7 +267,26 @@ public class Upload_list extends AppCompatActivity {
 
 
                                 String noticeID =  UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
-                                notebookRef.add(note);
+                                notebookRef.add(note).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Log.d("iiii iiiii iiiiiii ii", "DocumentSnapshot written with ID: " + documentReference.getId());
+                                        order_id = documentReference.getId();
+                                        Toast.makeText(Upload_list.this, order_id, Toast.LENGTH_SHORT).show();
+                                        Map<String, Object> data = new HashMap<>();
+                                        data.put("order_id", order_id);
+
+                                        db.collection("orders").document(order_id).set(data, SetOptions.merge());
+
+
+                                    }
+                                })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("", "Error adding document", e);
+                                            }
+                                        });
                                 finish();
 
 
