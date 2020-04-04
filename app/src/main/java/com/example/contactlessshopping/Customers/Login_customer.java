@@ -1,10 +1,15 @@
 package com.example.contactlessshopping.Customers;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.contactlessshopping.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
@@ -32,38 +38,33 @@ import java.util.Locale;
 
 public class Login_customer extends AppCompatActivity {
 
-    EditText email,password;
-    Button submit,signup;
+    EditText email, password;
+    Button submit, signup;
     private FirebaseAuth mAuth;
-    private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
-    public static double latitude;
-    public static double longitude;
-    public static String LATITUDE,LONGITUDE;
+    int PERMISSION_ID = 44;
+    FusedLocationProviderClient mFusedLocationClient;
+    String LAT, LON;
+    double dlat, dlon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_customer);
-        if (ContextCompat.checkSelfPermission(
-                getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    Login_customer.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_CODE_LOCATION_PERMISSION
-            );
-        }
-getCurrentLocation();
-        //Toast.makeText(this, latitude + "\n"  +longitude, Toast.LENGTH_SHORT).show();
 
-        email=(EditText)findViewById(R.id.login_email);
-        password=(EditText)findViewById(R.id.login_pass);
-        submit=(Button)findViewById(R.id.submit_login);
+
+        email = (EditText) findViewById(R.id.login_email);
+        password = (EditText) findViewById(R.id.login_pass);
+        submit = (Button) findViewById(R.id.submit_login);
         mAuth = FirebaseAuth.getInstance();
 
 
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        //getLastLocation();
 
+        //Toast.makeText(this, LAT + "\n" + LON, Toast.LENGTH_LONG).show();
 
-        signup=(Button)findViewById(R.id.signupbt);
+        signup = (Button) findViewById(R.id.signupbt);
 
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -71,9 +72,9 @@ getCurrentLocation();
             public void onClick(View view) {
 
 
-                Log.d("in signup","successfull");
+                Log.d("in signup", "successfull");
 
-                Intent intent=new Intent(Login_customer.this,Customer_registration.class);
+                Intent intent = new Intent(Login_customer.this, Customer_registration.class);
                 startActivity(intent);
 
 
@@ -85,10 +86,10 @@ getCurrentLocation();
             @Override
             public void onClick(View view) {
 
+                getLastLocation();
 
-
-                String semail=email.getText().toString();
-                String spass=password.getText().toString();
+                String semail = email.getText().toString();
+                String spass = password.getText().toString();
 
                 if (!TextUtils.isEmpty(semail) && !TextUtils.isEmpty(spass)) {
                     loginuser(semail, spass);
@@ -98,14 +99,12 @@ getCurrentLocation();
                 }
 
 
-
             }
         });
 
     }
 
-    private void loginuser(String email,String pass)
-    {
+    private void loginuser(String email, String pass) {
 
 
         mAuth.signInWithEmailAndPassword(email, pass)
@@ -113,10 +112,13 @@ getCurrentLocation();
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                           // Intent intent=new Intent(Login_customer.this,Customers);
-                           // startActivity(intent);
-                            Toast.makeText(Login_customer.this,"Successfull Login",Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(Login_customer.this,Customer_MainActivity.class);
+                            // Intent intent=new Intent(Login_customer.this,Customers);
+                            // startActivity(intent);
+                            Intent intent = new Intent(Login_customer.this, Customer_MainActivity.class);
+                            intent.putExtra("intendLatitude", LAT);
+                            intent.putExtra("intentLongitude", LON);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            Toast.makeText(Login_customer.this, "Successfull Login", Toast.LENGTH_SHORT).show();
                             startActivity(intent);
 
 
@@ -135,52 +137,104 @@ getCurrentLocation();
     }
 
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length > 0) {
-            getCurrentLocation();
+    @SuppressLint("MissingPermission")
+    private void getLastLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+                mFusedLocationClient.getLastLocation().addOnCompleteListener(
+                        new OnCompleteListener<Location>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Location> task) {
+                                Location location = task.getResult();
+                                if (location == null) {
+                                    requestNewLocationData();
+                                } else {
+                                    dlat = location.getLatitude();
+                                    LAT = String.valueOf(dlat);
+                                    dlon = location.getLongitude();
+                                    LON = String.valueOf(dlon);
+                                }
+                            }
+                        }
+                );
+            } else {
+                Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
         } else {
-            Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            requestPermissions();
         }
     }
 
-    private void getCurrentLocation()  {
 
+    @SuppressLint("MissingPermission")
+    private void requestNewLocationData() {
 
-        final LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(3000);
-        locationRequest.setPriority(locationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(0);
+        mLocationRequest.setFastestInterval(0);
+        mLocationRequest.setNumUpdates(1);
 
-        LocationServices.getFusedLocationProviderClient(Login_customer.this)
-                .requestLocationUpdates(locationRequest, new LocationCallback() {
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient.requestLocationUpdates(
+                mLocationRequest, mLocationCallback,
+                Looper.myLooper()
+        );
 
-                    @Override
-                    public void onLocationResult(LocationResult locationResult) {
-                        super.onLocationResult(locationResult);
-                        LocationServices.getFusedLocationProviderClient(Login_customer.this)
-                                .removeLocationUpdates(this);
-                        if (locationResult != null && locationResult.getLocations().size() > 0) {
-                            int lastestLocationIndex = locationResult.getLocations().size() - 1;
-                             latitude =
-                                    locationResult.getLocations().get(lastestLocationIndex).getLatitude();
-                             longitude =
-                                    locationResult.getLocations().get(lastestLocationIndex).getLongitude();
+    }
 
-                           // Toast.makeText(Login_customer.this, "LAT - "+latitude + "\n" + "LON: " + longitude, Toast.LENGTH_SHORT).show();
-//
-                            LATITUDE = String.format(String.valueOf(latitude));
-                            LONGITUDE = String.format(String.valueOf(longitude));
-//                            LOC=String.format(Locale.US, "%s -- %s", LATITUDE, LONGITUDE);
-                            Log.d("lati:", String.valueOf(LATITUDE));
-                            Log.d("lon::", String.valueOf(LONGITUDE));
+    private LocationCallback mLocationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            Location mLastLocation = locationResult.getLastLocation();
+            dlat = mLastLocation.getLatitude();
+            LAT = String.valueOf(dlat);
+            dlon = mLastLocation.getLongitude();
+            LON = String.valueOf(dlon);
+        }
+    };
 
-                            //email.setText();
+    private boolean checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        return false;
+    }
 
-                        }
-                    }
-                }, Looper.getMainLooper());
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(
+                this,
+                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                PERMISSION_ID
+        );
+    }
+
+    private boolean isLocationEnabled() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+                LocationManager.NETWORK_PROVIDER
+        );
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_ID) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLastLocation();
+            }
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (checkPermissions()) {
+            getLastLocation();
+        }
 
     }
 }
