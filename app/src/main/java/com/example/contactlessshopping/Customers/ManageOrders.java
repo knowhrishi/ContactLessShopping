@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -81,6 +84,34 @@ public class ManageOrders extends AppCompatActivity {
         adapter=new OrdersAdapter(options);
         adapter.notifyDataSetChanged();
         orderlist.setAdapter(adapter);
+
+        //nav
+
+        BottomNavigationView bottomNavigationView= findViewById(R.id.nav);
+
+        bottomNavigationView.setSelectedItemId(R.id.item2);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.item1:
+                        startActivity(new Intent(getApplicationContext(),Customer_MainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.item2:
+                        return true;
+
+                    case R.id.item3:
+                        startActivity(new Intent(getApplicationContext(),profile_customer.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+
+                }
+                return false;
+            }
+        });
 
     }
 

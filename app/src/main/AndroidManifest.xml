@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Customers.ManageOrders"></activity>
+        <activity android:name=".Customers.profile_customer"></activity>
+        <activity android:name=".Customers.ManageOrders" />
         <activity android:name=".Customers.ShopDetails" />
         <activity android:name=".Shops.ShopLogin" />
         <activity android:name=".Shops.ShopRegistration" />

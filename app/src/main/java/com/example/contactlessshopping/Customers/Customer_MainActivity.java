@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,6 +22,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -35,6 +38,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -46,6 +50,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static android.os.Build.VERSION_CODES.M;
+
 public class Customer_MainActivity extends AppCompatActivity {
 
 
@@ -55,6 +61,10 @@ public class Customer_MainActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     double dlat, dlon;
     LinearLayoutManager gridLayoutManager;
+//    MeowBottomNavigation meowBottomNavigation;
+    private final static int ID_LIST=1;
+    private final static int ID_ORDERS=2;
+    private final static int ID_PROFILE=3;
 
 
     @Override
@@ -65,7 +75,6 @@ public class Customer_MainActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.progress_bar);
 
 
-
         final Intent intent = getIntent();
         String slat = intent.getStringExtra("intendLatitude");
         String slon = intent.getStringExtra("intentLongitude");
@@ -74,6 +83,34 @@ public class Customer_MainActivity extends AppCompatActivity {
 
         init();
         getshopList();
+
+        BottomNavigationView bottomNavigationView= findViewById(R.id.nav);
+
+        bottomNavigationView.setSelectedItemId(R.id.item1);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+
+                    case R.id.item1:
+
+                        return true;
+
+                    case R.id.item2:
+                        startActivity(new Intent(getApplicationContext(),ManageOrders.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.item3:
+                        startActivity(new Intent(getApplicationContext(),profile_customer.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+
+                }
+                return false;
+            }
+        });
     }
 
 

@@ -63,6 +63,10 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.airbnb.android:lottie:3.4.0'
+
+    //
+    //meo meo meo
+    implementation 'com.google.android.material:material:1.0.0'
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
