@@ -3,8 +3,6 @@ package com.example.contactlessshopping.Customers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,16 +57,13 @@ public class Customer_MainActivity extends AppCompatActivity {
     private FirestoreRecyclerAdapter adapter;
     LinearLayoutManager gridLayoutManager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer__main);
         shoplist = findViewById(R.id.shop_list);
         progressBar = findViewById(R.id.progress_bar);
-
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
         getLastLocation();
         init();
         getshopList();
@@ -81,11 +76,8 @@ public class Customer_MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
     }
 
-
     public class ShopsHolder extends RecyclerView.ViewHolder {
         private View view;
-
-
         TextView textName, textTitle, textCompany, textViewDistance;
 
         public ShopsHolder(View itemView) {
@@ -115,6 +107,9 @@ public class Customer_MainActivity extends AppCompatActivity {
                 holder.textTitle.setText(model.getfrom_time());
                 holder.textCompany.setText(model.getto_time());
 
+                shop_lat = model.getLatitude();
+                shop_lon = model.getLongitude();
+
                 lat1 = Double.parseDouble(shop_lat);
                 lon1 = Double.parseDouble(shop_lon);
                 lat2 = dlat;
@@ -122,7 +117,6 @@ public class Customer_MainActivity extends AppCompatActivity {
                 double dist = distance(lat1, lon1, lat2, lon2);
                 double roundOffDist = Math.round(dist*100)/100;
                 holder.textViewDistance.setText(String.format(String.valueOf(roundOffDist) + " KMs"));
-
             }
 
             @Override
@@ -156,7 +150,6 @@ public class Customer_MainActivity extends AppCompatActivity {
         adapter.stopListening();
     }
 
-//
 
     private static double distance(double lat1, double lon1, double lat2, double lon2) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -172,8 +165,6 @@ public class Customer_MainActivity extends AppCompatActivity {
             return (dist);
         }
     }
-
-//}
 
     @SuppressLint("MissingPermission")
     private void getLastLocation(){
@@ -271,7 +262,5 @@ public class Customer_MainActivity extends AppCompatActivity {
         if (checkPermissions()) {
             getLastLocation();
         }
-
     }
-
 }
