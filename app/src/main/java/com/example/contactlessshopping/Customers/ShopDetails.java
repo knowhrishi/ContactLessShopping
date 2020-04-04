@@ -68,7 +68,9 @@ public class ShopDetails extends AppCompatActivity {
         imgupload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Upload_list.class));
+                Intent i=new Intent(getApplicationContext(), Upload_list.class);
+                i.putExtra("shop_id",id);
+                startActivity(i);
             }
         });
 

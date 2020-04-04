@@ -4,23 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Shops.Main.OrderDetails">
+    tools:context=".Shops.Main.OrderDetails"
+    android:weightSum="1">
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:elevation="0dp">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/colorPrimary">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -31,9 +33,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="20dp"
-                        android:text="Customer Name: " />
+                        android:text="CUSTOMER NAME: " />
 
                     <TextView
                         android:id="@+id/idCustomerName"
@@ -43,7 +46,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_marginBottom="5dp"
                         android:text="customer name"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -51,13 +54,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:textColor="@color/white"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="Order Status: " />
+                        android:textColor="@color/white"
+                        android:text="ORDER STATUS: " />
 
                     <TextView
                         android:id="@+id/idOrderStatus"
@@ -80,7 +85,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="Order Time: " />
+                        android:textColor="@color/white"
+                        android:text="ORDER TIME: " />
 
                     <TextView
                         android:id="@+id/idOrderTimeStamp"
@@ -89,7 +95,7 @@
                         android:layout_marginLeft="15dp"
                         android:paddingLeft="5dp"
                         android:text="ordertime"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="20sp" />
                 </LinearLayout>
 
@@ -103,7 +109,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:text="Order No: " />
+                        android:textColor="@color/white"
+                        android:text="ORDER NO: " />
 
                     <TextView
                         android:id="@+id/idOrderNo"
@@ -112,28 +119,36 @@
                         android:layout_marginLeft="15dp"
                         android:paddingLeft="5dp"
                         android:text="order#"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/list_order"/>
+
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:gravity="center"
+
+            android:gravity="bottom"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:weightSum="1">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/rounded_button_accept"
+
+
+                android:background="@color/green"
                 android:gravity="center"
                 android:padding="5dp"
                 android:id="@+id/idBtnAccept"
@@ -141,11 +156,12 @@
                 android:textColor="@color/white" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_weight="0.5"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/rounded_button_reject"
+                android:background="@color/red"
                 android:gravity="center"
                 android:padding="5dp"
                 android:id="@+id/idBtnReject"
@@ -153,6 +169,11 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
+
+
+
     </LinearLayout>
+
+
 
 </ScrollView>

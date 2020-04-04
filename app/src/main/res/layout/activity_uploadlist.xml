@@ -6,29 +6,41 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Customers.Upload_list">
 
-    <Button
-        android:id="@+id/choose"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Item"
-        android:background="@drawable/rounded_button_withborder"
-        />
+    <LinearLayout
+        android:id="@+id/layout_button"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <!--Button for choosing image from gallery-->
+        <Button
+            android:id="@+id/btnChoose"
+            android:text="Choose"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <!--Button for uploading image-->
+        <Button
+            android:id="@+id/btnUpload"
+            android:text="Upload"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!--Image View for showing image choosen from gallery-->
     <ImageView
-        android:layout_below="@+id/choose"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/image"/>
-
-    <Button
-        android:id="@+id/upload"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Item"
-        android:layout_below="@+id/image"
-        android:background="@drawable/rounded_button_withborder"
-        />
+        android:layout_below="@+id/layout_button"
+        android:id="@+id/imgView"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
 
 </RelativeLayout>
