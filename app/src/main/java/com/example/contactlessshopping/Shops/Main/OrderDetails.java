@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -44,6 +45,8 @@ public class OrderDetails extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+
+
         final Intent intent = getIntent();
         textViewCustName.setText(intent.getStringExtra("intentCustomerName"));
         textViewOrderNo.setText(intent.getStringExtra("intentOrderNo"));
@@ -56,8 +59,15 @@ public class OrderDetails extends AppCompatActivity {
                 order_status = "1";
                 DocumentReference orderRefAccept = db.collection("orders").document(id);
                 orderRefAccept.update(KEY_ORDER_STATUS,order_status);
+
+
+
                 startActivity(new Intent(OrderDetails.this, ShopMainActivity.class));
                 finish();
+
+
+
+
             }
         });
 

@@ -50,6 +50,7 @@ public class FragmentAccepted extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapterAccepted);
+
     }
 
     @Override

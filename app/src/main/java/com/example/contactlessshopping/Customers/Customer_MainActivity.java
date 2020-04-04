@@ -20,6 +20,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +84,11 @@ public class Customer_MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
     }
 
+    public void manage(View v)
+    {
+        Intent i=new Intent(this,ManageOrders.class);
+        startActivity(i);
+    }
     private void getshopList(){
 
         Query query = db.collection("shops");

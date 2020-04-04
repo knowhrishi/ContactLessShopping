@@ -99,10 +99,6 @@ public class ShopRegistration extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(ShopRegistration.this, MainActivity.class));
-            finish();
-        }
 
         timeFrom.setOnClickListener(new View.OnClickListener() {
             @Override
