@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ public class ShopDetails extends AppCompatActivity {
 
 
     TextView name,ph,time;
-    String image,shopname,phno,fromtime,totime;
+    String image,shopname,phno,fromtime,totime,id;
     Button imgupload,makelist;
 
 
@@ -53,6 +54,26 @@ public class ShopDetails extends AppCompatActivity {
         makelist=findViewById(R.id.makelist);
 
 
+        makelist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ShopDetails.this,id,Toast.LENGTH_SHORT).show();
+                Intent i=new Intent(getApplicationContext(), Make_list.class);
+                i.putExtra("shop_id",id);
+                startActivity(i);
+            }
+        });
+
+        imgupload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Upload_list.class));
+            }
+        });
+
+
+
+
 
 
 
@@ -76,6 +97,7 @@ public class ShopDetails extends AppCompatActivity {
                                 phno=document.get("phone_number").toString();
                                 fromtime=document.get("from_time").toString();
                                 totime=document.get("to_time").toString();
+                                id=document.getId().toString();
 
                                 ph.setText(phno);
                                 time.setText(fromtime+" - "+totime);
