@@ -161,6 +161,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/capacity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/time"
@@ -183,6 +184,25 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:text=" 50"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/capacity"
+        android:layout_marginTop="38dp"
+
+        >
+
+        <Button
+            android:id="@+id/edit_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Edit"
+
             />
 
     </LinearLayout>
