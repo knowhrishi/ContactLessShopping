@@ -25,7 +25,7 @@
         <activity android:name=".Customers.Customer_MainActivity"/>
         <activity android:name=".Customers.Login_customer"/>
         <activity android:name=".Customers.Customer_registration"/>
-        <activity android:name=".Shops.OrderDetails"/>
+        <activity android:name=".Shops.Main.OrderDetails"/>
         <activity android:name=".Shops.ShopMainActivity"/>
     </application>
 </manifest>

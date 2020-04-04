@@ -1,7 +1,6 @@
-package com.example.contactlessshopping.Shops;
+package com.example.contactlessshopping.Shops.Main;
 
 
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-public class OrderAdapater extends FirestoreRecyclerAdapter<OrderModel, OrderAdapater.NoteHolder> {
+public class OrderAdapterRejected extends FirestoreRecyclerAdapter<OrderModel, OrderAdapterRejected.NoteHolder> {
     private OnItemClickListener listener;
     //Note upload;
 
@@ -26,7 +25,7 @@ public class OrderAdapater extends FirestoreRecyclerAdapter<OrderModel, OrderAda
      *
      * @param options
      */
-    public OrderAdapater(@NonNull FirestoreRecyclerOptions<OrderModel> options) {
+    public OrderAdapterRejected(@NonNull FirestoreRecyclerOptions<OrderModel> options) {
         super(options);
     }
 
@@ -42,7 +41,7 @@ public class OrderAdapater extends FirestoreRecyclerAdapter<OrderModel, OrderAda
     @Override
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.order_layout, parent, false);
+                .inflate(R.layout.order_layout_rejected, parent, false);
 
 //        context = parent.getContext();
         return new NoteHolder(v);

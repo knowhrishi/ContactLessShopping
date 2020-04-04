@@ -1,10 +1,11 @@
-package com.example.contactlessshopping.Shops;
+package com.example.contactlessshopping.Shops.Main;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,9 +21,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class FragmentPending extends Fragment {
     View view;
 
@@ -30,7 +28,7 @@ public class FragmentPending extends Fragment {
     FirebaseAuth auth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference notebookRef = db.collection("orders");
-    private OrderAdapater adapter;
+    private OrderAdapterPending adapterPending;
 
     public FragmentPending(){}
 
@@ -51,14 +49,13 @@ public class FragmentPending extends Fragment {
                 .setQuery(query, OrderModel.class)
                 .build();
 
-        adapter = new OrderAdapater(options);
-
+        adapterPending = new OrderAdapterPending(options);
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapterPending);
 
-        adapter.setOnItemClickListener(new OrderAdapater.OnItemClickListener() {
+        adapterPending.setOnItemClickListener(new OrderAdapterPending.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
 //                OrderModel note = documentSnapshot.toObject(OrderModel.class);
@@ -90,12 +87,12 @@ public class FragmentPending extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
+        adapterPending.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapter.stopListening();
+        adapterPending.stopListening();
     }
 }

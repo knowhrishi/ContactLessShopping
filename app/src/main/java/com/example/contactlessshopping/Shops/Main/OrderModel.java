@@ -1,4 +1,4 @@
-package com.example.contactlessshopping.Shops;
+package com.example.contactlessshopping.Shops.Main;
 
 public class OrderModel {
 

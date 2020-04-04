@@ -1,4 +1,4 @@
-package com.example.contactlessshopping.Shops;
+package com.example.contactlessshopping.Shops.Main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +26,7 @@ public class FragmentAccepted extends Fragment {
     FirebaseAuth auth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference notebookRef = db.collection("orders");
-    private OrderAdapater adapter;
+    private OrderAdapterAccepted adapterAccepted;
 
     public FragmentAccepted(){}
 
@@ -44,24 +44,24 @@ public class FragmentAccepted extends Fragment {
                 .setQuery(query, OrderModel.class)
                 .build();
 
-        adapter = new OrderAdapater(options);
+        adapterAccepted = new OrderAdapterAccepted(options);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapterAccepted);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
+        adapterAccepted.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapter.stopListening();
+        adapterAccepted.stopListening();
     }
 }
 

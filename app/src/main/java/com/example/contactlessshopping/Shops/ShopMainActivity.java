@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.contactlessshopping.R;
+import com.example.contactlessshopping.Shops.Main.FragmentAccepted;
+import com.example.contactlessshopping.Shops.Main.FragmentDeclined;
+import com.example.contactlessshopping.Shops.Main.FragmentPending;
+import com.example.contactlessshopping.Shops.Main.ViewPagerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.AppBarLayout;
