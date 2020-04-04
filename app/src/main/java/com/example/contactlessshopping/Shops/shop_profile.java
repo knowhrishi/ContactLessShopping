@@ -3,7 +3,10 @@ package com.example.contactlessshopping.Shops;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.contactlessshopping.R;
@@ -20,6 +23,7 @@ public class shop_profile extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
     String userID;
+    Button edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,14 @@ public class shop_profile extends AppCompatActivity {
                 open.setText(documentSnapshot.getString("from_time"));
                 close.setText(documentSnapshot.getString("to_time"));
                 capacity.setText(documentSnapshot.getString("capacity"));
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(shop_profile.this,shop_edit_profile.class);
+                startActivity(intent);
             }
         });
     }
