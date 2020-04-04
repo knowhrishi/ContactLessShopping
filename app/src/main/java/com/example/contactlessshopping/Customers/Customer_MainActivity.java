@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -26,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.contactlessshopping.R;
+import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
+import com.example.contactlessshopping.Shops.Main.OrderDetails;
 import com.example.contactlessshopping.Shops.ShopRegistration;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -34,6 +37,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
@@ -49,9 +53,9 @@ public class Customer_MainActivity extends AppCompatActivity {
     RecyclerView  shoplist;
     LocationManager locationManager;
     String LATITUDE,LONGITUDE,LOC;
-
+    private ShopsAdapter adapter;
     private FirebaseFirestore db;
-    private FirestoreRecyclerAdapter adapter;
+
     LinearLayoutManager gridLayoutManager;
 
 
@@ -87,25 +91,6 @@ public class Customer_MainActivity extends AppCompatActivity {
     }
 
 
-    public class ShopsHolder extends RecyclerView.ViewHolder {
-        private View view;
-
-
-        TextView textName,textTitle,textCompany;
-
-        public ShopsHolder(View itemView) {
-            super(itemView);
-            view=itemView;
-
-
-            textName=(TextView)view.findViewById(R.id.name_shop);
-
-            textTitle=(TextView)view.findViewById(R.id.from);
-
-             textCompany=(TextView)view.findViewById(R.id.to);
-
-        }
-    }
 
 
 
@@ -117,32 +102,33 @@ public class Customer_MainActivity extends AppCompatActivity {
                 .setQuery(query, Shopsclass.class)
                 .build();
 
-        adapter = new FirestoreRecyclerAdapter<Shopsclass, ShopsHolder>(response) {
-            @Override
-            public void onBindViewHolder(ShopsHolder holder, int position, Shopsclass model) {
-                progressBar.setVisibility(View.GONE);
-                holder.textName.setText(model.getshop_name());
-                holder.textTitle.setText(model.getfrom_time());
-                holder.textCompany.setText(model.getto_time());
-
-            }
-
-            @Override
-            public ShopsHolder onCreateViewHolder(ViewGroup group, int i) {
-                View view = LayoutInflater.from(group.getContext())
-                        .inflate(R.layout.list_item_shops, group, false);
-
-                return new ShopsHolder(view);
-            }
-
-            @Override
-            public void onError(FirebaseFirestoreException e) {
-                Log.e("error", e.getMessage());
-            }
-        };
+        adapter=new ShopsAdapter(response);
 
         adapter.notifyDataSetChanged();
         shoplist.setAdapter(adapter);
+
+
+        adapter.setOnItemClickListener(new OrderAdapterPending.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+//                Shopsclass note = documentSnapshot.toObject(OrderModel.class);
+//                String id = documentSnapshot.getId();
+//                String path = documentSnapshot.getReference().getPath();
+//
+//                Map<String, Object> noticeIDUpdate = new HashMap<>();
+//                noticeIDUpdate.put("noticeID", id);
+//                db.collection("notices").document(id).update(noticeIDUpdate);
+
+                Intent intent = new Intent(Customer_MainActivity.this, ShopDetails.class);
+                //intent.putExtra("intendListImageUrl", documentSnapshot.get("url").toString());
+                intent.putExtra("shop_name", documentSnapshot.get("shop_name").toString());
+                Toast.makeText(Customer_MainActivity.this,documentSnapshot.get("shop_name").toString()+" data sent ",Toast.LENGTH_SHORT).show();
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+
+            }
+        });
     }
 
 
