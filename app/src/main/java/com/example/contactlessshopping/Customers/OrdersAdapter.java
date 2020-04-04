@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.contactlessshopping.R;
+import com.example.contactlessshopping.Shops.Main.OrderAdapterAccepted;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
 import com.example.contactlessshopping.Shops.Main.OrderModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -59,8 +60,12 @@ public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAd
         }
     }
 
-    public class OnItemClickListener {
-        public void onItemClick(DocumentSnapshot snapshot, int position) {
-        }
+
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+
+    public void setOnItemClickListener(OrdersAdapter.OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

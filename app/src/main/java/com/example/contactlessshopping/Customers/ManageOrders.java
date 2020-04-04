@@ -72,7 +72,7 @@ public class ManageOrders extends AppCompatActivity {
                 });
 
 
-       Query query= notebookRef.whereEqualTo("status",1 );
+       Query query= notebookRef.whereEqualTo("status", "1");
 
         FirestoreRecyclerOptions<OrderModel> options = new FirestoreRecyclerOptions.Builder<OrderModel>()
                 .setQuery(query, OrderModel.class)

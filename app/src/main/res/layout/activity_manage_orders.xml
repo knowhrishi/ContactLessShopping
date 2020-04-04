@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".Customers.ManageOrders">
 
     <LinearLayout
@@ -11,17 +10,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ScrollView
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/order_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/order_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ScrollView>
-
-
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </RelativeLayout>

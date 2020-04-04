@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-
     tools:context=".Customers.Customer_MainActivity">
 
 
@@ -12,69 +10,69 @@
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary"
-
-        android:weightSum="1">
-
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/location"
-            android:layout_weight="0.2"/>
-
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginTop="10dp"
-
-            android:textColor="@color/whiteTextColor"
-            android:text="Balaji apt,opp abz residency"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:textColor="@color/whiteTextColor"
-            android:text="Ambegaon(bk),Pune-46"/>
-
-</LinearLayout>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="manage"
-            android:onClick='manage'
-            android:id="@+id/bt"/>
-
-
-    </LinearLayout>
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/shop_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-        </ScrollView>
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@color/colorPrimary"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
+
+            <!--        <ImageView-->
+            <!--            android:layout_width="40dp"-->
+            <!--            android:layout_height="30dp"-->
+            <!--            android:layout_margin="10dp"-->
+            <!--            android:src="@drawable/location"-->
+            <!--            android:layout_weight="0.2"/>-->
+
+            <!--<LinearLayout-->
+            <!--    android:layout_width="wrap_content"-->
+            <!--    android:layout_height="wrap_content"-->
+            <!--    android:orientation="vertical">-->
+            <!--        <TextView-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+
+            <!--            android:layout_marginTop="10dp"-->
+
+            <!--            android:textColor="@color/whiteTextColor"-->
+            <!--            android:text="Balaji apt,opp abz residency"/>-->
+
+            <!--        <TextView-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+
+            <!--            android:textColor="@color/whiteTextColor"-->
+            <!--            android:text="Ambegaon(bk),Pune-46"/>-->
+
+            <!--</LinearLayout>-->
+            <Button
+                android:id="@+id/bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@drawable/rounded_button"
+                android:onClick='manage'
+                android:text="manage" />
+
+
+        </LinearLayout>
+        
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shop_list"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>

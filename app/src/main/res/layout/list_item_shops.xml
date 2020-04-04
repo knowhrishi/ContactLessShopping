@@ -8,7 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     android:background="#58FFFFFF"
     android:clickable="true"
     android:padding="3dp"
@@ -17,14 +17,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-
         android:orientation="vertical"
         android:weightSum="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="5dp"
             android:layout_weight="0.8">
 
             <ImageView
@@ -39,15 +38,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/name_shop"
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
                 android:textSize="20sp"
+                android:textColor="@color/black"
+                android:textAllCaps="true"
                 tools:text="Balaji Mart" />
 
             <LinearLayout
@@ -60,7 +61,6 @@
                     android:id="@+id/from"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
                     tools:text="8AM" />
 
                 <TextView
@@ -72,15 +72,17 @@
                     android:id="@+id/to"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
                     tools:text="9PM" />
             </LinearLayout>
+
             <TextView
+                android:id="@+id/idDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/idDistance"
-                android:textColor="@color/black"
-                android:text="KMs"/>
+                android:layout_gravity="end"
+                android:padding="2dp"
+                android:text="KMs"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 

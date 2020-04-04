@@ -71,7 +71,6 @@ public class Login_customer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 Log.d("in signup", "successfull");
 
                 Intent intent = new Intent(Login_customer.this, Customer_registration.class);
@@ -105,7 +104,7 @@ public class Login_customer extends AppCompatActivity {
     }
 
     private void loginuser(String email, String pass) {
-
+        getLastLocation();
 
         mAuth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

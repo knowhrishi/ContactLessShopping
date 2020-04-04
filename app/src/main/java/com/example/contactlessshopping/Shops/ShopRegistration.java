@@ -38,7 +38,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,7 +115,9 @@ public class ShopRegistration extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(ShopRegistration.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        editTextFromTime.setText(selectedHour + ":" + selectedMinute);
+                        //editTextFromTime.setText(selectedHour + ":" + selectedMinute);
+                        editTextFromTime.setText(String.format("%02d:%02d", selectedHour, selectedMinute));
+
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -128,13 +135,59 @@ public class ShopRegistration extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(ShopRegistration.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        editTextToTime.setText(selectedHour + ":" + selectedMinute);
+//                        editTextToTime.setText(selectedHour + ":" + selectedMinute);
+                        editTextToTime.setText(String.format("%02d:%02d", selectedHour, selectedMinute));
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
             }
         });
+
+
+
+
+
+
+
+        String date1 = "04/04/2020";
+        String time1 = "00:00";
+        String date2 = "04/04/2020";
+        String time2 = "12:00";
+
+
+
+        String format = "dd/MM/yyyy HH:mm";
+
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+
+        try {
+            Date dateObj1 = sdf.parse(date1 + " " + time1);
+            Date dateObj2 = sdf.parse(date2 + " " + time2);
+            Log.d("TAG", "Date Start: " + dateObj1);
+            Log.d("TAG", "Date End: " + dateObj2);
+            long dif = dateObj1.getTime();
+            while (dif < dateObj2.getTime()) {
+                Date slot1 = new Date(dif);
+                dif += 3600000;
+//                Date slot2 = new Date(dif);
+//                dif += 3600000;
+                SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm");
+//                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm, dd/MM/yy");
+                Log.d("TAG", "Hour slot = " + sdf1.format(slot1));
+            }
+        }catch (ParseException ex){
+            ex.printStackTrace();
+        }
+
+
+
+
+
+
+
+
+
 
         if (ContextCompat.checkSelfPermission(
                 getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
