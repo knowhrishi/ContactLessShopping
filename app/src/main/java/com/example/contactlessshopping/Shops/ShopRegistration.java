@@ -83,7 +83,11 @@ public class ShopRegistration extends AppCompatActivity {
         editTextCapacity = (EditText) findViewById(R.id.idEtCapacity);
         editTextEmail = (EditText) findViewById(R.id.idEmail);
         editTextPassword = (EditText) findViewById(R.id.idPassword);
+
+        progressDialog = new ProgressDialog(this);
+
         editTextPhoneNumber = (EditText) findViewById(R.id.idPhoneNumber);
+
 
         radioTypeGroup = (RadioGroup) findViewById(R.id.radioSex);
         radioButtonYes = (RadioButton) findViewById(R.id.radioButtonYes);

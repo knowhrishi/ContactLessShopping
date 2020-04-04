@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.contactlessshopping">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,18 +14,19 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".Shops.ShopLogin">
+
         </activity>
         <activity android:name=".Shops.ShopRegistration" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".Customers.Customer_MainActivity"/>
         <activity android:name=".Customers.Login_customer"/>
         <activity android:name=".Customers.Customer_registration"/>
-        <activity android:name=".Shops.OrderDetails"/>
-        <activity android:name=".Shops.ShopMainActivity"/>
     </application>
+
 </manifest>

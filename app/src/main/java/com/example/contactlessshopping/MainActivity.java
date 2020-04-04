@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.example.contactlessshopping.Customers.Login_customer;
 import com.example.contactlessshopping.Shops.ShopLogin;
+import com.example.contactlessshopping.Shops.shop_profile;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Button shop=(Button)findViewById(R.id.Shop);
+        Button shop=(Button)findViewById(R.id.sale);
         shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button customer=(Button)findViewById(R.id.customer);
+        Button customer=(Button)findViewById(R.id.buy);
+
         customer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -34,10 +34,10 @@ public class ShopLogin extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser() != null) {
-            startActivity(new Intent(ShopLogin.this, ShopMainActivity.class));
-            finish();
-        }
+//        if (auth.getCurrentUser() != null) {
+//            startActivity(new Intent(ShopLogin.this, ShopMainActivity.class));
+//            finish();
+//        }
 
         editTextEmail      = (EditText) findViewById(R.id.email);
         editTextPassword   = (EditText) findViewById(R.id.password);
