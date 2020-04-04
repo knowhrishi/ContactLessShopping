@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    
+
 
     <application
         android:allowBackup="true"
@@ -17,8 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Customers.profile_customer"></activity>
+        <activity android:name=".Customers.SlotsMain"></activity>
         <activity android:name=".Customers.ManageOrders" />
+        <activity android:name=".Customers.profile_customer"></activity>
         <activity android:name=".Customers.ShopDetails" />
         <activity android:name=".Shops.ShopLogin" />
         <activity android:name=".Shops.ShopRegistration" />

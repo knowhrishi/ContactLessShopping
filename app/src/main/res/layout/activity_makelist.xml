@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:clipToPadding="false"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
     tools:context=".Customers.Make_list">
-
-
 
 
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-
-        />
+        android:layout_weight="2"
+        android:divider="#fff" />
 
     <Button
         android:id="@+id/save"
@@ -25,34 +24,36 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/list"
         android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:text="PLACE ORDER" />
+        android:text="PLACE ORDER"
+        android:textColor="#FFFFFF" />
 
-
-    <EditText
-        android:id="@+id/txtItem"
-        android:layout_width="240dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:orientation="horizontal">
 
-        android:hint="Enter an item here ..."
-        />
+        <EditText
+            android:id="@+id/txtItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Write a message"
+            android:inputType="text"
+            android:paddingHorizontal="10dp"
+            android:text="" />
 
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Add Item"
-        android:layout_toRightOf="@+id/txtItem"
-        android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true"
-
-        android:background="@drawable/rounded_button_withborder"
-        />
-
+        <ImageButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/add"
+            android:padding="20dp"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
 
 
-
-</RelativeLayout>
+</LinearLayout>

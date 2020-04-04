@@ -58,13 +58,6 @@ public class FragmentPending extends Fragment {
         adapterPending.setOnItemClickListener(new OrderAdapterPending.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-//                OrderModel note = documentSnapshot.toObject(OrderModel.class);
-//                String id = documentSnapshot.getId();
-//                String path = documentSnapshot.getReference().getPath();
-//
-//                Map<String, Object> noticeIDUpdate = new HashMap<>();
-//                noticeIDUpdate.put("noticeID", id);
-//                db.collection("notices").document(id).update(noticeIDUpdate);
 
                 Intent intent = new Intent(getActivity(), OrderDetails.class);
                 //intent.putExtra("intendListImageUrl", documentSnapshot.get("url").toString());

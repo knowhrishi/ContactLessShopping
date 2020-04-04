@@ -46,6 +46,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class ShopRegistration extends AppCompatActivity {
 
@@ -69,12 +70,14 @@ public class ShopRegistration extends AppCompatActivity {
     private RadioButton radioButtonYes, radioButtonNo;
     private ProgressDialog progressDialog;
     MaterialSpinner categorySpinner;
-    private Button timeFrom, timeTo, buttonShopRegister;
+    private Button timeFrom, timeTo, buttonShopRegister,buttonAddSlot;
+    public String insertSlot, authid;
     private String LONGITUDE, LATITUDE, shop_name, phone_number, email_id, password, capacity, from_time, to_time, address = "NULL", shop_category;
 
 
     FirebaseAuth auth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore db2 = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -101,7 +104,6 @@ public class ShopRegistration extends AppCompatActivity {
         timeTo = (Button) findViewById(R.id.idBtnToTime);
 
         buttonShopRegister = (Button) findViewById(R.id.ShopRegister);
-
         auth = FirebaseAuth.getInstance();
 
 
@@ -150,36 +152,70 @@ public class ShopRegistration extends AppCompatActivity {
 
 
 
-        String date1 = "04/04/2020";
-        String time1 = "00:00";
-        String date2 = "04/04/2020";
-        String time2 = "12:00";
-
-
-
-        String format = "dd/MM/yyyy HH:mm";
-
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
-
-        try {
-            Date dateObj1 = sdf.parse(date1 + " " + time1);
-            Date dateObj2 = sdf.parse(date2 + " " + time2);
-            Log.d("TAG", "Date Start: " + dateObj1);
-            Log.d("TAG", "Date End: " + dateObj2);
-            long dif = dateObj1.getTime();
-            while (dif < dateObj2.getTime()) {
-                Date slot1 = new Date(dif);
-                dif += 3600000;
-//                Date slot2 = new Date(dif);
-//                dif += 3600000;
-                SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm");
-//                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm, dd/MM/yy");
-                Log.d("TAG", "Hour slot = " + sdf1.format(slot1));
-            }
-        }catch (ParseException ex){
-            ex.printStackTrace();
-        }
-
+//
+//        buttonAddSlot.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Date c = Calendar.getInstance().getTime();
+//                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//                String formattedDate = df.format(c);
+//                String dateInString = "2011-11-30";  // Start date
+//                SimpleDateFormat sdf_incr_date = new SimpleDateFormat("dd/MM/yyyy");
+//                Calendar c1 = Calendar.getInstance();
+//                try {
+//                    c1.setTime(sdf_incr_date.parse(formattedDate));
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+//                c1.add(Calendar.DATE, 1);
+//                sdf_incr_date = new SimpleDateFormat("dd/MM/yyyy");
+//                Date resultdate = new Date(c1.getTimeInMillis());
+//                dateInString = sdf_incr_date.format(resultdate);
+//                Toast.makeText(ShopRegistration.this, formattedDate + "\n" + dateInString, Toast.LENGTH_SHORT).show();
+//                String date1 = formattedDate;
+//                String time1 = "10:00";
+//                String date2 = dateInString;
+//                String time2 = "15:00";
+//                String format = "dd/MM/yyyy HH:mm";
+//                SimpleDateFormat sdf = new SimpleDateFormat(format);
+//                try {
+//                    Date dateObj1 = sdf.parse(date1 + " " + time1);
+//                    Date dateObj2 = sdf.parse(date2 + " " + time2);
+//                    Log.d("TAG", "Date Start: " + dateObj1);
+//                    Log.d("TAG", "Date End: " + dateObj2);
+//                    long dif = dateObj1.getTime();
+//                    while (dif < dateObj2.getTime()) {
+//                        Date slot1 = new Date(dif);
+//                        dif += 3600000;
+//                        Date slot2 = new Date(dif);
+//                        dif += 3600000;
+//                        SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm");
+//                        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
+//                        Log.d("TAG", sdf1.format(slot1) + " - " + sdf2.format(slot2));
+//                        insertSlot = insertSlot + "," + sdf1.format(slot1) + " - " + sdf2.format(slot2);
+//
+//
+//                    }
+//                }catch (ParseException ex){
+//                    ex.printStackTrace();
+//                }
+//
+////                for(int i = 1;i<10;i++){
+////                    String noticeID =  UUID.randomUUID().toString().replaceAll("-", "");
+////                    authid = authid + "," + noticeID + ',' + authid;
+////                }
+////                System.out.println(authid + "\n");;
+//                String[] itemsSlots = insertSlot.split(",");
+//                //String item;
+//                for (String item : itemsSlots) {
+//                    String noticeID =  UUID.randomUUID().toString().replaceAll("-", "");
+//
+//                    System.out.println("item = " + item + "\n" + "UID:" + noticeID);
+//                }
+//
+//            }
+//        });
 
 
 
@@ -330,6 +366,9 @@ public class ShopRegistration extends AppCompatActivity {
                                                     Log.d(TAG, e.toString());
                                                 }
                                             });
+
+
+
                                 }
                             }
                         });

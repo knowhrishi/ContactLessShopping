@@ -85,6 +85,21 @@ public class ManageOrders extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         orderlist.setAdapter(adapter);
 
+        adapter.setOnItemClickListener(new OrdersAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+
+                Intent intent = new Intent(ManageOrders.this, SlotsMain.class);
+                intent.putExtra("intendorder_id", documentSnapshot.get("order_id").toString());
+                intent.putExtra("intendshop_id", documentSnapshot.get("shop_id").toString());
+                intent.putExtra("intendorder_no", documentSnapshot.get("order_no").toString());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+
+            }
+        });
+
         //nav
 
         BottomNavigationView bottomNavigationView= findViewById(R.id.nav);

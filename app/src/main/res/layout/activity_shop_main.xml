@@ -11,19 +11,20 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/idAppbar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:elevation="0dp"
+
         android:gravity="center">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NAME"
                 android:textColor="@color/white"
-                android:textSize="30dp"
+                android:textSize="20dp"
                 android:id="@+id/idShopName"
                 android:padding="5dp"
                 android:layout_margin="10dp"/>
@@ -31,10 +32,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit Profile"
+                android:layout_margin="5dp"
                 android:textColor="@color/white"
                 android:padding="5dp"
-                android:layout_margin="10dp"
-                android:layout_gravity="bottom"
                 android:background="@drawable/textview_rounded"/>
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>

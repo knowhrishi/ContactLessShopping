@@ -38,6 +38,7 @@ import java.util.Locale;
 
 public class Login_customer extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
     EditText email, password;
     Button submit, signup;
     private FirebaseAuth mAuth;
@@ -52,11 +53,25 @@ public class Login_customer extends AppCompatActivity {
         setContentView(R.layout.activity_login_customer);
 
 
+
+
+        if (ContextCompat.checkSelfPermission(
+                getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    Login_customer.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_CODE_LOCATION_PERMISSION
+            );
+        }
+
         email = (EditText) findViewById(R.id.login_email);
         password = (EditText) findViewById(R.id.login_pass);
         submit = (Button) findViewById(R.id.submit_login);
         mAuth = FirebaseAuth.getInstance();
-
+//        if (mAuth.getCurrentUser() != null) {
+//            startActivity(new Intent(Login_customer.this, Customer_MainActivity.class));
+//            finish();
+//        }
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 

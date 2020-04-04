@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
+import com.example.contactlessshopping.Shops.ShopRegistration;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -53,7 +54,6 @@ import java.util.Locale;
 import static android.os.Build.VERSION_CODES.M;
 
 public class Customer_MainActivity extends AppCompatActivity {
-
 
    ProgressBar progressBar;
     RecyclerView  shoplist;
@@ -166,6 +166,4 @@ public class Customer_MainActivity extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
-
-
 }

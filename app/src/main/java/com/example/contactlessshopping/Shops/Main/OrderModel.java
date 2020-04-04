@@ -5,13 +5,15 @@ public class OrderModel {
     public String status;
     public String order_no;
     public String customer_name;
+    public String shop_name;
 
     public OrderModel(){}
 
-    public OrderModel(String status, String order_no, String customer_name) {
+    public OrderModel(String status, String order_no, String customer_name, String shop_name) {
         this.status = status;
         this.order_no = order_no;
         this.customer_name = customer_name;
+        this.shop_name = shop_name;
     }
 
 
@@ -39,5 +41,13 @@ public class OrderModel {
 
     public void setCustomer_name(String customer_name) {
         this.customer_name = customer_name;
+    }
+
+    public String getShop_name() {
+        return shop_name;
+    }
+
+    public void setShop_name(String shop_name) {
+        this.shop_name = shop_name;
     }
 }

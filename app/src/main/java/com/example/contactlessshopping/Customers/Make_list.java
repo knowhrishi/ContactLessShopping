@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ public class Make_list extends AppCompatActivity {
     private ArrayList<String> arrayList;
     private FirebaseAuth auth;
 
-    String cust_name,shop_id,order_id,order_no;
+    String cust_name, shop_id, order_id, order_no, shop_name;
 
     DocumentReference docref;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -48,19 +49,20 @@ public class Make_list extends AppCompatActivity {
         setContentView(R.layout.activity_makelist);
         auth = FirebaseAuth.getInstance();
         final Intent intent = getIntent();
-        shop_id=intent.getStringExtra("shop_id");
+        shop_id = intent.getStringExtra("shop_id");
+        shop_name = intent.getStringExtra("shop_name");
+
 
         SecureRandom random = new SecureRandom();
         int num = random.nextInt(100000);
-        order_no= String.format("%05d", num);
+        order_no = String.format("%05d", num);
 
 
-        Button btn = (Button) findViewById(R.id.btnAdd);
-        Button save = (Button)findViewById(R.id.save);
-
+        ImageView btn = (ImageView) findViewById(R.id.btnAdd);
+        Button save = (Button) findViewById(R.id.save);
         list = (ListView) findViewById(R.id.list);
         arrayList = new ArrayList<String>();
-        final EditText edit = (EditText)findViewById(R.id.txtItem);
+        final EditText edit = (EditText) findViewById(R.id.txtItem);
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         list.setAdapter(adapter);
@@ -83,7 +85,7 @@ public class Make_list extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
                             cust_name = documentSnapshot.getString("Name");
-                            Toast.makeText(Make_list.this,cust_name,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Make_list.this, cust_name, Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -104,20 +106,21 @@ public class Make_list extends AppCompatActivity {
                 OrderAdapter odr = new OrderAdapter(arrayList);
 
                 Map<String, Object> note = new HashMap<>();
-                note.put("customer_name",cust_name );
-                note.put("shop_id",shop_id);
-                note.put("status",0);
-                note.put("time_stamp",format);
-                note.put("product",arrayList);
-                note.put("order_no",order_no);
+                note.put("customer_name", cust_name);
+                note.put("shop_id", shop_id);
+                note.put("shop_name", shop_name);
+                note.put("status", "0");
+                note.put("timestamp", format);
+                note.put("product", arrayList);
+                note.put("order_no", order_no);
 
 
                 db.collection("orders").add(note).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d("iiii iiiii iiiiiii ii", "DocumentSnapshot written with ID: " + documentReference.getId());
-                        order_id=documentReference.getId();
-                        Toast.makeText(Make_list.this,order_id,Toast.LENGTH_SHORT).show();
+                        order_id = documentReference.getId();
+                        Toast.makeText(Make_list.this, order_id, Toast.LENGTH_SHORT).show();
                         Map<String, Object> data = new HashMap<>();
                         data.put("order_id", order_id);
 
@@ -133,17 +136,16 @@ public class Make_list extends AppCompatActivity {
                             }
                         });
 
-            /*
-             */
+                /*
+                 */
 
 
-
-
-                Intent intent=new Intent(Make_list.this, ShopDetails.class);
+                Intent intent = new Intent(Make_list.this, ShopDetails.class);
 
                 startActivity(intent);
+                finish();
             }
         });
 
-}
+    }
 }

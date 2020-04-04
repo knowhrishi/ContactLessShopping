@@ -1,5 +1,7 @@
 package com.example.contactlessshopping.Customers;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,54 +11,70 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.contactlessshopping.R;
-import com.example.contactlessshopping.Shops.Main.OrderAdapterAccepted;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
-import com.example.contactlessshopping.Shops.Main.OrderModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAdapter.NoteHolder> {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Logger;
 
-    private OrdersAdapter.OnItemClickListener listener;
+public class SlotsAdapter extends FirestoreRecyclerAdapter<SlotsModel, SlotsAdapter.NoteHolder> {
+    private OnItemClickListener listener;
+
+    Customer_MainActivity context;
+
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
      * @param options
      */
-    public OrdersAdapter(@NonNull FirestoreRecyclerOptions<OrderModel> options) {
+    public SlotsAdapter(@NonNull FirestoreRecyclerOptions<SlotsModel> options) {
         super(options);
     }
 
-    @Override
-    protected void onBindViewHolder(@NonNull OrdersAdapter.NoteHolder holder, int i, @NonNull OrderModel model) {
+//    public SlotsAdapter(FirestoreRecyclerOptions<SlotsModel> options, Context context) {
+//
+//        super(options);
+//
+//        this.context = (Customer_MainActivity) context;
+//    }
 
-        holder.textViewContent.setText(model.getOrder_no());
-        holder.textViewShopName.setText(model.getShop_name());
+
+    @Override
+    protected void onBindViewHolder(@NonNull NoteHolder holder, int i, @NonNull SlotsModel model) {
+
+        holder.textSlots.setText(model.getSlot());
+
 
     }
+
 
     @NonNull
     @Override
-    public OrdersAdapter.NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.orders_list, parent, false);
+                .inflate(R.layout.slots_layout, parent, false);
 
-        return new OrdersAdapter.NoteHolder(v);
-        
+        return new NoteHolder(v);
     }
 
-    public class NoteHolder extends RecyclerView.ViewHolder {
+
+
+    class NoteHolder extends RecyclerView.ViewHolder {
         private View view;
-        TextView textViewContent, textViewShopName;
-        public NoteHolder(@NonNull View itemView) {
+
+
+        TextView textSlots;
+
+        public NoteHolder(View itemView) {
             super(itemView);
+            view = itemView;
+            textSlots = (TextView) view.findViewById(R.id.idSlots);
 
-            view=itemView;
-
-            textViewContent = (TextView) itemView.findViewById(R.id.orderstext);
-            textViewShopName = (TextView) itemView.findViewById(R.id.shop_name);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -67,15 +85,17 @@ public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAd
                     }
                 }
             });
+
+
         }
     }
-
 
     public interface OnItemClickListener {
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
-    public void setOnItemClickListener(OrdersAdapter.OnItemClickListener listener) {
+    public void setOnItemClickListener(SlotsAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
+
 }

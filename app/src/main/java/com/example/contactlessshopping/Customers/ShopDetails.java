@@ -60,6 +60,7 @@ public class ShopDetails extends AppCompatActivity {
                 Toast.makeText(ShopDetails.this,id,Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(getApplicationContext(), Make_list.class);
                 i.putExtra("shop_id",id);
+                i.putExtra("shop_name",shopname);
                 startActivity(i);
             }
         });
