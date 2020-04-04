@@ -1,10 +1,11 @@
 package com.example.contactlessshopping.Customers;
-import com.google.firebase.firestore.IgnoreExtraProperties;
 
 public class Shopsclass {
     private String name;
     private String from;
-    private String to,address,capacity,emailid,lat,lon,pass,phno,shopcat;
+    private String to,address,capacity,emailid,pass,phno,shopcat;
+    private String latitude;
+    private String longitude;
 
 
 
@@ -20,8 +21,8 @@ public class Shopsclass {
         this.address=address;
         this.capacity=capacity;
         this.emailid=email_id;
-        this.lat=latitude;
-        this.lon=longitude;
+        this.latitude=latitude;
+        this.longitude=longitude;
         this.pass=password;
         this.phno=phone_number;
         this.shopcat=shop_category;
@@ -59,4 +60,19 @@ public class Shopsclass {
         this.emailid=n;
     }
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitiude) {
+        this.latitude = latitiude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 }

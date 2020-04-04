@@ -1,5 +1,6 @@
 package com.example.contactlessshopping;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,13 +8,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.contactlessshopping.Customers.Login_customer;
 import com.example.contactlessshopping.Shops.ShopLogin;
 import com.example.contactlessshopping.Shops.shop_profile;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,4 +45,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

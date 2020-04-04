@@ -9,13 +9,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,27 +33,28 @@ import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.ShopRegistration;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 
 public class Customer_MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
-   ProgressBar progressBar;
-    RecyclerView  shoplist;
-    LocationManager locationManager;
-    String LATITUDE,LONGITUDE,LOC;
-
+    int PERMISSION_ID = 44;
+    FusedLocationProviderClient mFusedLocationClient;
+    ProgressBar progressBar;
+    RecyclerView shoplist;
+    String shop_lat, shop_lon;
+    double lat1, lon1, lat2, lon2;
+    double dlat, dlon;
     private FirebaseFirestore db;
     private FirestoreRecyclerAdapter adapter;
     LinearLayoutManager gridLayoutManager;
@@ -59,29 +64,19 @@ public class Customer_MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer__main);
-        shoplist=findViewById(R.id.shop_list);
-        progressBar=findViewById(R.id.progress_bar);
+        shoplist = findViewById(R.id.shop_list);
+        progressBar = findViewById(R.id.progress_bar);
 
-        if (ContextCompat.checkSelfPermission(
-                getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    Customer_MainActivity.this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_CODE_LOCATION_PERMISSION
-            );
-        }
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        getCurrentLocation();
-
-
-
+        getLastLocation();
         init();
         getshopList();
     }
 
-    private void init(){
+    private void init() {
 
-        gridLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL,false);
+        gridLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         shoplist.setLayoutManager(gridLayoutManager);
         db = FirebaseFirestore.getInstance();
     }
@@ -91,26 +86,20 @@ public class Customer_MainActivity extends AppCompatActivity {
         private View view;
 
 
-        TextView textName,textTitle,textCompany;
+        TextView textName, textTitle, textCompany, textViewDistance;
 
         public ShopsHolder(View itemView) {
             super(itemView);
-            view=itemView;
-
-
-            textName=(TextView)view.findViewById(R.id.name_shop);
-
-            textTitle=(TextView)view.findViewById(R.id.from);
-
-             textCompany=(TextView)view.findViewById(R.id.to);
-
+            view = itemView;
+            textName = (TextView) view.findViewById(R.id.name_shop);
+            textTitle = (TextView) view.findViewById(R.id.from);
+            textCompany = (TextView) view.findViewById(R.id.to);
+            textViewDistance = (TextView) view.findViewById(R.id.idDistance);
         }
     }
 
 
-
-
-    private void getshopList(){
+    private void getshopList() {
         Query query = db.collection("shops");
 
         FirestoreRecyclerOptions<Shopsclass> response = new FirestoreRecyclerOptions.Builder<Shopsclass>()
@@ -118,12 +107,21 @@ public class Customer_MainActivity extends AppCompatActivity {
                 .build();
 
         adapter = new FirestoreRecyclerAdapter<Shopsclass, ShopsHolder>(response) {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onBindViewHolder(ShopsHolder holder, int position, Shopsclass model) {
                 progressBar.setVisibility(View.GONE);
                 holder.textName.setText(model.getshop_name());
                 holder.textTitle.setText(model.getfrom_time());
                 holder.textCompany.setText(model.getto_time());
+
+                lat1 = Double.parseDouble(shop_lat);
+                lon1 = Double.parseDouble(shop_lon);
+                lat2 = dlat;
+                lon2 = dlon;
+                double dist = distance(lat1, lon1, lat2, lon2);
+                double roundOffDist = Math.round(dist*100)/100;
+                holder.textViewDistance.setText(String.format(String.valueOf(roundOffDist) + " KMs"));
 
             }
 
@@ -146,7 +144,6 @@ public class Customer_MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onStart() {
         super.onStart();
@@ -159,74 +156,122 @@ public class Customer_MainActivity extends AppCompatActivity {
         adapter.stopListening();
     }
 
+//
 
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length > 0) {
-            getCurrentLocation();
+    private static double distance(double lat1, double lon1, double lat2, double lon2) {
+        if ((lat1 == lat2) && (lon1 == lon2)) {
+            return 0;
         } else {
-            Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            double theta = lon1 - lon2;
+            double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2)) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
+            dist = Math.acos(dist);
+            dist = Math.toDegrees(dist);
+            dist = dist * 60 * 1.1515;
+            dist = dist * 1.609344;
+
+            return (dist);
         }
     }
 
-    private void getCurrentLocation()  {
+//}
 
-
-        final LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(3000);
-        locationRequest.setPriority(locationRequest.PRIORITY_HIGH_ACCURACY);
-
-        LocationServices.getFusedLocationProviderClient(Customer_MainActivity.this)
-                .requestLocationUpdates(locationRequest, new LocationCallback() {
-
-                    @Override
-                    public void onLocationResult(LocationResult locationResult) {
-                        super.onLocationResult(locationResult);
-                        LocationServices.getFusedLocationProviderClient(Customer_MainActivity.this)
-                                .removeLocationUpdates(this);
-                        if (locationResult != null && locationResult.getLocations().size() > 0) {
-                            int lastestLocationIndex = locationResult.getLocations().size() - 1;
-                            double latitude =
-                                    locationResult.getLocations().get(lastestLocationIndex).getLatitude();
-                            double longitude =
-                                    locationResult.getLocations().get(lastestLocationIndex).getLongitude();
-
-
-                            LATITUDE = String.format(String.valueOf(latitude));
-                            LONGITUDE = String.format(String.valueOf(longitude));
-                            LOC=String.format(Locale.US, "%s -- %s", LATITUDE, LONGITUDE);
-                            Log.d("Location:",LATITUDE);
-
-
-                          /*  Geocoder geocoder;
-                            List<Address> addresses;
-                            geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
-
-
-
-                            addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-
-
-                            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-                            String city = addresses.get(0).getLocality();
-                            String state = addresses.get(0).getAdminArea();
-                            String country = addresses.get(0).getCountryName();
-                            String postalCode = addresses.get(0).getPostalCode();
-                            String knownName = addresses.get(0).getFeatureName();*/
-
-                            Log.d("Loc::",LOC);
-
+    @SuppressLint("MissingPermission")
+    private void getLastLocation(){
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+                mFusedLocationClient.getLastLocation().addOnCompleteListener(
+                        new OnCompleteListener<Location>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Location> task) {
+                                Location location = task.getResult();
+                                if (location == null) {
+                                    requestNewLocationData();
+                                } else {
+                                    dlat = location.getLatitude();
+                                    dlon = location.getLongitude();
+                                }
+                            }
                         }
-                    }
-                }, Looper.getMainLooper());
-
+                );
+            } else {
+                Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        } else {
+            requestPermissions();
+        }
     }
 
 
+    @SuppressLint("MissingPermission")
+    private void requestNewLocationData(){
 
+        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(0);
+        mLocationRequest.setFastestInterval(0);
+        mLocationRequest.setNumUpdates(1);
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient.requestLocationUpdates(
+                mLocationRequest, mLocationCallback,
+                Looper.myLooper()
+        );
+
+    }
+
+    private LocationCallback mLocationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            Location mLastLocation = locationResult.getLastLocation();
+            dlat = mLastLocation.getLatitude();
+            dlon = mLastLocation.getLongitude();
+
+
+        }
+    };
+
+    private boolean checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        return false;
+    }
+
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(
+                this,
+                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                PERMISSION_ID
+        );
+    }
+
+    private boolean isLocationEnabled() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+                LocationManager.NETWORK_PROVIDER
+        );
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_ID) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLastLocation();
+            }
+        }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if (checkPermissions()) {
+            getLastLocation();
+        }
+
+    }
 
 }
