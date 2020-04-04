@@ -39,8 +39,10 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -71,12 +73,14 @@ public class Upload_list extends AppCompatActivity {
     // instance for firebase storage and StorageReference
 
 
+    List<String> product= Collections.<String>emptyList();;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uploadlist);
         Ref= FirebaseStorage.getInstance().getReference("orders");
+
 
 
         auth = FirebaseAuth.getInstance();
@@ -206,6 +210,7 @@ public class Upload_list extends AppCompatActivity {
             note.put("timestamp",format);
             note.put("url",filePath);
             note.put("order_no",order_no);
+            note.put("product",product);
 
             db.collection("orders").add(note).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
@@ -264,6 +269,7 @@ public class Upload_list extends AppCompatActivity {
                                 note.put("timestamp",format);
                                 note.put("url",uri.toString());
                                 note.put("order_no",order_no);
+                                note.put("product",product);
 
 
                                 String noticeID =  UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();

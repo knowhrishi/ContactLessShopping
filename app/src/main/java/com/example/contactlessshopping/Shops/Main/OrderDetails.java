@@ -90,12 +90,15 @@ public class OrderDetails extends AppCompatActivity {
 
 
                     List<String> mylist = (List<String>) documentSnapshot.get("product");
-                    Toast.makeText(OrderDetails.this,mylist.toString(),Toast.LENGTH_SHORT).show();
-                    arrayList=new ArrayList<String>(mylist);
-                    Toast.makeText(OrderDetails.this,arrayList.toString()+"arraylist",Toast.LENGTH_SHORT).show();
-                    adapter = new ArrayAdapter<String>(OrderDetails.this, android.R.layout.simple_list_item_1, arrayList);
-                    listview.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
+                    //Toast.makeText(OrderDetails.this,mylist.toString(),Toast.LENGTH_SHORT).show();
+                    if(mylist.size()!=0) {
+
+                        arrayList = new ArrayList<String>(mylist);
+                        Toast.makeText(OrderDetails.this, arrayList.toString() + "arraylist", Toast.LENGTH_SHORT).show();
+                        adapter = new ArrayAdapter<String>(OrderDetails.this, android.R.layout.simple_list_item_1, arrayList);
+                        listview.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    }
 
 
                 }
