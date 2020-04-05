@@ -88,13 +88,26 @@
             android:textSize="15dp" />
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="20dp"
-        android:visibility="gone" />
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_gravity="center|bottom"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:visibility="gone" />-->
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:lottie_rawRes="@raw/loading"
+        android:foregroundGravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:id="@+id/loading"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="true"
+        android:visibility="invisible"
+        />
 
 
 </RelativeLayout>

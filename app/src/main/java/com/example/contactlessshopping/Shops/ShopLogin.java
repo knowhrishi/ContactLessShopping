@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.contactlessshopping.MainActivity;
 import com.example.contactlessshopping.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,7 +39,8 @@ public class ShopLogin extends AppCompatActivity {
 
     private EditText editTextEmail, editTextPassword;
     private FirebaseAuth auth;
-    private ProgressDialog progressDialog;
+//    private ProgressDialog progressDialog;
+    LottieAnimationView lottieAnimationView;
     private Button btnSignup, btnLogin, btnReset;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
@@ -54,7 +56,8 @@ public class ShopLogin extends AppCompatActivity {
 
         editTextEmail      = (EditText) findViewById(R.id.email);
         editTextPassword   = (EditText) findViewById(R.id.password);
-        progressDialog = new ProgressDialog(this);
+//        progressDialog = new ProgressDialog(this);
+        lottieAnimationView=findViewById(R.id.loading);
         btnSignup          = (Button) findViewById(R.id.btn_signup);
         btnLogin           = (Button) findViewById(R.id.btn_login);
 
@@ -87,14 +90,19 @@ public class ShopLogin extends AppCompatActivity {
                     return;
                 }
 
-                progressDialog.setMessage("Please Wait...");
-                progressDialog.show();
+//                progressDialog.setMessage("Please Wait...");
+//                progressDialog.show();
+                lottieAnimationView.setVisibility(View.VISIBLE);
+                lottieAnimationView.playAnimation();
                 //authenticate user
                 auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(ShopLogin.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressDialog.dismiss();
+//
+                                lottieAnimationView.cancelAnimation();
+                                lottieAnimationView.setVisibility(View.INVISIBLE);
+//                                progressDialog.dismiss();
                                 if (!task.isSuccessful()) {
                                     // there was an error
                                     if (password.length() < 6) {
@@ -106,6 +114,8 @@ public class ShopLogin extends AppCompatActivity {
                                     Intent intent = new Intent(ShopLogin.this, ShopMainActivity.class);
                                     startActivity(intent);
                                     finish();
+                                    lottieAnimationView.cancelAnimation();
+                                    lottieAnimationView.setVisibility(View.INVISIBLE);
                                 }
                             }
                         });

@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.contactlessshopping.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -38,6 +39,7 @@ import java.util.Locale;
 
 public class Login_customer extends AppCompatActivity {
 
+    LottieAnimationView lottieAnimationView;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
     EditText email, password;
     Button submit, signup;
@@ -53,7 +55,7 @@ public class Login_customer extends AppCompatActivity {
         setContentView(R.layout.activity_login_customer);
 
 
-
+        lottieAnimationView=findViewById(R.id.loading);
 
         if (ContextCompat.checkSelfPermission(
                 getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -104,11 +106,17 @@ public class Login_customer extends AppCompatActivity {
 
                 String semail = email.getText().toString();
                 String spass = password.getText().toString();
+                lottieAnimationView.setVisibility(View.VISIBLE);
+                lottieAnimationView.playAnimation();
+
 
                 if (!TextUtils.isEmpty(semail) && !TextUtils.isEmpty(spass)) {
                     loginuser(semail, spass);
+//                    lottieAnimationView.cancelAnimation();
+//                    lottieAnimationView.setVisibility(View.INVISIBLE);
                 } else {
-
+//                    lottieAnimationView.cancelAnimation();
+//                    lottieAnimationView.setVisibility(View.INVISIBLE);
                     Toast.makeText(Login_customer.this, "Failed Login: Empty Inputs are not allowed", Toast.LENGTH_SHORT).show();
                 }
 
@@ -120,6 +128,8 @@ public class Login_customer extends AppCompatActivity {
 
     private void loginuser(String email, String pass) {
         getLastLocation();
+        lottieAnimationView.setVisibility(View.VISIBLE);
+        lottieAnimationView.playAnimation();
 
         mAuth.signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -134,7 +144,8 @@ public class Login_customer extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             Toast.makeText(Login_customer.this, "Successfull Login", Toast.LENGTH_SHORT).show();
                             startActivity(intent);
-
+                            lottieAnimationView.cancelAnimation();
+                            lottieAnimationView.setVisibility(View.INVISIBLE);
 
                         }
                     }
@@ -145,6 +156,8 @@ public class Login_customer extends AppCompatActivity {
                 Toast.makeText(Login_customer.this, "Auth Failed!", Toast.LENGTH_SHORT).show();
                 Log.d("tag", e.toString());
                 password.getText().clear();
+                lottieAnimationView.cancelAnimation();
+                lottieAnimationView.setVisibility(View.INVISIBLE);
             }
         });
 
