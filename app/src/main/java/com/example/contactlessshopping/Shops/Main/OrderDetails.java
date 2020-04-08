@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class OrderDetails extends AppCompatActivity {
     ListView listview;
     ArrayList arrayList;
     List lstr;
+
     private ArrayAdapter<String> adapter;
 
 
@@ -59,6 +61,7 @@ public class OrderDetails extends AppCompatActivity {
         buttonAccept = (Button) findViewById(R.id.idBtnAccept);
         buttonReject = (Button) findViewById(R.id.idBtnReject);
         listview=findViewById(R.id.list_order);
+
 
 
         arrayList = new ArrayList<String>();
@@ -90,6 +93,7 @@ public class OrderDetails extends AppCompatActivity {
 
 
                     List<String> mylist = (List<String>) documentSnapshot.get("product");
+
                     //Toast.makeText(OrderDetails.this,mylist.toString(),Toast.LENGTH_SHORT).show();
                     if(mylist.size()!=0) {
 

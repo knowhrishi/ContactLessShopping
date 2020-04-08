@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.contactlessshopping.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -48,9 +49,10 @@ import java.util.UUID;
 
 public class Upload_list extends AppCompatActivity {
     // views for button
-    private Button btnSelect, btnUpload;
+    private Button btnUpload,btnSelect;
     ProgressDialog progressDialog;
     StorageReference Ref;
+
 
 
     String cust_name,shop_id,order_id,order_no,format;
@@ -96,7 +98,7 @@ public class Upload_list extends AppCompatActivity {
         // initialise views
         btnSelect = findViewById(R.id.btnChoose);
         btnUpload = findViewById(R.id.btnUpload);
-        imageView = findViewById(R.id.imgView);
+        imageView = findViewById(R.id.image);
 
         docref = db.collection("customers").document(auth.getUid());
         docref.get()
