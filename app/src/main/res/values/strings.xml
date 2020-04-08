@@ -17,4 +17,9 @@
     <string name="menu_home">Shops</string>
     <string name="menu_search">Orders</string>
     <string name="menu_like">Profile</string>
+
+
+    <string name="forget_password"><u>Forget your Password ?</u></string>
+    <string name="signup_text">New here ? <u>Sign Up instead</u></string>
+
 </resources>
