@@ -1,13 +1,17 @@
 package com.example.contactlessshopping.Customers;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,12 +35,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Make_list extends AppCompatActivity {
+public class
+Make_list extends AppCompatActivity {
 
     private ListView list;
-    private ArrayAdapter<String> adapter;
-    private ArrayList<String> arrayList;
     private FirebaseAuth auth;
+
+    AutoCompleteTextView textIn;
+    Button buttonAdd;
+    LinearLayout container;
+    ArrayAdapter<String> adapter;
+    private ArrayList<String> arrayList;
 
     String cust_name, shop_id, order_id, order_no, shop_name;
 
@@ -57,25 +66,43 @@ public class Make_list extends AppCompatActivity {
         int num = random.nextInt(100000);
         order_no = String.format("%05d", num);
 
-
-        ImageView btn = (ImageView) findViewById(R.id.btnAdd);
         Button save = (Button) findViewById(R.id.save);
-        list = (ListView) findViewById(R.id.list);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, arrayList);
+        textIn = (AutoCompleteTextView)findViewById(R.id.textin);
+        textIn.setAdapter(adapter);
+        buttonAdd = (Button)findViewById(R.id.add);
+        container = (LinearLayout) findViewById(R.id.container);
         arrayList = new ArrayList<String>();
-        final EditText edit = (EditText) findViewById(R.id.txtItem);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
-        list.setAdapter(adapter);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        buttonAdd.setOnClickListener(new View.OnClickListener(){
+
             @Override
-            public void onClick(View view) {
-                arrayList.add(edit.getText().toString());
-                adapter.notifyDataSetChanged();
-                edit.setText("");
+            public void onClick(View v) {
+                LayoutInflater layoutInflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                final View addView = layoutInflater.inflate(R.layout.row, null);
+                final AutoCompleteTextView textOut = (AutoCompleteTextView)addView.findViewById(R.id.textout);
+
+                textOut.setAdapter(adapter);
+                textOut.setText(textIn.getText().toString());
+                arrayList.add(textIn.getText().toString());
+
+                Toast.makeText(getApplicationContext(), "Added : "+textIn.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                Button buttonRemove = (Button)addView.findViewById(R.id.remove);
+                final View.OnClickListener thisListener = new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((LinearLayout)addView.getParent()).removeView(addView);
+                        arrayList.remove(textOut.getText().toString());
+                        Toast.makeText(getApplicationContext(), "Removed : "+textOut.getText().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                };
+                buttonRemove.setOnClickListener(thisListener);
+                container.addView(addView);
             }
         });
-        edit.setText("");
 
 
         docref = db.collection("customers").document(auth.getUid());
@@ -86,7 +113,6 @@ public class Make_list extends AppCompatActivity {
                         if (documentSnapshot.exists()) {
                             cust_name = documentSnapshot.getString("Name");
                             Toast.makeText(Make_list.this, cust_name, Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 })
@@ -141,7 +167,6 @@ public class Make_list extends AppCompatActivity {
 
 
                 Intent intent = new Intent(Make_list.this, ShopDetails.class);
-
                 startActivity(intent);
                 finish();
             }

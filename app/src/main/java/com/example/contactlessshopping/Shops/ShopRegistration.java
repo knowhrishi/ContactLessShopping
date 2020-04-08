@@ -153,6 +153,18 @@ public class ShopRegistration extends AppCompatActivity {
 
 
 //
+////                System.out.println(authid + "\n");;
+//                String[] itemsSlots = insertSlot.split(",");
+//                //String item;
+//                for (String item : itemsSlots) {
+//                    String noticeID =  UUID.randomUUID().toString().replaceAll("-", "");
+//
+//                    System.out.println("item = " + item + "\n" + "UID:" + noticeID);
+//                }
+//
+//            }
+//        });
+
 //        buttonAddSlot.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -205,19 +217,6 @@ public class ShopRegistration extends AppCompatActivity {
 ////                    String noticeID =  UUID.randomUUID().toString().replaceAll("-", "");
 ////                    authid = authid + "," + noticeID + ',' + authid;
 ////                }
-////                System.out.println(authid + "\n");;
-//                String[] itemsSlots = insertSlot.split(",");
-//                //String item;
-//                for (String item : itemsSlots) {
-//                    String noticeID =  UUID.randomUUID().toString().replaceAll("-", "");
-//
-//                    System.out.println("item = " + item + "\n" + "UID:" + noticeID);
-//                }
-//
-//            }
-//        });
-
-
 
 
 
