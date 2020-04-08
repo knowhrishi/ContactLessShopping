@@ -48,7 +48,7 @@ Make_list extends AppCompatActivity {
     private ArrayList<String> arrayList;
 
     String cust_name, shop_id, order_id, order_no, shop_name;
-    
+
     DocumentReference docref;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference orderref = db.collection("orders");

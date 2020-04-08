@@ -127,8 +127,13 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:id="@+id/list_order"/>
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
 
@@ -167,8 +172,8 @@
                 android:id="@+id/idBtnReject"
                 android:text="Reject"
                 android:textColor="@color/white" />
-        </LinearLayout>
 
+        </LinearLayout>
 
 
 
