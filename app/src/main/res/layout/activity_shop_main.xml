@@ -17,7 +17,7 @@
         android:gravity="center">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -28,16 +28,21 @@
                 android:id="@+id/idShopName"
                 android:padding="5dp"
                 android:layout_margin="10dp"/>
+
             <Button
+                android:id="@+id/p_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit Profile"
+                android:text="Profile"
                 android:layout_margin="5dp"
                 android:textColor="@color/white"
                 android:padding="5dp"
-                android:background="@drawable/textview_rounded"/>
+                android:background="@drawable/textview_rounded"/>l
+
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/idTabLayout"
