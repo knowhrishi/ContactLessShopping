@@ -48,7 +48,7 @@ Make_list extends AppCompatActivity {
     private ArrayList<String> arrayList;
 
     String cust_name, shop_id, order_id, order_no, shop_name;
-
+    
     DocumentReference docref;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference orderref = db.collection("orders");
@@ -74,8 +74,6 @@ Make_list extends AppCompatActivity {
         container = (LinearLayout) findViewById(R.id.container);
         arrayList = new ArrayList<String>();
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
-        list.setAdapter(adapter);
 
         buttonAdd.setOnClickListener(new View.OnClickListener(){
 
@@ -169,7 +167,6 @@ Make_list extends AppCompatActivity {
 
 
                 Intent intent = new Intent(Make_list.this, ShopDetails.class);
-
                 startActivity(intent);
                 finish();
             }
