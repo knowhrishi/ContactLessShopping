@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +26,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +40,9 @@ public class OrderDetails extends AppCompatActivity {
     ListView listview;
     ArrayList arrayList;
     List lstr;
+
+    ImageView img;
+    URL url;
 
     private ArrayAdapter<String> adapter;
 
@@ -61,6 +68,7 @@ public class OrderDetails extends AppCompatActivity {
         buttonAccept = (Button) findViewById(R.id.idBtnAccept);
         buttonReject = (Button) findViewById(R.id.idBtnReject);
         listview=findViewById(R.id.list_order);
+        img=(ImageView)findViewById(R.id.img);
 
 
 
@@ -86,12 +94,11 @@ public class OrderDetails extends AppCompatActivity {
 
 
         DocumentReference orderref = db.collection("orders").document(id);
+
         orderref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
-
-
                     List<String> mylist = (List<String>) documentSnapshot.get("product");
 
                     //Toast.makeText(OrderDetails.this,mylist.toString(),Toast.LENGTH_SHORT).show();
@@ -99,10 +106,21 @@ public class OrderDetails extends AppCompatActivity {
 
                         arrayList = new ArrayList<String>(mylist);
                         Toast.makeText(OrderDetails.this, arrayList.toString() + "arraylist", Toast.LENGTH_SHORT).show();
+
                         adapter = new ArrayAdapter<String>(OrderDetails.this, android.R.layout.simple_list_item_1, arrayList);
                         listview.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
+                        //img.setVisibility(View.INVISIBLE);
                     }
+
+                    else
+                    {
+                        listview.setVisibility(View.INVISIBLE);
+                        String u=documentSnapshot.get("url").toString();
+                        Picasso.get().load(u).into(img);
+
+                    }
+
 
 
                 }
