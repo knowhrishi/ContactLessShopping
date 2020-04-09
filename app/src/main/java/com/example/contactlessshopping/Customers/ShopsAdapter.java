@@ -44,14 +44,12 @@ public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass , ShopsAda
 
     @Override
     protected void onBindViewHolder(@NonNull NoteHolder holder, int i, @NonNull Shopsclass model) {
-        String shop_lat, shop_lon;
+        String shop_lat="0", shop_lon="0";
         double lat1, lon1, lat2, lon2;
 
         holder.textName.setText(model.getshop_name());
         holder.textTitle.setText(model.getfrom_time());
         holder.textCompany.setText(model.getto_time());
-
-
 
         shop_lat = model.getLatitude();
         shop_lon = model.getLongitude();

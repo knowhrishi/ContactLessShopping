@@ -41,6 +41,9 @@ public class Shopsclass {
     {
         return to;
     }
+    public String getshop_category(){return shopcat; }
+    public String getemail_id(){return emailid;}
+    public String getcapacity(){return capacity;}
 
 
     public void setshop_name(String n)
