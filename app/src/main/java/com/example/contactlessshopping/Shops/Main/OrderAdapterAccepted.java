@@ -1,6 +1,7 @@
 package com.example.contactlessshopping.Shops.Main;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.contactlessshopping.R;
@@ -18,6 +20,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 public class OrderAdapterAccepted extends FirestoreRecyclerAdapter<OrderModel, OrderAdapterAccepted.NoteHolder> {
     private OnItemClickListener listener;
     //Note upload;
+    Context context;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -25,15 +28,33 @@ public class OrderAdapterAccepted extends FirestoreRecyclerAdapter<OrderModel, O
      *
      * @param options
      */
-    public OrderAdapterAccepted(@NonNull FirestoreRecyclerOptions<OrderModel> options) {
+    public OrderAdapterAccepted(@NonNull FirestoreRecyclerOptions<OrderModel> options, Context context) {
         super(options);
+        this.context = context;
     }
 
 
     @Override
     protected void onBindViewHolder(@NonNull NoteHolder holder, int position, @NonNull OrderModel model) {
-        //upload = notes.get(position);
+
+        String fetched_status = model.getStatus();
         holder.textViewContent.setText(model.getCustomer_name());
+        if(fetched_status.equals("1")){
+            holder.textViewStatus.setText("Slot not allocated");
+            holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.red));
+        }
+        if(fetched_status.equals("2")){
+            holder.textViewStatus.setText("Invalid Order");
+            holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.red));
+        }
+        if(fetched_status.equals("3")){
+            holder.textViewStatus.setText("Slot Allocated");
+            holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.pale_yellow));
+        }
+        if(fetched_status.equals("4")){
+            holder.textViewStatus.setText("Order successfully picked-up");
+            holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.green));
+        }
 
     }
 
@@ -49,17 +70,14 @@ public class OrderAdapterAccepted extends FirestoreRecyclerAdapter<OrderModel, O
 
     class NoteHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewContent, textViewAuthorname, timestamp, priority;
+        TextView textViewContent, textViewStatus, timestamp, priority;
         ImageView imageView;
 
         public NoteHolder(@NonNull final View itemView) {
             super(itemView);
 
             textViewContent = (TextView) itemView.findViewById(R.id.idCustomerName);
-//            imageView = (ImageView) itemView.findViewById(R.id.imageView);
-//            textViewAuthorname = (TextView)itemView.findViewById(R.id.name);
-//            timestamp = (TextView)itemView.findViewById(R.id.noticetimestamp);
-
+            textViewStatus = (TextView) itemView.findViewById(R.id.orderStatus);
 
 //
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -17,11 +17,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".LoginTemp">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Customers.SlotsMain" />
         <activity android:name=".Customers.ManageOrders" />
@@ -30,7 +26,11 @@
         <activity android:name=".Shops.ShopLogin" />
         <activity android:name=".Shops.ShopRegistration" />
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Customers.Customer_MainActivity" />
         <activity android:name=".Customers.Login_customer" />

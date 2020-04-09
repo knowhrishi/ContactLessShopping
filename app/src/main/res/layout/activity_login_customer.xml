@@ -98,19 +98,19 @@
             android:visibility="gone" />
 
     </LinearLayout>
-<com.airbnb.lottie.LottieAnimationView
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    app:lottie_rawRes="@raw/loading"
-    android:foregroundGravity="center"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:layout_centerInParent="true"
-    android:id="@+id/loading"
-    app:lottie_autoPlay="false"
-    app:lottie_loop="true"
-    android:visibility="invisible"
-    />
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:lottie_rawRes="@raw/loading"
+        android:foregroundGravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:id="@+id/loading"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="true"
+        android:visibility="invisible"
+        />
 
 
 </RelativeLayout>
