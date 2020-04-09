@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Customers.Customer_MainActivity">
+    tools:context=".Customers.Supermarket.Supermarket_MainActivity">
 
 
     <ProgressBar
@@ -73,26 +73,20 @@
             <!--            android:text="Ambegaon(bk),Pune-46"/>-->
 
             <!--</LinearLayout>-->
-<!--            <Button-->
-<!--                android:id="@+id/bt"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/white"-->
-<!--                -->
-<!--                android:background="@color/colorPrimary"-->
-<!--                android:onClick='manage'-->
-<!--                android:text="manage" />-->
+            <!--            <Button-->
+            <!--                android:id="@+id/bt"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                -->
+            <!--                android:background="@color/colorPrimary"-->
+            <!--                android:onClick='manage'-->
+            <!--                android:text="manage" />-->
 
 
         </LinearLayout>
-        
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/supermarket"
-            android:text="supermarket"
-            android:onClick="loadsupermarket"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/shop_list"
             android:padding="5dp"
@@ -100,9 +94,8 @@
             android:layout_height="match_parent" />
 
 
-
     </LinearLayout>
-    
+
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

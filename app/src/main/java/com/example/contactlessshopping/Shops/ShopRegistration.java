@@ -267,15 +267,7 @@ public class ShopRegistration extends AppCompatActivity {
         });
 
         categorySpinner = (MaterialSpinner) findViewById(R.id.spinnerCategory);
-        categorySpinner.setItems("Grocery Store",
-                "Medical Store",
-                "Supermarket",
-                "Market",
-                "Government / Ration Shops",
-                "Butcher shop (meat)",
-                "Fishmonger (fish)",
-                "Greengrocer (fruits & vegetables)",
-                "Petshop");
+        categorySpinner.setItems("Groceries", "Medical");
         categorySpinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {

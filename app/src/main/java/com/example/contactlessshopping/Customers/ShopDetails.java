@@ -105,10 +105,6 @@ public class ShopDetails extends AppCompatActivity {
                                 ph.setText(phno);
                                 time.setText(fromtime+" - "+totime);
 
-
-
-
-
                             }
                         } else {
                             Log.d("Tag", "Error getting documents: ", task.getException());

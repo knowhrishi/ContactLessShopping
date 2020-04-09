@@ -3,7 +3,7 @@ package com.example.contactlessshopping.Customers;
 public class Shopsclass {
     private String name;
     private String from;
-    private String to,address,capacity,emailid,pass,phno,shopcat;
+    private String to,address,capacity,emailid,pass,phno,shopcat,id;
     private String latitude;
     private String longitude;
 
@@ -26,6 +26,7 @@ public class Shopsclass {
         this.pass=password;
         this.phno=phone_number;
         this.shopcat=shop_category;
+
     }
 
     public String getshop_name()
@@ -40,6 +41,7 @@ public class Shopsclass {
     {
         return to;
     }
+
 
     public void setshop_name(String n)
     {

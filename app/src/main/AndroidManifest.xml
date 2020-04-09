@@ -16,9 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginTemp">
+        <activity android:name=".Customers.Supermarket.Supermarket_MainActivity">
+
 
         </activity>
+        <activity android:name=".Customers.Supermarket.supermarket_details" />
+        <activity android:name=".LoginTemp" />
         <activity android:name=".Customers.SlotsMain" />
         <activity android:name=".Customers.ManageOrders" />
         <activity android:name=".Customers.profile_customer" />
@@ -39,6 +42,8 @@
         <activity android:name=".Customers.Upload_list" />
         <activity android:name=".Shops.Main.OrderDetails" />
         <activity android:name=".Shops.ShopMainActivity" />
+
+
     </application>
 
 </manifest>

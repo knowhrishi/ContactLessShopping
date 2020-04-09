@@ -202,6 +202,12 @@
                 android:text="Select time" />
         </LinearLayout>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_slot_bt"
+            android:text="Add slots"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

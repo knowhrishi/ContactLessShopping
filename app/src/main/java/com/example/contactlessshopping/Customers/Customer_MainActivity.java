@@ -24,10 +24,12 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.contactlessshopping.Customers.Supermarket.Supermarket_MainActivity;
 import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
 import com.example.contactlessshopping.Shops.ShopRegistration;
@@ -60,11 +62,14 @@ public class Customer_MainActivity extends AppCompatActivity {
     private ShopsAdapter adapter;
     private FirebaseFirestore db;
     double dlat, dlon;
+    String slat,slon;
     LinearLayoutManager gridLayoutManager;
 //    MeowBottomNavigation meowBottomNavigation;
     private final static int ID_LIST=1;
     private final static int ID_ORDERS=2;
     private final static int ID_PROFILE=3;
+
+    Button supermarket;
 
 
     @Override
@@ -73,11 +78,12 @@ public class Customer_MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer__main);
         shoplist=findViewById(R.id.shop_list);
         progressBar=findViewById(R.id.progress_bar);
+        supermarket=findViewById(R.id.supermarket);
 
 
         final Intent intent = getIntent();
-        String slat = intent.getStringExtra("intendLatitude");
-        String slon = intent.getStringExtra("intentLongitude");
+        slat = intent.getStringExtra("intendLatitude");
+        slon = intent.getStringExtra("intentLongitude");
         dlat = Double.parseDouble(slat);
         dlon = Double.parseDouble(slon);
 
@@ -114,6 +120,14 @@ public class Customer_MainActivity extends AppCompatActivity {
     }
 
 
+    public void loadsupermarket(View view)
+    {
+        Intent i=new Intent(Customer_MainActivity.this, Supermarket_MainActivity.class);
+        i.putExtra("intendLatitude", slat);
+        i.putExtra("intentLongitude", slon);
+        startActivity(i);
+
+    }
     private void init(){
 
         gridLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL,false);
