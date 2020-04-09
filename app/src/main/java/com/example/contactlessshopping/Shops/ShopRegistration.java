@@ -204,7 +204,12 @@ public class ShopRegistration extends AppCompatActivity {
                     while (dif < dateObj2.getTime()) {
                         Date slot1 = new Date(dif);
                         dif += 3600000;
+                        if(dif+3600000>dateObj2.getTime())
+                        {
+                            dif=dateObj2.getTime();
+                        }
                         Date slot2 = new Date(dif);
+
 
                         SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm");
                         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
