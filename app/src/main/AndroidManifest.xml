@@ -37,6 +37,7 @@
         </activity>
         <activity android:name=".Customers.Customer_MainActivity" />
         <activity android:name=".Customers.Login_customer" />
+        <activity android:name=".Customers.customer_dash" />
         <activity android:name=".Customers.Customer_registration" />
         <activity android:name=".Customers.Make_list" />
         <activity android:name=".Customers.Upload_list" />

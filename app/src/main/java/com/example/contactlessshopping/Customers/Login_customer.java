@@ -138,7 +138,7 @@ public class Login_customer extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Intent intent=new Intent(Login_customer.this,Customers);
                             // startActivity(intent);
-                            Intent intent = new Intent(Login_customer.this, Customer_MainActivity.class);
+                            Intent intent = new Intent(Login_customer.this, customer_dash.class);
                             intent.putExtra("intendLatitude", LAT);
                             intent.putExtra("intentLongitude", LON);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
