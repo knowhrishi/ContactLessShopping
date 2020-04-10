@@ -216,22 +216,19 @@ public class ShopRegistration extends AppCompatActivity {
                         Log.d("TAG", sdf1.format(slot1) + " - " + sdf2.format(slot2));
                         insertSlot = insertSlot + "," + sdf1.format(slot1) + " - " + sdf2.format(slot2);
                         slots.put(sdf1.format(slot1) + " - " + sdf2.format(slot2),empty_array);
-
-
                     }
                     slots.put("date",date1);
                 }catch (ParseException ex){
                     ex.printStackTrace();
                 }
 
-                for(int i = 1;i<10;i++){
+               /* for(int i = 1;i<10;i++){
                     String noticeID =  UUID.randomUUID().toString().replaceAll("-", "");
                     authid = authid + "," + noticeID + ',' + authid;
-                }
+                }*/
 
             }
         });
-
 
 
 
