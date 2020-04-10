@@ -120,8 +120,7 @@ public class supermarket_details extends AppCompatActivity {
                                                     DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
                                                     orderRefAccept.update(i, FieldValue.arrayUnion(token_no));
                                                     Toast.makeText(supermarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
-                                                    Map<String, Object> map = new HashMap<>();
-                                                    map.put("token_no", token_no);
+
                                                     Toast.makeText(supermarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
                                                     db.collection("customers").document(auth.getUid().toString()).update("token_supermarket", token_no);
                                                     Toast.makeText(supermarket_details.this, token_no, Toast.LENGTH_SHORT).show();
