@@ -26,6 +26,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.security.SecureRandom;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -83,7 +85,7 @@ public class supermarket_details extends AppCompatActivity {
                                         token_no= String.format("%05d", num);
 
                                       List<String> keys = new ArrayList<String>(data.keySet());
-                                        Collections.sort(keys);
+                                      Collections.sort(keys);
 
                                         String currentTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
                                         Log.d("time",currentTime);
@@ -93,21 +95,60 @@ public class supermarket_details extends AppCompatActivity {
 
 
                                             List<String> mylist =(List<String>)data.get(i);
-                                            if(mylist.size()!=10)
-                                            {
 
-                                                DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
-                                                orderRefAccept.update(i, FieldValue.arrayUnion(token_no));
-                                                Toast.makeText(supermarket_details.this,i+" slot is allocated to you!!",Toast.LENGTH_SHORT).show();
-                                                Map<String,Object> map=new HashMap<>();
-                                                map.put("token_no",token_no);
-                                                Toast.makeText(supermarket_details.this,auth.getUid().toString(),Toast.LENGTH_SHORT).show();
-                                                db.collection("customers").document(auth.getUid().toString()).update("token_supermarket",token_no);
-                                                Toast.makeText(supermarket_details.this,token_no,Toast.LENGTH_SHORT).show();
-                                                token.setText(token_no);
-                                                break;
+
+                                            String[] s = i.split("-");
+                                            Date slot_from=new Date();
+                                            Date slot_to=new Date();
+                                            Date currtime=new Date();
+
+                                            DateFormat dateFormat = new SimpleDateFormat("hh:mm");
+                                            try {
+                                                slot_from = dateFormat.parse(s[0].trim());
+                                                slot_to=dateFormat.parse(s[1].trim());
+                                                currtime=dateFormat.parse(currentTime.trim());
+                                            } catch (ParseException e) {
+                                                e.printStackTrace();
+                                            }
+
+
+
+                                            if(slot_from.before(currtime) && currtime.before(slot_to) )
+                                            {
+                                                if (mylist.size() != 10) {
+
+                                                    DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
+                                                    orderRefAccept.update(i, FieldValue.arrayUnion(token_no));
+                                                    Toast.makeText(supermarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
+                                                    Map<String, Object> map = new HashMap<>();
+                                                    map.put("token_no", token_no);
+                                                    Toast.makeText(supermarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
+                                                    db.collection("customers").document(auth.getUid().toString()).update("token_supermarket", token_no);
+                                                    Toast.makeText(supermarket_details.this, token_no, Toast.LENGTH_SHORT).show();
+                                                    token.setText(token_no);
+                                                    break;
+
+                                                }
+                                            }
+                                            else if(slot_from.after(currtime))
+                                            {
+                                                if (mylist.size() != 10) {
+
+                                                    DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
+                                                    orderRefAccept.update(i, FieldValue.arrayUnion(token_no));
+                                                    Toast.makeText(supermarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
+                                                    Map<String, Object> map = new HashMap<>();
+                                                    map.put("token_no", token_no);
+                                                    Toast.makeText(supermarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
+                                                    db.collection("customers").document(auth.getUid().toString()).update("token_supermarket", token_no);
+                                                    Toast.makeText(supermarket_details.this, token_no, Toast.LENGTH_SHORT).show();
+                                                    token.setText(token_no);
+                                                    break;
+
+                                                }
 
                                             }
+
 
                                         }
 
