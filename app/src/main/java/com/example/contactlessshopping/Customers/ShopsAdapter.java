@@ -54,6 +54,8 @@ public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass , ShopsAda
         shop_lat = model.getLatitude();
         shop_lon = model.getLongitude();
 
+        //Toast.makeText(context, model.getshop_name() + ": " + shop_lat + "\n" + shop_lon, Toast.LENGTH_SHORT).show();
+
         lat1 = Double.parseDouble(shop_lat);
         lon1 = Double.parseDouble(shop_lon);
         lat2 = dlat;

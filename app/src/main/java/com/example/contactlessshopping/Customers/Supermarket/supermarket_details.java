@@ -84,8 +84,8 @@ public class supermarket_details extends AppCompatActivity {
                                         int num = random.nextInt(100000);
                                         token_no= String.format("%05d", num);
 
-                                      List<String> keys = new ArrayList<String>(data.keySet());
-                                      Collections.sort(keys);
+                                        List<String> keys = new ArrayList<String>(data.keySet());
+                                        Collections.sort(keys);
 
                                         String currentTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
                                         Log.d("time",currentTime);

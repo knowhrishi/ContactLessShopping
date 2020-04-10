@@ -2,29 +2,128 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFEBEE">
+    android:layout_margin="10dp"
+    android:background="@drawable/round_withborder_1"
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/idCustomerName"
-            android:text="ABC"
-            android:textSize="15dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:padding="5dp"/>
-        <View
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="#C3C3C3"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:padding="2dp"
+                android:text="CUSTOMER NAME: "
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/idCustomerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/nunito_sans_regular"
+                android:padding="2dp"
+                android:text="ABC"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:padding="2dp"
+                android:text="ORDER NO: "
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/orderno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/nunito_sans_regular"
+                android:padding="2dp"
+                android:text="0000"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:padding="2dp"
+                android:text="PICK-UP SLOT: "
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/allocated_slot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/nunito_sans_regular"
+                android:padding="2dp"
+                android:text="10 - 11"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/orderStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/nunito_sans_regular"
+            android:text="Yet to be pickedup" />
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:layout_marginLeft="15dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginBottom="15dp"-->
+<!--            android:fontFamily="@font/nunito_sans_regular"-->
+<!--            android:gravity="end"-->
+<!--            android:text="click to allocate slot "-->
+<!--            android:paddingRight="2dp"-->
+<!--            android:textAllCaps="true"-->
+<!--            android:textStyle="italic" />-->
+<!--        &lt;!&ndash;        <View&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_height="0.5dp"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_marginLeft="5dp"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_marginRight="5dp"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:background="#C3C3C3"/>&ndash;&gt;-->
     </LinearLayout>
 
 </RelativeLayout>

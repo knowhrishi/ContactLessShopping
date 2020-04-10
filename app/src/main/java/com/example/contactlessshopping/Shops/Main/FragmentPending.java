@@ -36,6 +36,7 @@ public class FragmentPending extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_pending_request, container, false);
+        auth = FirebaseAuth.getInstance();
 
         setupRecyclerView();
 
@@ -43,7 +44,7 @@ public class FragmentPending extends Fragment {
     }
 
     private void setupRecyclerView() {
-        Query query = notebookRef.whereEqualTo("status", "0");
+        Query query = notebookRef.whereEqualTo("shop_id",auth.getUid()).whereEqualTo("status", "0");
 
         FirestoreRecyclerOptions<OrderModel> options = new FirestoreRecyclerOptions.Builder<OrderModel>()
                 .setQuery(query, OrderModel.class)

@@ -39,22 +39,23 @@ public class OrderAdapterAccepted extends FirestoreRecyclerAdapter<OrderModel, O
 
         String fetched_status = model.getStatus();
         holder.textViewContent.setText(model.getCustomer_name());
+        holder.textViewOrderNo.setText(model.getOrder_no());
         if(fetched_status.equals("1")){
             holder.textViewStatus.setText("Slot not allocated");
             holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.red));
         }
-        if(fetched_status.equals("2")){
-            holder.textViewStatus.setText("Invalid Order");
-            holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.red));
-        }
-        if(fetched_status.equals("3")){
-            holder.textViewStatus.setText("Slot Allocated");
-            holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.pale_yellow));
-        }
-        if(fetched_status.equals("4")){
-            holder.textViewStatus.setText("Order successfully picked-up");
-            holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.green));
-        }
+//        if(fetched_status.equals("2")){
+//            holder.textViewStatus.setText("Invalid Order");
+//            holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.red));
+//        }
+//        if(fetched_status.equals("3")){
+//            holder.textViewStatus.setText("Slot Allocated");
+//            holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.pale_yellow));
+//        }
+//        if(fetched_status.equals("4")){
+//            holder.textViewStatus.setText("Order successfully picked-up");
+//            holder.textViewStatus.setTextColor(ContextCompat.getColor(context, R.color.green));
+//        }
 
     }
 
@@ -70,14 +71,15 @@ public class OrderAdapterAccepted extends FirestoreRecyclerAdapter<OrderModel, O
 
     class NoteHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewContent, textViewStatus, timestamp, priority;
-        ImageView imageView;
+        TextView textViewContent, textViewStatus, textViewOrderNo;
 
         public NoteHolder(@NonNull final View itemView) {
             super(itemView);
 
             textViewContent = (TextView) itemView.findViewById(R.id.idCustomerName);
             textViewStatus = (TextView) itemView.findViewById(R.id.orderStatus);
+            textViewOrderNo = (TextView) itemView.findViewById(R.id.orderno);
+
 
 //
             itemView.setOnClickListener(new View.OnClickListener() {

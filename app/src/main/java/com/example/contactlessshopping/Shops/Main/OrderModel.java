@@ -6,14 +6,16 @@ public class OrderModel {
     public String order_no;
     public String customer_name;
     public String shop_name;
+    public String pickup_slot;
 
     public OrderModel(){}
 
-    public OrderModel(String status, String order_no, String customer_name, String shop_name) {
+    public OrderModel(String status, String order_no, String customer_name, String shop_name, String pickup_slot) {
         this.status = status;
         this.order_no = order_no;
         this.customer_name = customer_name;
         this.shop_name = shop_name;
+        this.pickup_slot = pickup_slot;
     }
 
 
@@ -49,5 +51,13 @@ public class OrderModel {
 
     public void setShop_name(String shop_name) {
         this.shop_name = shop_name;
+    }
+
+    public String getPickup_slot() {
+        return pickup_slot;
+    }
+
+    public void setPickup_slot(String pickup_slot) {
+        this.pickup_slot = pickup_slot;
     }
 }
