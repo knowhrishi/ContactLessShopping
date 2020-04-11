@@ -52,9 +52,9 @@ public class ShopMainActivity extends AppCompatActivity {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter((getSupportFragmentManager()));
 
-        adapter.AddFragment(new FragmentPending(), "Pending");
+        adapter.AddFragment(new FragmentPending(), "All Orders");
         adapter.AddFragment(new FragmentAccepted(), "Accepted");
-        adapter.AddFragment(new FragmentDeclined(), "Declined");
+        adapter.AddFragment(new FragmentDeclined(), "Packed");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

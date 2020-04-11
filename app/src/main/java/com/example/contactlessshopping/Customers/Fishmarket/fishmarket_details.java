@@ -1,4 +1,4 @@
-package com.example.contactlessshopping.Customers.Supermarket;
+package com.example.contactlessshopping.Customers.Fishmarket;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,7 +40,7 @@ import java.util.Set;
 
 import static com.example.contactlessshopping.Shops.Main.OrderDetails.KEY_ORDER_STATUS;
 
-public class supermarket_details extends AppCompatActivity {
+public class fishmarket_details extends AppCompatActivity {
     private FirebaseAuth auth;
     private DocumentReference noteRef;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -119,11 +119,12 @@ public class supermarket_details extends AppCompatActivity {
 
                                                     DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
                                                     orderRefAccept.update(i, FieldValue.arrayUnion(token_no));
-                                                    Toast.makeText(supermarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
-
-                                                    Toast.makeText(supermarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
+                                                    Map<String, Object> map = new HashMap<>();
+                                                    map.put("token_no", token_no);
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
                                                     db.collection("customers").document(auth.getUid().toString()).update("token_supermarket", token_no);
-                                                    Toast.makeText(supermarket_details.this, token_no, Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, token_no, Toast.LENGTH_SHORT).show();
                                                     token.setText(token_no);
                                                     break;
 
@@ -135,12 +136,12 @@ public class supermarket_details extends AppCompatActivity {
 
                                                     DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
                                                     orderRefAccept.update(i, FieldValue.arrayUnion(token_no));
-                                                    Toast.makeText(supermarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
                                                     Map<String, Object> map = new HashMap<>();
                                                     map.put("token_no", token_no);
-                                                    Toast.makeText(supermarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
                                                     db.collection("customers").document(auth.getUid().toString()).update("token_supermarket", token_no);
-                                                    Toast.makeText(supermarket_details.this, token_no, Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, token_no, Toast.LENGTH_SHORT).show();
                                                     token.setText(token_no);
                                                     break;
 

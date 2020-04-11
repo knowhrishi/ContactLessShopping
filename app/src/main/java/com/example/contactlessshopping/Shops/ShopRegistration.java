@@ -106,7 +106,7 @@ public class ShopRegistration extends AppCompatActivity {
 
         timeFrom = (Button) findViewById(R.id.idBtnFromTime);
         timeTo = (Button) findViewById(R.id.idBtnToTime);
-        buttonAddSlot=findViewById(R.id.add_slot_bt);
+       // buttonAddSlot=findViewById(R.id.add_slot_bt);
 
         buttonShopRegister = (Button) findViewById(R.id.ShopRegister);
         auth = FirebaseAuth.getInstance();
@@ -166,69 +166,7 @@ public class ShopRegistration extends AppCompatActivity {
 //
 //                    System.out.println("item = " + item + "\n" + "UID:" + noticeID);
 //                }
-//
 
-
-        buttonAddSlot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Date c = Calendar.getInstance().getTime();
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                String formattedDate = df.format(c);
-                String dateInString = "2011-11-30";  // Start date
-                SimpleDateFormat sdf_incr_date = new SimpleDateFormat("dd/MM/yyyy");
-                Calendar c1 = Calendar.getInstance();
-                try {
-                    c1.setTime(sdf_incr_date.parse(formattedDate));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                c1.add(Calendar.DATE, 1);
-                sdf_incr_date = new SimpleDateFormat("dd/MM/yyyy");
-                Date resultdate = new Date(c1.getTimeInMillis());
-                dateInString = sdf_incr_date.format(resultdate);
-                Toast.makeText(ShopRegistration.this, formattedDate + "\n" + dateInString, Toast.LENGTH_SHORT).show();
-                String date1 = formattedDate;
-                String time1 = editTextFromTime.getText().toString();
-                String date2 = dateInString;
-                String time2 = editTextToTime.getText().toString();
-                String format = "dd/MM/yyyy HH:mm";
-                SimpleDateFormat sdf = new SimpleDateFormat(format);
-                try {
-                    Date dateObj1 = sdf.parse(date1 + " " + time1);
-                    Date dateObj2 = sdf.parse(date1 + " " + time2);
-                    Log.d("TAG", "Date Start: " + dateObj1);
-                    Log.d("TAG", "Date End: " + dateObj2);
-                    long dif = dateObj1.getTime();
-                    while (dif < dateObj2.getTime()) {
-                        Date slot1 = new Date(dif);
-                        dif += 3600000;
-                        if(dif+3600000>dateObj2.getTime())
-                        {
-                            dif=dateObj2.getTime();
-                        }
-                        Date slot2 = new Date(dif);
-
-
-                        SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm");
-                        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
-                        Log.d("TAG", sdf1.format(slot1) + " - " + sdf2.format(slot2));
-                        insertSlot = insertSlot + "," + sdf1.format(slot1) + " - " + sdf2.format(slot2);
-                        slots.put(sdf1.format(slot1) + " - " + sdf2.format(slot2),empty_array);
-                    }
-                    slots.put("date",date1);
-                }catch (ParseException ex){
-                    ex.printStackTrace();
-                }
-
-               /* for(int i = 1;i<10;i++){
-                    String noticeID =  UUID.randomUUID().toString().replaceAll("-", "");
-                    authid = authid + "," + noticeID + ',' + authid;
-                }*/
-
-            }
-        });
 
 
 
@@ -278,7 +216,15 @@ public class ShopRegistration extends AppCompatActivity {
         });
 
         categorySpinner = (MaterialSpinner) findViewById(R.id.spinnerCategory);
-        categorySpinner.setItems("Groceries", "Medical","SuperMarket");
+        categorySpinner.setItems("Grocery Store",
+                "Medical Store",
+                "Supermarket",
+                "Market",
+                "Government / Ration Shops",
+                "Butcher shop (meat)",
+                "Fishmonger (fish)",
+                "Greengrocer (fruits & vegetables)",
+                "Petshop");
         categorySpinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
@@ -291,6 +237,51 @@ public class ShopRegistration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Date c = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = df.format(c);
+                String dateInString = "2011-11-30";  // Start date
+                SimpleDateFormat sdf_incr_date = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar c1 = Calendar.getInstance();
+                try {
+                    c1.setTime(sdf_incr_date.parse(formattedDate));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                c1.add(Calendar.DATE, 1);
+                sdf_incr_date = new SimpleDateFormat("dd/MM/yyyy");
+                Date resultdate = new Date(c1.getTimeInMillis());
+                dateInString = sdf_incr_date.format(resultdate);
+                Toast.makeText(ShopRegistration.this, formattedDate + "\n" + dateInString, Toast.LENGTH_SHORT).show();
+                String date1 = formattedDate;
+                String time1 = editTextFromTime.getText().toString();
+                String date2 = dateInString;
+                String time2 = editTextToTime.getText().toString();
+                String format = "dd/MM/yyyy HH:mm";
+                SimpleDateFormat sdf = new SimpleDateFormat(format);
+                try {
+                    Date dateObj1 = sdf.parse(date1 + " " + time1);
+                    Date dateObj2 = sdf.parse(date1 + " " + time2);
+                    Log.d("TAG", "Date Start: " + dateObj1);
+                    Log.d("TAG", "Date End: " + dateObj2);
+                    long dif = dateObj1.getTime();
+                    while (dif < dateObj2.getTime()) {
+                        Date slot1 = new Date(dif);
+                        dif += 3600000;
+                        Date slot2 = new Date(dif);
+
+                        SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm");
+                        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
+                        Log.d("TAG", sdf1.format(slot1) + " - " + sdf2.format(slot2));
+                        insertSlot = insertSlot + "," + sdf1.format(slot1) + " - " + sdf2.format(slot2);
+                        slots.put(sdf1.format(slot1) + " - " + sdf2.format(slot2),empty_array);
+
+
+                    }
+                    slots.put("date",date1);
+                }catch (ParseException ex){
+                    ex.printStackTrace();
+                }
 
                 shop_name = editTextShopName.getText().toString();
                 phone_number = editTextPassword.getText().toString();
@@ -390,6 +381,29 @@ public class ShopRegistration extends AppCompatActivity {
                                                     public void onSuccess(Void aVoid) {
                                                         //Toast.makeText(PatientRegister.this, "Data saved", Toast.LENGTH_SHORT).show();
                                                         startActivity(new Intent(ShopRegistration.this, MainActivity.class));
+                                                        finish();
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        //Toast.makeText(PatientRegister.this, "Error!", Toast.LENGTH_SHORT).show();
+                                                        Log.d(TAG, e.toString());
+                                                    }
+                                                });
+
+                                    }
+
+                                    if(shop_category == "Grocery Store")
+                                    {
+                                        slots.put("shop_id",auth.getUid());
+                                        Toast.makeText(ShopRegistration.this,auth.getUid()+" in cat",Toast.LENGTH_SHORT).show();
+                                        db.collection("order_slot").document(auth.getUid()).set(slots)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        //Toast.makeText(PatientRegister.this, "Data saved", Toast.LENGTH_SHORT).show();
+                                                        startActivity(new Intent(ShopRegistration.this, ShopMainActivity.class));
                                                         finish();
                                                     }
                                                 })

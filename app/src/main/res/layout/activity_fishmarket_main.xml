@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Customers.Customer_MainActivity">
+    tools:context=".Customers.Fishmarket.Fishmarket_MainActivity">
 
 
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/progress_bar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true" />
@@ -36,7 +37,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="GROCERY SHOPS"
+                android:text="FISHMARKETS"
                 android:textColor="@color/white"
                 android:fontFamily="@font/nunito_sans_extra_bold"
                 android:textSize="20dp"
@@ -73,30 +74,30 @@
             <!--            android:text="Ambegaon(bk),Pune-46"/>-->
 
             <!--</LinearLayout>-->
-<!--            <Button-->
-<!--                android:id="@+id/bt"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/white"-->
-<!--                -->
-<!--                android:background="@color/colorPrimary"-->
-<!--                android:onClick='manage'-->
-<!--                android:text="manage" />-->
+            <!--            <Button-->
+            <!--                android:id="@+id/bt"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                -->
+            <!--                android:background="@color/colorPrimary"-->
+            <!--                android:onClick='manage'-->
+            <!--                android:text="manage" />-->
 
 
         </LinearLayout>
 
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/shop_list"
+            android:id="@+id/shop_list2"
             android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="70dp"/>
 
 
-
     </LinearLayout>
-    
+
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

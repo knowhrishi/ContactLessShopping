@@ -36,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SHOPS LIST"
+                android:text="SUPERMARKETS"
                 android:textColor="@color/white"
                 android:fontFamily="@font/nunito_sans_extra_bold"
                 android:textSize="20dp"
@@ -91,7 +91,8 @@
             android:id="@+id/shop_list"
             android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"/>
 
 
     </LinearLayout>

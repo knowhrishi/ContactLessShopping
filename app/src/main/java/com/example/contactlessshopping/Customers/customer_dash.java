@@ -15,6 +15,8 @@ import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.contactlessshopping.Customers.Fishmarket.Fishmarket_MainActivity;
+import com.example.contactlessshopping.Customers.Medical.Medical_MainActivity;
 import com.example.contactlessshopping.Customers.Supermarket.Supermarket_MainActivity;
 import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
@@ -157,6 +159,27 @@ public class customer_dash extends AppCompatActivity {
                             intent.putExtra("intentLongitude", slon);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivityForResult(intent, 0);
+                            break;
+                        case 1:
+                            Intent i2 = new Intent(getApplicationContext(), Supermarket_MainActivity.class);
+                            i2.putExtra("intendLatitude", slat);
+                            i2.putExtra("intentLongitude", slon);
+                            i2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivityForResult(i2, 0);
+                            break;
+                        case 2:
+                            Intent i3 = new Intent(getApplicationContext(), Medical_MainActivity.class);
+                            i3.putExtra("intendLatitude", slat);
+                            i3.putExtra("intentLongitude", slon);
+                            i3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivityForResult(i3, 0);
+                            break;
+                        case 4:
+                            Intent i=new Intent(customer_dash.this, Fishmarket_MainActivity.class);
+                            i.putExtra("intendLatitude", slat);
+                            i.putExtra("intentLongitude", slon);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
                             break;
                         default:
                     }

@@ -133,6 +133,7 @@ Make_list extends AppCompatActivity {
 
                 Map<String, Object> note = new HashMap<>();
                 note.put("customer_name", cust_name);
+                note.put("customer_id", auth.getUid());
                 note.put("shop_id", shop_id);
                 note.put("shop_name", shop_name);
                 note.put("status", "0");

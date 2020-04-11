@@ -1,27 +1,26 @@
-package com.example.contactlessshopping.Customers;
+package com.example.contactlessshopping.Customers.Medical;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.contactlessshopping.Customers.Customer_MainActivity;
+import com.example.contactlessshopping.Customers.Shopsclass;
 import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-import java.util.List;
-
-public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass , ShopsAdapter.NoteHolder> {
+public class MedicalAdapter extends FirestoreRecyclerAdapter<Shopsclass, com.example.contactlessshopping.Customers.Medical.MedicalAdapter.NoteHolder> {
     private OrderAdapterPending.OnItemClickListener listener;
     double dlat, dlon;
-    Customer_MainActivity context;
+    Medical_MainActivity context;
     /**
      *
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -33,17 +32,17 @@ public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass , ShopsAda
 //
 //    }
 
-    public ShopsAdapter(FirestoreRecyclerOptions<Shopsclass> options, double dlat, double dlon, Context context) {
+    public MedicalAdapter(FirestoreRecyclerOptions<Shopsclass> options, double dlat, double dlon, Context context) {
 
         super(options);
         this.dlat = dlat;
         this.dlon = dlon;
-        this.context = (Customer_MainActivity) context;
+        this.context = (Medical_MainActivity) context;
     }
 
 
     @Override
-    protected void onBindViewHolder(@NonNull NoteHolder holder, int i, @NonNull Shopsclass model) {
+    protected void onBindViewHolder(@NonNull com.example.contactlessshopping.Customers.Medical.MedicalAdapter.NoteHolder holder, int i, @NonNull Shopsclass model) {
         String shop_lat="0", shop_lon="0";
         double lat1, lon1, lat2, lon2;
 
@@ -68,14 +67,14 @@ public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass , ShopsAda
 
     @NonNull
     @Override
-    public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public com.example.contactlessshopping.Customers.Medical.MedicalAdapter.NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_shops, parent, false);
 
-        return new NoteHolder(v);
+        return new com.example.contactlessshopping.Customers.Medical.MedicalAdapter.NoteHolder(v);
     }
 
-     class NoteHolder extends RecyclerView.ViewHolder {
+    class NoteHolder extends RecyclerView.ViewHolder {
         private View view;
 
 
@@ -131,3 +130,4 @@ public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass , ShopsAda
 
 
 }
+

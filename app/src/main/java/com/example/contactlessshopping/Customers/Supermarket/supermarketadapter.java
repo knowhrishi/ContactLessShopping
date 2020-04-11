@@ -74,7 +74,7 @@ public class supermarketadapter extends FirestoreRecyclerAdapter<Shopsclass , su
         return new NoteHolder(v);
     }
 
-     class NoteHolder extends RecyclerView.ViewHolder {
+     public class NoteHolder extends RecyclerView.ViewHolder {
         private View view;
 
 
