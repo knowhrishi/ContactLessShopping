@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter the code:"
+            android:text="Verification code:"
             android:textSize="18dp"
             android:textColor="@color/colorPrimaryDark"
             android:fontFamily="@font/nunito_sans_regular"
@@ -47,21 +47,17 @@
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:padding="2dp"/>
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:layout_gravity="center"
             android:textColor="@color/colorPrimaryDark"
             android:fontFamily="@font/nunito_sans_regular"
             android:layout_marginTop="10dp"
-            android:textSize="22dp"
-            android:inputType="number"
-            android:maxLength="5"
-            android:maxEms="5"
+            android:textSize="25dp"
             android:letterSpacing="1"
-            android:background="@drawable/round_withborder_2"
             android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/round_withborder_2"
             android:id="@+id/oderpickupcode"
             android:padding="2dp"/>
         <TextView

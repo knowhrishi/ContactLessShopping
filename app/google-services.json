@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "204399657918-30qbso5nkapltrf1fjcm02clafkhm8lo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.contactlessshopping",
+            "certificate_hash": "cd815360a5add2cb875a99e030a8d68e4a11b89a"
+          }
+        },
+        {
           "client_id": "204399657918-m450ram4a4cjupb3k94qc4b3n64pasm0.apps.googleusercontent.com",
           "client_type": 3
         }
