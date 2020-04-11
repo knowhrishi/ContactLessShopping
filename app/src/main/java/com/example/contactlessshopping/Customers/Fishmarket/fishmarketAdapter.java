@@ -1,4 +1,4 @@
-package com.example.contactlessshopping.Customers.Supermarket;
+package com.example.contactlessshopping.Customers.Fishmarket;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.contactlessshopping.Customers.Customer_MainActivity;
 import com.example.contactlessshopping.Customers.Shopsclass;
 import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
@@ -17,10 +16,10 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-public class supermarketadapter extends FirestoreRecyclerAdapter<Shopsclass , supermarketadapter.NoteHolder> {
+public class fishmarketAdapter extends FirestoreRecyclerAdapter<Shopsclass , fishmarketAdapter.NoteHolder> {
     private OrderAdapterPending.OnItemClickListener listener;
     double dlat, dlon;
-    Supermarket_MainActivity context;
+    Fishmarket_MainActivity context;
     /**
      *
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -32,12 +31,22 @@ public class supermarketadapter extends FirestoreRecyclerAdapter<Shopsclass , su
 //
 //    }
 
-    public supermarketadapter(FirestoreRecyclerOptions<Shopsclass> options, double dlat, double dlon, Context context) {
+    public fishmarketAdapter(FirestoreRecyclerOptions<Shopsclass> options, double dlat, double dlon, Context context) {
 
         super(options);
         this.dlat = dlat;
         this.dlon = dlon;
-        this.context = (Supermarket_MainActivity) context;
+        this.context = (Fishmarket_MainActivity) context;
+    }
+
+    /**
+     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
+     * FirestoreRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public fishmarketAdapter(@NonNull FirestoreRecyclerOptions<Shopsclass> options) {
+        super(options);
     }
 
 
@@ -74,7 +83,7 @@ public class supermarketadapter extends FirestoreRecyclerAdapter<Shopsclass , su
         return new NoteHolder(v);
     }
 
-     public class NoteHolder extends RecyclerView.ViewHolder {
+    public class NoteHolder extends RecyclerView.ViewHolder {
         private View view;
 
 

@@ -91,7 +91,8 @@
             android:id="@+id/shop_list"
             android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"/>
 
 
     </LinearLayout>

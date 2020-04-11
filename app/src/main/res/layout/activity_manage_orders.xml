@@ -42,7 +42,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/order_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"/>
+
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:background="@drawable/rounded"
