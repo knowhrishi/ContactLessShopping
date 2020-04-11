@@ -66,7 +66,7 @@ public class supermarket_details extends AppCompatActivity {
         get_token.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.collection("tokens").document(shop_id).get()
+                db.collection("token_slots").document(shop_id).get()
                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -117,12 +117,19 @@ public class supermarket_details extends AppCompatActivity {
                                             {
                                                 if (mylist.size() != 10) {
 
-                                                    DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
-                                                    orderRefAccept.update(i, FieldValue.arrayUnion(token_no));
+                                                    DocumentReference orderRefAccept = db.collection("token_slots").document(shop_id);
+                                                    orderRefAccept.update(i, FieldValue.arrayUnion(auth.getUid()));
                                                     Toast.makeText(supermarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
 
                                                     Toast.makeText(supermarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
-                                                    db.collection("customers").document(auth.getUid().toString()).update("token_supermarket", token_no);
+
+                                                    Map<String,Object> token_doc=new HashMap<>();
+                                                    token_doc.put("shop_id",shop_id);
+                                                    token_doc.put("token_no",token_no);
+                                                    token_doc.put("customer_id",auth.getUid());
+                                                    token_doc.put("slot_allocated",i);
+
+                                                    db.collection("tokens").document(auth.getUid().toString()).set(token_doc);
                                                     Toast.makeText(supermarket_details.this, token_no, Toast.LENGTH_SHORT).show();
                                                     token.setText(token_no);
                                                     break;

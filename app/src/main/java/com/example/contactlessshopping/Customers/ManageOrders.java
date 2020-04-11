@@ -46,7 +46,7 @@ public class ManageOrders extends AppCompatActivity {
     private FirebaseAuth auth;
     DocumentReference docref;
     String cust_name;
-    String order_pickup_code;
+    String order_pickup_code,order_status;
     ProgressBar progressBar;
     RecyclerView orderlist;
     LinearLayoutManager linearLayoutManager;
@@ -111,43 +111,88 @@ public class ManageOrders extends AppCompatActivity {
 //                if (documentSnapshot.get("status").toString() == "1") {
 //                    Toast.makeText(ManageOrders.this, "SLOT NOT ALLOCATED YET", Toast.LENGTH_SHORT).show();
 //                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(
-                            ManageOrders.this);
-                    builder.setTitle("Picking up order?");
-//                builder.setMessage("Once order accepted you cannot cancel the order.");
-                    builder.setPositiveButton("OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface alertDialog,
-                                                    int which) {
-                                    final Dialog dialog = new Dialog(ManageOrders.this);
-                                    dialog.setContentView(R.layout.order_pickup_customer_dialog);
-                                    TextView text = (TextView) dialog.findViewById(R.id.oderpickupcode);
-                                    TextView dialogButton = (TextView) dialog.findViewById(R.id.idalertok);
 
-                                    SecureRandom random = new SecureRandom();
-                                    int num = random.nextInt(100000);
-                                    order_pickup_code = String.format("%05d", num);
 
-                                    text.setText(order_pickup_code);
 
-                                    DocumentReference orderRefAccept = db.collection("orders").document(documentSnapshot.get("order_id").toString());
-                                    orderRefAccept.update("pickup_code", order_pickup_code);
 
-                                    dialogButton.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            dialog.dismiss();
-                                            startActivity(new Intent(ManageOrders.this, ManageOrders.class));
-                                            finish();
+                 db.collection("orders").document(documentSnapshot.get("order_id").toString()).get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists())
+                                    {
+                                        order_status = document.get("status").toString();
+                                        Toast.makeText(ManageOrders.this,order_status,Toast.LENGTH_SHORT).show();
+
+                                        if(Integer.parseInt(order_status)==3)
+                                        {
+                                            Toast.makeText(ManageOrders.this,order_status+" in",Toast.LENGTH_SHORT).show();
+                                            Intent i=new Intent(ManageOrders.this,Customer_survey.class);
+                                            i.putExtra("order_id",documentSnapshot.get("order_id").toString());
+                                            startActivity(i);
+
+
                                         }
-                                    });
+                                        else {
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(
+                                                    ManageOrders.this);
+                                            builder.setTitle("Picking up order?");
+//                builder.setMessage("Once order accepted you cannot cancel the order.");
+                                            builder.setPositiveButton("OK",
+                                                    new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface alertDialog,
+                                                                            int which) {
+                                                            final Dialog dialog = new Dialog(ManageOrders.this);
+                                                            dialog.setContentView(R.layout.order_pickup_customer_dialog);
+                                                            TextView text = (TextView) dialog.findViewById(R.id.oderpickupcode);
+                                                            TextView dialogButton = (TextView) dialog.findViewById(R.id.idalertok);
 
-                                    dialog.show();
+                                                            SecureRandom random = new SecureRandom();
+                                                            int num = random.nextInt(100000);
+                                                            order_pickup_code = String.format("%05d", num);
+
+                                                            text.setText(order_pickup_code);
+
+                                                            DocumentReference orderRefAccept = db.collection("orders").document(documentSnapshot.get("order_id").toString());
+                                                            orderRefAccept.update("pickup_code", order_pickup_code);
+
+                                                            dialogButton.setOnClickListener(new View.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(View v) {
+                                                                    dialog.dismiss();
+                                                                    startActivity(new Intent(ManageOrders.this, ManageOrders.class));
+                                                                    finish();
+                                                                }
+                                                            });
+
+                                                            dialog.show();
 //                                order_status = "1";
 //
+                                                        }
+                                                    });
+                                            builder.show();
+                                        }
+
+
+
+
+
+                                    }
+                                    else {
+                                        Log.d("Tag", "No such document");
+                                    }
+                                } else {
+                                    Log.d("Tag", "get failed with ", task.getException());
                                 }
-                            });
-                    builder.show();
+                            }
+                        });
+
+
+
+
+
                 }
 
 

@@ -64,7 +64,7 @@ public class Supermarket_MainActivity extends AppCompatActivity {
 
     private void getshopList(){
 
-        Query query = db.collection("shops").whereEqualTo("shop_category","SuperMarket");
+        Query query = db.collection("shops").whereEqualTo("shop_category","Supermarket");
 
         FirestoreRecyclerOptions<Shopsclass> response = new FirestoreRecyclerOptions.Builder<Shopsclass>()
                 .setQuery(query, Shopsclass.class)

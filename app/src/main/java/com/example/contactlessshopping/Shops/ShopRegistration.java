@@ -371,11 +371,11 @@ public class ShopRegistration extends AppCompatActivity {
                                             });
 
 
-                                    if(shop_category=="SuperMarket")
+                                    if(shop_category=="Supermarket")
                                     {
                                         slots.put("shop_id",auth.getUid());
                                         Toast.makeText(ShopRegistration.this,auth.getUid()+" in cat",Toast.LENGTH_SHORT).show();
-                                        db.collection("tokens").document(auth.getUid()).set(slots)
+                                        db.collection("token_slots").document(auth.getUid()).set(slots)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {

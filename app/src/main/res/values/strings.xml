@@ -21,5 +21,6 @@
 
     <string name="forget_password"><u>Forget your Password ?</u></string>
     <string name="signup_text">New here ? <u>Sign Up instead</u></string>
+    <string name="title_activity_find_hospitals">Map</string>
 
 </resources>

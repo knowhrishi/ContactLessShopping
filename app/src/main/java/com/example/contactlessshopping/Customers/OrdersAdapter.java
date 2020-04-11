@@ -1,10 +1,12 @@
 package com.example.contactlessshopping.Customers;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +17,9 @@ import com.example.contactlessshopping.Shops.Main.OrderModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
+
+import static androidx.core.content.ContextCompat.getColor;
+import static com.google.common.io.Resources.getResource;
 
 public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAdapter.NoteHolder> {
 
@@ -29,11 +34,28 @@ public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAd
         super(options);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onBindViewHolder(@NonNull OrdersAdapter.NoteHolder holder, int i, @NonNull OrderModel model) {
 
         holder.textViewContent.setText(model.getOrder_no());
         holder.textViewShopName.setText(model.getShop_name());
+        if(Integer.parseInt(model.getStatus())==1)
+        {
+            holder.textViewStatus.setText("Slot not Allocated");
+            holder.textViewStatus.setTextColor(R.color.red);
+        }
+        else if(Integer.parseInt(model.getStatus())==2)
+        {
+            holder.textViewStatus.setText("Pick Up Pending");
+            holder.textViewStatus.setTextColor(R.color.green);
+        }
+        else if(Integer.parseInt(model.getStatus())==3)
+        {
+            holder.textViewStatus.setText("Give Feedback");
+            holder.textViewStatus.setTextColor(R.color.red);
+        }
+
 
     }
 
@@ -49,7 +71,7 @@ public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAd
 
     public class NoteHolder extends RecyclerView.ViewHolder {
         private View view;
-        TextView textViewContent, textViewShopName;
+        TextView textViewContent, textViewShopName,textViewStatus;
         public NoteHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -57,6 +79,8 @@ public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAd
 
             textViewContent = (TextView) itemView.findViewById(R.id.orderstext);
             textViewShopName = (TextView) itemView.findViewById(R.id.shop_name);
+            textViewStatus=itemView.findViewById(R.id.status);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
