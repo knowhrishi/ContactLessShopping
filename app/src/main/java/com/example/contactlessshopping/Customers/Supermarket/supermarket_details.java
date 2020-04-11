@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,11 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firestore.v1.Value;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 
 import java.security.SecureRandom;
 import java.text.DateFormat;
@@ -46,23 +54,34 @@ public class supermarket_details extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference notebookRef = db.collection("tokens");
 
+//    ImageView imageView;
+//    Button button;
+//    EditText editText;
+//    String EditTextValue;
+//    Thread thread;
+//    public final static int QRcodeWidth = 500;
+//    Bitmap bitmap;
 
-    String shop_id,shop_name,capacity,token_no;
+
+    String shop_id, shop_name, capacity, token_no;
 
     Button get_token;
     TextView token;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supermarket_details);
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
-        final Intent intent=getIntent();
-        shop_id=intent.getStringExtra("shop_id");
-        shop_name=intent.getStringExtra("shop_name");
+        final Intent intent = getIntent();
+        shop_id = intent.getStringExtra("shop_id");
+        shop_name = intent.getStringExtra("shop_name");
 
-        get_token=findViewById(R.id.get_token);
-        token=findViewById(R.id.token_no);
+        //imageView = (ImageView) findViewById(R.id.imageView);
+
+        get_token = findViewById(R.id.get_token);
+        token = findViewById(R.id.token_no);
         get_token.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,39 +101,45 @@ public class supermarket_details extends AppCompatActivity {
 
                                         SecureRandom random = new SecureRandom();
                                         int num = random.nextInt(100000);
-                                        token_no= String.format("%05d", num);
+                                        token_no = String.format("%05d", num);
+
+//                                        try {
+//                                            bitmap = TextToImageEncode(token_no);
+//
+//                                            imageView.setImageBitmap(bitmap);
+//
+//                                        } catch (WriterException e) {
+//                                            e.printStackTrace();
+//                                        }
 
                                         List<String> keys = new ArrayList<String>(data.keySet());
                                         Collections.sort(keys);
 
                                         String currentTime = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
-                                        Log.d("time",currentTime);
+                                        Log.d("time", currentTime);
                                         Log.d("Tag", " keyset sorted : " + keys);
-                                        for(String i :keys)
-                                        {
+                                        for (String i : keys) {
 
 
-                                            List<String> mylist =(List<String>)data.get(i);
+                                            List<String> mylist = (List<String>) data.get(i);
 
 
                                             String[] s = i.split("-");
-                                            Date slot_from=new Date();
-                                            Date slot_to=new Date();
-                                            Date currtime=new Date();
+                                            Date slot_from = new Date();
+                                            Date slot_to = new Date();
+                                            Date currtime = new Date();
 
                                             DateFormat dateFormat = new SimpleDateFormat("hh:mm");
                                             try {
                                                 slot_from = dateFormat.parse(s[0].trim());
-                                                slot_to=dateFormat.parse(s[1].trim());
-                                                currtime=dateFormat.parse(currentTime.trim());
+                                                slot_to = dateFormat.parse(s[1].trim());
+                                                currtime = dateFormat.parse(currentTime.trim());
                                             } catch (ParseException e) {
                                                 e.printStackTrace();
                                             }
 
 
-
-                                            if(slot_from.before(currtime) && currtime.before(slot_to) )
-                                            {
+                                            if (slot_from.before(currtime) && currtime.before(slot_to)) {
                                                 if (mylist.size() != 10) {
 
                                                     DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
@@ -129,9 +154,7 @@ public class supermarket_details extends AppCompatActivity {
                                                     break;
 
                                                 }
-                                            }
-                                            else if(slot_from.after(currtime))
-                                            {
+                                            } else if (slot_from.after(currtime)) {
                                                 if (mylist.size() != 10) {
 
                                                     DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
@@ -161,10 +184,42 @@ public class supermarket_details extends AppCompatActivity {
                             }
                         });
 
-
-
             }
         });
 
     }
+
+//    Bitmap TextToImageEncode (String Value) throws WriterException {
+//        BitMatrix bitMatrix;
+//        try {
+//            bitMatrix = new MultiFormatWriter().encode(
+//                    Value,
+//                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+//                    QRcodeWidth, QRcodeWidth, null
+//            );
+//
+//        } catch (IllegalArgumentException Illegalargumentexception) {
+//
+//            return null;
+//        }
+//        int bitMatrixWidth = bitMatrix.getWidth();
+//
+//        int bitMatrixHeight = bitMatrix.getHeight();
+//
+//        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
+//
+//        for (int y = 0; y < bitMatrixHeight; y++) {
+//            int offset = y * bitMatrixWidth;
+//
+//            for (int x = 0; x < bitMatrixWidth; x++) {
+//
+//                pixels[offset + x] = bitMatrix.get(x, y) ?
+//                        getResources().getColor(R.color.black) : getResources().getColor(R.color.white);
+//            }
+//        }
+//        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
+//
+//        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
+//        return bitmap;
+//    }
 }

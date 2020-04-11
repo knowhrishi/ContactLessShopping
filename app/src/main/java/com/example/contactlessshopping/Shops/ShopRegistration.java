@@ -72,7 +72,7 @@ public class ShopRegistration extends AppCompatActivity {
     private RadioButton radioButtonYes, radioButtonNo;
     private ProgressDialog progressDialog;
     MaterialSpinner categorySpinner;
-    private Button timeFrom, timeTo, buttonShopRegister,buttonAddSlot;
+    private Button timeFrom, timeTo, buttonShopRegister, buttonAddSlot;
     public String insertSlot, authid;
     private String LONGITUDE, LATITUDE, shop_name, phone_number, email_id, password, capacity, from_time, to_time, address = "NULL", shop_category;
 
@@ -81,8 +81,9 @@ public class ShopRegistration extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseFirestore db2 = FirebaseFirestore.getInstance();
 
-    Map<String,Object> slots=new HashMap<>();
-    List<String> empty_array= Collections.<String>emptyList();
+    Map<String, Object> slots = new HashMap<>();
+    List<String> empty_array = Collections.<String>emptyList();
+    String IntendedauthID, Intendedphonenumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +94,9 @@ public class ShopRegistration extends AppCompatActivity {
         editTextFromTime = (EditText) findViewById(R.id.idEtFromTime);
         editTextToTime = (EditText) findViewById(R.id.idEtToTime);
         editTextCapacity = (EditText) findViewById(R.id.idEtCapacity);
-        editTextEmail = (EditText) findViewById(R.id.idEmail);
-        editTextPassword = (EditText) findViewById(R.id.idPassword);
-        editTextPhoneNumber = (EditText) findViewById(R.id.idPhoneNumber);
+       // editTextEmail = (EditText) findViewById(R.id.idEmail);
+       // editTextPassword = (EditText) findViewById(R.id.idPassword);
+       // editTextPhoneNumber = (EditText) findViewById(R.id.idPhoneNumber);
 
         progressDialog = new ProgressDialog(this);
 
@@ -106,10 +107,14 @@ public class ShopRegistration extends AppCompatActivity {
 
         timeFrom = (Button) findViewById(R.id.idBtnFromTime);
         timeTo = (Button) findViewById(R.id.idBtnToTime);
-       // buttonAddSlot=findViewById(R.id.add_slot_bt);
+        // buttonAddSlot=findViewById(R.id.add_slot_bt);
 
         buttonShopRegister = (Button) findViewById(R.id.ShopRegister);
         auth = FirebaseAuth.getInstance();
+
+        final Intent intent = getIntent();
+        IntendedauthID = intent.getStringExtra("intendAuthUID");
+        Intendedphonenumber = intent.getStringExtra("intentPhoneNumber");
 
 
         timeFrom.setOnClickListener(new View.OnClickListener() {
@@ -152,25 +157,15 @@ public class ShopRegistration extends AppCompatActivity {
         });
 
 
-
-
-
-
-
 //
 //               System.out.println(authid + "\n");;
- //               String[] itemsSlots = insertSlot.split(",");
-              //  String item;
+        //               String[] itemsSlots = insertSlot.split(",");
+        //  String item;
 //                for (String item : itemsSlots) {
 //                    String noticeID =  UUID.randomUUID().toString().replaceAll("-", "");
 //
 //                    System.out.println("item = " + item + "\n" + "UID:" + noticeID);
 //                }
-
-
-
-
-
 
 
         if (ContextCompat.checkSelfPermission(
@@ -274,19 +269,19 @@ public class ShopRegistration extends AppCompatActivity {
                         SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
                         Log.d("TAG", sdf1.format(slot1) + " - " + sdf2.format(slot2));
                         insertSlot = insertSlot + "," + sdf1.format(slot1) + " - " + sdf2.format(slot2);
-                        slots.put(sdf1.format(slot1) + " - " + sdf2.format(slot2),empty_array);
+                        slots.put(sdf1.format(slot1) + " - " + sdf2.format(slot2), empty_array);
 
 
                     }
-                    slots.put("date",date1);
-                }catch (ParseException ex){
+                    slots.put("date", date1);
+                } catch (ParseException ex) {
                     ex.printStackTrace();
                 }
 
                 shop_name = editTextShopName.getText().toString();
-                phone_number = editTextPassword.getText().toString();
-                email_id = editTextEmail.getText().toString();
-                password = editTextPassword.getText().toString();
+               // phone_number = editTextPassword.getText().toString();
+               // email_id = editTextEmail.getText().toString();
+               // password = editTextPassword.getText().toString();
                 capacity = editTextCapacity.getText().toString();
                 from_time = editTextFromTime.getText().toString();
                 to_time = editTextToTime.getText().toString();
@@ -304,126 +299,123 @@ public class ShopRegistration extends AppCompatActivity {
                     return;
                 }
 
-                if (TextUtils.isEmpty(phone_number)) {
-                    Toast.makeText(getApplicationContext(), "Enter Phone Number!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if (TextUtils.isEmpty(phone_number)) {
+//                    Toast.makeText(getApplicationContext(), "Enter Phone Number!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
 
-                if (TextUtils.isEmpty(email_id)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if (TextUtils.isEmpty(email_id)) {
+//                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                if (TextUtils.isEmpty(password)) {
+//                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
 
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if (password.length() < 6) {
+//                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
 
 
                 progressDialog.setMessage("Registering ....");
                 progressDialog.show();
-                auth.createUserWithEmailAndPassword(email_id, password)
-                        .addOnCompleteListener(ShopRegistration.this, new OnCompleteListener<AuthResult>() {
+
+                Map<String, Object> note = new HashMap<>();
+                note.put(KEY_SHOPNAME, shop_name);
+                note.put(KEY_PHONE, Intendedphonenumber);
+//                note.put(KEY_EMAIL, email_id);
+//                note.put(KEY_PASSWORD, password);
+                note.put(KEY_CAPACITY, capacity);
+                note.put(KEY_FROM_TIME, from_time);
+                note.put(KEY_TO_TIME, to_time);
+                note.put(KEY_LONGITUDE, LONGITUDE);
+                note.put(KEY_LATITUDE, LATITUDE);
+                note.put(KEY_ADDRESS, address);
+                note.put(KEY_SHOP_CATEGORY, shop_category);
+                progressDialog.setMessage("Registering....");
+                progressDialog.show();
+
+
+                Toast.makeText(ShopRegistration.this,auth.getUid() +" in main",Toast.LENGTH_SHORT).show();
+                db.collection("shops").document(IntendedauthID).set(note)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressDialog.dismiss();
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(ShopRegistration.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(ShopRegistration.this, "Data saved", Toast.LENGTH_SHORT).show();
 
-                                    Map<String, Object> note = new HashMap<>();
-                                    note.put(KEY_SHOPNAME, shop_name);
-                                    note.put(KEY_PHONE, phone_number);
-                                    note.put(KEY_EMAIL, email_id);
-                                    note.put(KEY_PASSWORD, password);
-                                    note.put(KEY_CAPACITY, capacity);
-                                    note.put(KEY_FROM_TIME, from_time);
-                                    note.put(KEY_TO_TIME, to_time);
-                                    note.put(KEY_LONGITUDE, LONGITUDE);
-                                    note.put(KEY_LATITUDE, LATITUDE);
-                                    note.put(KEY_ADDRESS, address);
-                                    note.put(KEY_SHOP_CATEGORY, shop_category);
-                                    progressDialog.setMessage("Registering....");
-                                    progressDialog.show();
-
-
-                                    Toast.makeText(ShopRegistration.this,auth.getUid() +" in main",Toast.LENGTH_SHORT).show();
-                                    db.collection("shops").document(auth.getUid()).set(note)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    Toast.makeText(ShopRegistration.this, "Data saved", Toast.LENGTH_SHORT).show();
-
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    //Toast.makeText(PatientRegister.this, "Error!", Toast.LENGTH_SHORT).show();
-                                                    Log.d(TAG, e.toString());
-                                                }
-                                            });
-
-
-                                    if(shop_category=="SuperMarket")
-                                    {
-                                        slots.put("shop_id",auth.getUid());
-                                        Toast.makeText(ShopRegistration.this,auth.getUid()+" in cat",Toast.LENGTH_SHORT).show();
-                                        db.collection("tokens").document(auth.getUid()).set(slots)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        //Toast.makeText(PatientRegister.this, "Data saved", Toast.LENGTH_SHORT).show();
-                                                        startActivity(new Intent(ShopRegistration.this, MainActivity.class));
-                                                        finish();
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        //Toast.makeText(PatientRegister.this, "Error!", Toast.LENGTH_SHORT).show();
-                                                        Log.d(TAG, e.toString());
-                                                    }
-                                                });
-
-                                    }
-
-                                    if(shop_category == "Grocery Store")
-                                    {
-                                        slots.put("shop_id",auth.getUid());
-                                        Toast.makeText(ShopRegistration.this,auth.getUid()+" in cat",Toast.LENGTH_SHORT).show();
-                                        db.collection("order_slot").document(auth.getUid()).set(slots)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        //Toast.makeText(PatientRegister.this, "Data saved", Toast.LENGTH_SHORT).show();
-                                                        startActivity(new Intent(ShopRegistration.this, ShopMainActivity.class));
-                                                        finish();
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        //Toast.makeText(PatientRegister.this, "Error!", Toast.LENGTH_SHORT).show();
-                                                        Log.d(TAG, e.toString());
-                                                    }
-                                                });
-
-                                    }
-
-
-                                }
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                //Toast.makeText(PatientRegister.this, "Error!", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, e.toString());
                             }
                         });
 
 
+                if(shop_category=="SuperMarket")
+                {
+                    slots.put("shop_id",auth.getUid());
+                    Toast.makeText(ShopRegistration.this,auth.getUid()+" in cat",Toast.LENGTH_SHORT).show();
+                    db.collection("tokens").document(IntendedauthID).set(slots)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    //Toast.makeText(PatientRegister.this, "Data saved", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(ShopRegistration.this, MainActivity.class));
+                                    finish();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    //Toast.makeText(PatientRegister.this, "Error!", Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, e.toString());
+                                }
+                            });
 
+                }
+
+                if(shop_category == "Grocery Store")
+                {
+                    slots.put("shop_id",auth.getUid());
+                    Toast.makeText(ShopRegistration.this,auth.getUid()+" in cat",Toast.LENGTH_SHORT).show();
+                    db.collection("order_slot").document(IntendedauthID).set(slots)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    //Toast.makeText(PatientRegister.this, "Data saved", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(ShopRegistration.this, ShopMainActivity.class));
+                                    finish();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    //Toast.makeText(PatientRegister.this, "Error!", Toast.LENGTH_SHORT).show();
+                                    Log.d(TAG, e.toString());
+                                }
+                            });
+
+                }
+//                auth.createUserWithEmailAndPassword(email_id, password)
+//                        .addOnCompleteListener(ShopRegistration.this, new OnCompleteListener<AuthResult>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<AuthResult> task) {
+//                                progressDialog.dismiss();
+//                                if (!task.isSuccessful()) {
+//                                    Toast.makeText(ShopRegistration.this, "Authentication failed." + task.getException(),
+//                                            Toast.LENGTH_SHORT).show();
+//                                } else {
+//
+//
+//                                }
+//                            }
+//                        });
 
 
             }

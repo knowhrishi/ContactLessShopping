@@ -50,7 +50,7 @@ public class ManageOrders extends AppCompatActivity {
     ProgressBar progressBar;
     RecyclerView orderlist;
     LinearLayoutManager linearLayoutManager;
-
+    private DocumentReference noteRef;
     private CollectionReference notebookRef = db.collection("orders");
     private OrdersAdapter adapter;
 
@@ -108,9 +108,9 @@ public class ManageOrders extends AppCompatActivity {
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //                startActivity(intent);
 
-//                if (documentSnapshot.get("status").toString() == "1") {
-//                    Toast.makeText(ManageOrders.this, "SLOT NOT ALLOCATED YET", Toast.LENGTH_SHORT).show();
-//                } else {
+                if (documentSnapshot.get("status").toString().equals("1")) {
+                    Toast.makeText(ManageOrders.this, "SLOT NOT ALLOCATED YET", Toast.LENGTH_SHORT).show();
+                } else if(documentSnapshot.get("status").toString().equals("2")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(
                             ManageOrders.this);
                     builder.setTitle("Picking up order?");
@@ -133,6 +133,7 @@ public class ManageOrders extends AppCompatActivity {
                                     DocumentReference orderRefAccept = db.collection("orders").document(documentSnapshot.get("order_id").toString());
                                     orderRefAccept.update("pickup_code", order_pickup_code);
 
+
                                     dialogButton.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
@@ -151,7 +152,7 @@ public class ManageOrders extends AppCompatActivity {
                 }
 
 
-//            }
+            }
         });
 
         //nav

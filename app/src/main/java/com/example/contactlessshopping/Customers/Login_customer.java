@@ -218,6 +218,7 @@ public class Login_customer extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()){
+
                     startActivity(new Intent(getApplicationContext(), Customer_MainActivity.class));
                     finish();
                 }else {
