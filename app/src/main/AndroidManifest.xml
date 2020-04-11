@@ -19,6 +19,7 @@
         <activity android:name=".Customers.Supermarket.Supermarket_MainActivity"/>
         <activity android:name=".Customers.Fishmarket.Fishmarket_MainActivity"/>
         <activity android:name=".Customers.Medical.Medical_MainActivity"/>
+        <activity android:name=".Customers.Vegetable.Vegetable_MainActivity"/>
 
 
 

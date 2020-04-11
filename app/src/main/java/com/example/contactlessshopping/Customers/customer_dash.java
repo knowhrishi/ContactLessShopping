@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.contactlessshopping.Customers.Fishmarket.Fishmarket_MainActivity;
 import com.example.contactlessshopping.Customers.Medical.Medical_MainActivity;
 import com.example.contactlessshopping.Customers.Supermarket.Supermarket_MainActivity;
+import com.example.contactlessshopping.Customers.Vegetable.Vegetable_MainActivity;
 import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -173,6 +174,13 @@ public class customer_dash extends AppCompatActivity {
                             i3.putExtra("intentLongitude", slon);
                             i3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivityForResult(i3, 0);
+                            break;
+                        case 3:
+                            Intent i4 = new Intent(getApplicationContext(), Vegetable_MainActivity.class);
+                            i4.putExtra("intendLatitude", slat);
+                            i4.putExtra("intentLongitude", slon);
+                            i4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivityForResult(i4, 0);
                             break;
                         case 4:
                             Intent i=new Intent(customer_dash.this, Fishmarket_MainActivity.class);

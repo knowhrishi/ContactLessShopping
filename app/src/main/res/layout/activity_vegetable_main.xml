@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Customers.Vegetable.Vegetable_MainActivity">
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/shop_24dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VEGETABLE/FRUIT MARKET"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_sans_extra_bold"
+                android:textSize="20dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="start"
+
+                />
+
+            <!--        <ImageView-->
+            <!--            android:layout_width="40dp"-->
+            <!--            android:layout_height="30dp"-->
+            <!--            android:layout_margin="10dp"-->
+            <!--            android:src="@drawable/location"-->
+            <!--            android:layout_weight="0.2"/>-->
+
+            <!--<LinearLayout-->
+            <!--    android:layout_width="wrap_content"-->
+            <!--    android:layout_height="wrap_content"-->
+            <!--    android:orientation="vertical">-->
+            <!--        <TextView-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+
+            <!--            android:layout_marginTop="10dp"-->
+
+            <!--            android:textColor="@color/whiteTextColor"-->
+            <!--            android:text="Balaji apt,opp abz residency"/>-->
+
+            <!--        <TextView-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+
+            <!--            android:textColor="@color/whiteTextColor"-->
+            <!--            android:text="Ambegaon(bk),Pune-46"/>-->
+
+            <!--</LinearLayout>-->
+            <!--            <Button-->
+            <!--                android:id="@+id/bt"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:textColor="@color/white"-->
+            <!--                -->
+            <!--                android:background="@color/colorPrimary"-->
+            <!--                android:onClick='manage'-->
+            <!--                android:text="manage" />-->
+
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shop_list4"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"/>
+
+
+    </LinearLayout>
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:background="@drawable/rounded"
+        android:id="@+id/nav"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/menu"/>
+
+</RelativeLayout>
