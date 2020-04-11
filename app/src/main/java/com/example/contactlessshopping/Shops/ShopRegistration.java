@@ -82,7 +82,7 @@ public class ShopRegistration extends AppCompatActivity {
     private FirebaseFirestore db2 = FirebaseFirestore.getInstance();
 
     Map<String,Object> slots=new HashMap<>();
-    List<String> empty_array= Collections.<String>emptyList();;
+    List<String> empty_array= Collections.<String>emptyList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -27,7 +27,6 @@
         <activity android:name=".Customers.ManageOrders" />
         <activity android:name=".Customers.profile_customer" />
         <activity android:name=".Customers.ShopDetails" />
-        <activity android:name=".Shops.ShopLogin" />
         <activity android:name=".Shops.ShopRegistration" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -44,6 +43,7 @@
         <activity android:name=".Customers.Upload_list" />
         <activity android:name=".Shops.Main.OrderDetails" />
         <activity android:name=".Shops.ShopMainActivity" />
+        <activity android:name=".Shops.Main.ShopLogin"/>
 
 
     </application>
