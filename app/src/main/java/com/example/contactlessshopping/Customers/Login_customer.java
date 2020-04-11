@@ -212,7 +212,7 @@ public class Login_customer extends AppCompatActivity {
     private void checkUserProfile() {
         DocumentReference docRef = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            docRef = fStore.collection("shops").document(Objects.requireNonNull(fAuth.getCurrentUser()).getUid());
+            docRef = fStore.collection("customers").document(Objects.requireNonNull(fAuth.getCurrentUser()).getUid());
         }
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
