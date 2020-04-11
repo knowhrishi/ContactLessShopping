@@ -19,11 +19,14 @@
         <activity android:name=".Customers.Supermarket.Supermarket_MainActivity"/>
         <activity android:name=".Customers.Fishmarket.Fishmarket_MainActivity"/>
         <activity android:name=".Customers.Medical.Medical_MainActivity"/>
+        <activity android:name=".Customers.Vegetable.Vegetable_MainActivity"/>
 
 
 
         <activity android:name=".Customers.Supermarket.supermarket_details" />
-        <activity android:name=".LoginTemp" />
+        <activity android:name=".Shops.PhoneAuthLogin.LoginTemp" >
+
+        </activity>
         <activity android:name=".Customers.ManageOrders" />
         <activity android:name=".Customers.profile_customer" />
         <activity android:name=".Customers.ShopDetails" />

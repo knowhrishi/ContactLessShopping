@@ -97,48 +97,45 @@ public class FragmentDeclined extends Fragment {
                                 final Dialog dialog = new Dialog(getActivity());
                                 dialog.setContentView(R.layout.order_pickup_shop_dialog);
                                 final TextView textViewIncoorectCode = (TextView) dialog.findViewById(R.id.incorrectcode);
-                                final EditText text = (EditText) dialog.findViewById(R.id.oderpickupcode);
+                                final TextView text = (TextView) dialog.findViewById(R.id.oderpickupcode);
                                 TextView dialogButton = (TextView) dialog.findViewById(R.id.idalertok);
-
                                 final String enteredcode = text.getText().toString();
+
+
+                                //final String enteredcode = text.getText().toString();
+                                noteRef = db.collection("orders").document(documentSnapshot.get("order_id").toString());
+                                noteRef.get()
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                if (documentSnapshot.exists()) {
+                                                    String pickup_code = documentSnapshot.getString("pickup_code");
+
+                                                    text.setText(pickup_code);
+
+                                                }
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+
+                                            }
+                                        });
+
                                 dialogButton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
 
-                                        final String enteredcode = text.getText().toString();
-                                        noteRef = db.collection("orders").document(documentSnapshot.get("order_id").toString());
-                                        noteRef.get()
-                                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                                    @Override
-                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                        if (documentSnapshot.exists()) {
-                                                            String pickup_code = documentSnapshot.getString("pickup_code");
+                                        dialog.dismiss();
+                                        startActivity(new Intent(getActivity(), ShopMainActivity.class));
+                                        getActivity().finish();
 
-                                                            if (enteredcode.equals(pickup_code)) {
+                                        DocumentReference orderRefAccept = db.collection("orders").document(documentSnapshot.get("order_id").toString());
+                                        orderRefAccept.update("status", "3");
 
-                                                                dialog.dismiss();
-                                                                startActivity(new Intent(getActivity(), ShopMainActivity.class));
-                                                                getActivity().finish();
+                                        Toast.makeText(getActivity(), "Order Picked up succesfully!", Toast.LENGTH_SHORT).show();
 
-                                                                DocumentReference orderRefAccept = db.collection("orders").document(documentSnapshot.get("order_id").toString());
-                                                                orderRefAccept.update("status", "3");
-
-                                                                Toast.makeText(getActivity(), "Order Picked up succesfully!", Toast.LENGTH_SHORT).show();
-
-                                                            } else {
-                                                                textViewIncoorectCode.setVisibility(View.VISIBLE);
-                                                                text.setText("");
-                                                            }
-
-                                                        }
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-
-                                                    }
-                                                });
 
                                     }
                                 });

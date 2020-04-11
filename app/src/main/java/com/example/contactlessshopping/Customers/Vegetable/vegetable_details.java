@@ -1,4 +1,5 @@
-package com.example.contactlessshopping.Customers.Fishmarket;
+package com.example.contactlessshopping.Customers.Vegetable;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,7 +41,7 @@ import java.util.Set;
 
 import static com.example.contactlessshopping.Shops.Main.OrderDetails.KEY_ORDER_STATUS;
 
-public class fishmarket_details extends AppCompatActivity {
+public class vegetable_details extends AppCompatActivity {
     private FirebaseAuth auth;
     private DocumentReference noteRef;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -54,15 +55,15 @@ public class fishmarket_details extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fishmarket_details);
+        setContentView(R.layout.activity_vegetable_details);
         auth=FirebaseAuth.getInstance();
 
         final Intent intent=getIntent();
         shop_id=intent.getStringExtra("shop_id");
         shop_name=intent.getStringExtra("shop_name");
 
-        get_token=findViewById(R.id.get_token2);
-        token=findViewById(R.id.token_no2);
+        get_token=findViewById(R.id.get_token3);
+        token=findViewById(R.id.token_no3);
         get_token.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,12 +120,12 @@ public class fishmarket_details extends AppCompatActivity {
 
                                                     DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
                                                     orderRefAccept.update(i, FieldValue.arrayUnion(token_no));
-                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Vegetable.vegetable_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
                                                     Map<String, Object> map = new HashMap<>();
                                                     map.put("token_no", token_no);
-                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Vegetable.vegetable_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
                                                     db.collection("customers").document(auth.getUid().toString()).update("token_supermarket", token_no);
-                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, token_no, Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Vegetable.vegetable_details.this, token_no, Toast.LENGTH_SHORT).show();
                                                     token.setText(token_no);
                                                     break;
 
@@ -136,12 +137,12 @@ public class fishmarket_details extends AppCompatActivity {
 
                                                     DocumentReference orderRefAccept = db.collection("tokens").document(shop_id);
                                                     orderRefAccept.update(i, FieldValue.arrayUnion(token_no));
-                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Vegetable.vegetable_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
                                                     Map<String, Object> map = new HashMap<>();
                                                     map.put("token_no", token_no);
-                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Vegetable.vegetable_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
                                                     db.collection("customers").document(auth.getUid().toString()).update("token_supermarket", token_no);
-                                                    Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.fishmarket_details.this, token_no, Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(com.example.contactlessshopping.Customers.Vegetable.vegetable_details.this, token_no, Toast.LENGTH_SHORT).show();
                                                     token.setText(token_no);
                                                     break;
 
@@ -167,4 +168,6 @@ public class fishmarket_details extends AppCompatActivity {
         });
 
     }
+}
+
 }

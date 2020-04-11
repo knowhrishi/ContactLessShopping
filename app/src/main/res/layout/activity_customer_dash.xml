@@ -80,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/g" />
+                        android:src="@drawable/groceryicon" />
 
                     <TextView
                         android:textAlignment="center"
@@ -160,7 +160,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/pharmacy"
+                        android:src="@drawable/medicine"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -200,7 +200,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:src="@drawable/shop"
+                        android:src="@drawable/fruit"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -283,7 +283,7 @@
                     android:weightSum="1">
 
                     <ImageView
-                        android:src="@drawable/petshop"
+                        android:src="@drawable/butcher"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

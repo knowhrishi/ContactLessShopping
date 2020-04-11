@@ -1,4 +1,4 @@
-package com.example.contactlessshopping.Customers.Fishmarket;
+package com.example.contactlessshopping.Customers.Vegetable;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,11 +20,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 
-public class Fishmarket_MainActivity extends AppCompatActivity {
+public class Vegetable_MainActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
     RecyclerView shoplist;
-    private fishmarketAdapter adapter;
+    private vegetableAdapter adapter;
     private FirebaseFirestore db;
     double dlat, dlon;
     LinearLayoutManager gridLayoutManager;
@@ -36,10 +36,10 @@ public class Fishmarket_MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fishmarket_main);
+        setContentView(R.layout.activity_vegetable_main);
 
-        shoplist=findViewById(R.id.shop_list2);
-        progressBar=findViewById(R.id.progress_bar2);
+        shoplist=findViewById(R.id.shop_list4);
+        progressBar=findViewById(R.id.progress_bar4);
 
 
         final Intent intent = getIntent();
@@ -63,12 +63,12 @@ public class Fishmarket_MainActivity extends AppCompatActivity {
 
     private void getshopList(){
 
-        Query query = db.collection("shops").whereEqualTo("shop_category","FishMarket");
+        Query query = db.collection("shops").whereEqualTo("shop_category","Vegetable");
 
         FirestoreRecyclerOptions<Shopsclass> response = new FirestoreRecyclerOptions.Builder<Shopsclass>()
                 .setQuery(query, Shopsclass.class)
                 .build();
-        adapter=new fishmarketAdapter(response,dlat,dlon, com.example.contactlessshopping.Customers.Fishmarket.Fishmarket_MainActivity.this);
+        adapter=new vegetableAdapter(response,dlat,dlon, com.example.contactlessshopping.Customers.Vegetable.Vegetable_MainActivity.this);
 
         adapter.notifyDataSetChanged();
         shoplist.setAdapter(adapter);
@@ -78,12 +78,12 @@ public class Fishmarket_MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
 
-                Intent intent = new Intent(com.example.contactlessshopping.Customers.Fishmarket.Fishmarket_MainActivity.this, fishmarket_details.class);
+                Intent intent = new Intent(com.example.contactlessshopping.Customers.Vegetable.Vegetable_MainActivity.this, vegetable_details.class);
                 //intent.putExtra("intendListImageUrl", documentSnapshot.get("url").toString());
                 intent.putExtra("shop_name", documentSnapshot.get("shop_name").toString());
                 intent.putExtra("shop_id",documentSnapshot.getId());
                 Log.d("ID : ",documentSnapshot.getId());
-                Toast.makeText(com.example.contactlessshopping.Customers.Fishmarket.Fishmarket_MainActivity.this,documentSnapshot.get("shop_name").toString()+" data sent ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(com.example.contactlessshopping.Customers.Vegetable.Vegetable_MainActivity.this,documentSnapshot.get("shop_name").toString()+" data sent ",Toast.LENGTH_SHORT).show();
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 
@@ -105,4 +105,5 @@ public class Fishmarket_MainActivity extends AppCompatActivity {
     }
 
 }
+
 
