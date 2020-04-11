@@ -78,7 +78,7 @@ public class Customer_MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer__main);
         shoplist=findViewById(R.id.shop_list);
         progressBar=findViewById(R.id.progress_bar);
-        supermarket=findViewById(R.id.supermarket);
+        //supermarket=findViewById(R.id.supermarket);
 
 
         final Intent intent = getIntent();
@@ -119,15 +119,6 @@ public class Customer_MainActivity extends AppCompatActivity {
         });
     }
 
-
-    public void loadsupermarket(View view)
-    {
-        Intent i=new Intent(Customer_MainActivity.this, Supermarket_MainActivity.class);
-        i.putExtra("intendLatitude", slat);
-        i.putExtra("intentLongitude", slon);
-        startActivity(i);
-
-    }
     private void init(){
 
         gridLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL,false);

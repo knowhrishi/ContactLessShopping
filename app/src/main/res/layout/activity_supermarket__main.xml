@@ -36,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SHOPS LIST"
+                android:text="SUPERMARKETS"
                 android:textColor="@color/white"
                 android:fontFamily="@font/nunito_sans_extra_bold"
                 android:textSize="20dp"

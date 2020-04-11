@@ -72,6 +72,7 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="16dp"
                     android:orientation="vertical"
+                    android:layout_marginBottom="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -82,13 +83,14 @@
                         android:src="@drawable/g" />
 
                     <TextView
-                        android:textAlignment="viewEnd"
+                        android:textAlignment="center"
                         android:text="Text"
-                        android:textColor="#000"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal" />
 
                 </LinearLayout>
 

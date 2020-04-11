@@ -158,6 +158,13 @@ public class customer_dash extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivityForResult(intent, 0);
                             break;
+                        case 2:
+                            Intent i=new Intent(customer_dash.this, Supermarket_MainActivity.class);
+                            i.putExtra("intendLatitude", slat);
+                            i.putExtra("intentLongitude", slon);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+                            break;
                         default:
                     }
                 }
