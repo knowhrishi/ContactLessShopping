@@ -1,115 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center"
-        android:orientation="vertical">
 
 
-
-        <!--<android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">-->
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="280dp"
-            android:layout_gravity="center"
-            android:paddingLeft="5dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:drawableLeft="@drawable/ic_username"
-            android:hint="Email"
-            android:elevation="2dp"
-            android:text="bs@gmail.com"
-            android:background="@drawable/rounded_edittext"
-            android:padding="5dp"
-            android:inputType="textEmailAddress"
-            android:textColor="#000"/>
-        <!-- </android.support.design.widget.TextInputLayout>-->
-
-        <!-- <android.support.design.widget.TextInputLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content">-->
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="280dp"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center"
-            android:layout_height="50dp"
-            android:layout_marginBottom="10dp"
-            android:elevation="5dp"
-            android:drawableLeft="@drawable/ic_password"
-            android:paddingLeft="2dp"
-            android:text="123456"
-            android:background="@drawable/rounded_edittext"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textColor="#000"/>
-        <!-- </android.support.design.widget.TextInputLayout>-->
-        <!-- Login Button -->
-
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:text="LOGIN"
-            android:textColor="@android:color/black" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="OTP AUTH"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13" />
 
 
+    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+        android:id="@+id/ccp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.26999998" />
 
-        <!--        <Button-->
-        <!--            android:id="@+id/btn_reset_password"-->
-        <!--            android:layout_width="fill_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="20dip"-->
-        <!--            android:background="@null"-->
-        <!--            android:text="Forgot Password"-->
-        <!--            android:textAllCaps="false"-->
-        <!--            android:textColor="#2196F3" />-->
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Mobile Number"
+        android:inputType="phone"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ccp"
+        app:layout_constraintVertical_bias="0.0">
 
-        <!-- Link to Login Screen -->
+    </EditText>
 
-        <Button
-            android:id="@+id/btn_signup"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="20dip"
-            android:background="@null"
-            android:text="Don't have an account?\n Register Here"
-            android:textAllCaps="false"
-            android:textColor="#000"
-            android:textSize="15dp" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#009688"
+        android:text="NEXT"
+        android:backgroundTint="@color/black"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/state"
+        app:layout_constraintVertical_bias="0.19" />
 
-<!--    <ProgressBar-->
-<!--        android:id="@+id/progressBar"-->
-<!--        android:layout_width="30dp"-->
-<!--        android:layout_height="30dp"-->
-<!--        android:layout_gravity="center|bottom"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:visibility="gone" />-->
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:lottie_rawRes="@raw/loading"
-        android:foregroundGravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true"
-        android:id="@+id/loading"
-        app:lottie_autoPlay="false"
-        app:lottie_loop="true"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:visibility="invisible"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="Sending OTP.."
+        android:textColor="#FFEB3B"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp" />
+
+    <EditText
+        android:id="@+id/codeEnter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="Enter OTP"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@color/black"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/resendOtpBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend"
+        android:textColor="#FFEB3B"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/codeEnter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toEndOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/codeEnter" />
+<!--    <LinearLayout-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="fill_parent"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="vertical">-->
 
 
-</RelativeLayout>
+
+<!--        &lt;!&ndash;<android.support.design.widget.TextInputLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">&ndash;&gt;-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/email"-->
+<!--            android:layout_width="280dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:paddingLeft="5dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:drawableLeft="@drawable/ic_username"-->
+<!--            android:hint="Email"-->
+<!--            android:elevation="2dp"-->
+<!--            android:text="bc@gmail.com"-->
+<!--            android:background="@drawable/rounded_edittext"-->
+<!--            android:padding="5dp"-->
+<!--            android:inputType="textEmailAddress"-->
+<!--            android:textColor="#000"/>-->
+<!--        &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+
+<!--        &lt;!&ndash; <android.support.design.widget.TextInputLayout-->
+<!--             android:layout_width="match_parent"-->
+<!--             android:layout_height="wrap_content">&ndash;&gt;-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/password"-->
+<!--            android:layout_width="280dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:elevation="5dp"-->
+<!--            android:text="123456"-->
+<!--            android:drawableLeft="@drawable/ic_password"-->
+<!--            android:paddingLeft="2dp"-->
+<!--            android:background="@drawable/rounded_edittext"-->
+<!--            android:hint="Password"-->
+<!--            android:inputType="textPassword"-->
+<!--            android:textColor="#000"/>-->
+<!--        &lt;!&ndash; </android.support.design.widget.TextInputLayout>&ndash;&gt;-->
+<!--        &lt;!&ndash; Login Button &ndash;&gt;-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_login"-->
+<!--            android:layout_width="280dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dip"-->
+<!--            android:text="LOGIN"-->
+<!--            android:textColor="@android:color/black" />-->
+
+
+
+<!--        &lt;!&ndash;        <Button&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:id="@+id/btn_reset_password"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_width="fill_parent"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_marginTop="20dip"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:background="@null"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:text="Forgot Password"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:textAllCaps="false"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:textColor="#2196F3" />&ndash;&gt;-->
+
+<!--        &lt;!&ndash; Link to Login Screen &ndash;&gt;-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_signup"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginTop="20dip"-->
+<!--            android:background="@null"-->
+<!--            android:text="Don't have an account?\n Register Here"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="#000"-->
+<!--            android:textSize="15dp" />-->
+<!--    </LinearLayout>-->
+
+<!--&lt;!&ndash;    <ProgressBar&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/progressBar"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="30dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="30dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_gravity="center|bottom"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_marginBottom="20dp"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:visibility="gone" />&ndash;&gt;-->
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        app:lottie_rawRes="@raw/loading"-->
+<!--        android:foregroundGravity="center"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:id="@+id/loading"-->
+<!--        app:lottie_autoPlay="false"-->
+<!--        app:lottie_loop="true"-->
+<!--        android:visibility="invisible"-->
+<!--        />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
