@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.contactlessshopping.Customers.ManageOrders;
 import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.ShopMainActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -30,8 +28,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-
-import java.security.SecureRandom;
 
 public class FragmentDeclined extends Fragment {
     View view;

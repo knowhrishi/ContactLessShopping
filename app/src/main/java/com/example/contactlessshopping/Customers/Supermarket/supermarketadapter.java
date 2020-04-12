@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.contactlessshopping.Customers.Customer_MainActivity;
 import com.example.contactlessshopping.Customers.Shopsclass;
 import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
@@ -17,7 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-public class supermarketadapter extends FirestoreRecyclerAdapter<Shopsclass , supermarketadapter.NoteHolder> {
+public class supermarketadapter extends FirestoreRecyclerAdapter<Shopsclass, supermarketadapter.NoteHolder> {
     private OrderAdapterPending.OnItemClickListener listener;
     double dlat, dlon;
     Supermarket_MainActivity context;

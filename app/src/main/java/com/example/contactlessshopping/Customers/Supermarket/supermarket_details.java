@@ -1,21 +1,17 @@
 package com.example.contactlessshopping.Customers.Supermarket;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.contactlessshopping.Customers.ShopDetails;
-import com.example.contactlessshopping.Customers.Upload_list;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import com.example.contactlessshopping.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,13 +21,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firestore.v1.Value;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
 
 import java.security.SecureRandom;
 import java.text.DateFormat;
@@ -44,9 +33,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
-
-import static com.example.contactlessshopping.Shops.Main.OrderDetails.KEY_ORDER_STATUS;
 
 public class supermarket_details extends AppCompatActivity {
     private FirebaseAuth auth;
@@ -54,19 +40,12 @@ public class supermarket_details extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference notebookRef = db.collection("tokens");
 
-//    ImageView imageView;
-//    Button button;
-//    EditText editText;
-//    String EditTextValue;
-//    Thread thread;
-//    public final static int QRcodeWidth = 500;
-//    Bitmap bitmap;
-
 
     String shop_id, shop_name, capacity, token_no;
 
     Button get_token;
-    TextView token;
+    TextView token,slot,shop;
+    CardView card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +57,14 @@ public class supermarket_details extends AppCompatActivity {
         shop_id = intent.getStringExtra("shop_id");
         shop_name = intent.getStringExtra("shop_name");
 
+
         //imageView = (ImageView) findViewById(R.id.imageView);
 
+        card=findViewById(R.id.card_view);
         get_token = findViewById(R.id.get_token);
         token = findViewById(R.id.token_no);
+        slot=findViewById(R.id.slot_no);
+        shop=findViewById(R.id.shop_name);
         get_token.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,15 +86,7 @@ public class supermarket_details extends AppCompatActivity {
                                         int num = random.nextInt(100000);
                                         token_no = String.format("%05d", num);
 
-//                                        try {
-//                                            bitmap = TextToImageEncode(token_no);
 //
-//                                            imageView.setImageBitmap(bitmap);
-//
-//                                        } catch (WriterException e) {
-//                                            e.printStackTrace();
-//                                        }
-
                                         List<String> keys = new ArrayList<String>(data.keySet());
                                         Collections.sort(keys);
 
@@ -159,6 +134,7 @@ public class supermarket_details extends AppCompatActivity {
 
                                                     break;
 
+
                                                 }
                                             } else if (slot_from.after(currtime)) {
                                                 if (mylist.size() != 10) {
@@ -166,6 +142,8 @@ public class supermarket_details extends AppCompatActivity {
                                                     DocumentReference orderRefAccept = db.collection("token_slots").document(shop_id);
                                                     orderRefAccept.update(i, FieldValue.arrayUnion(auth.getUid()));
                                                     Toast.makeText(supermarket_details.this, i + " slot is allocated to you!!", Toast.LENGTH_SHORT).show();
+
+                                                    Toast.makeText(supermarket_details.this, auth.getUid().toString(), Toast.LENGTH_SHORT).show();
 
                                                     Map<String,Object> token_doc=new HashMap<>();
                                                     token_doc.put("shop_id",shop_id);
@@ -178,16 +156,11 @@ public class supermarket_details extends AppCompatActivity {
 
                                                     break;
 
+
                                                 }
 
                                             }
-
-
                                         }
-
-
-
-
 
                                     } else {
                                         Log.d("Tag", "No such document");
@@ -201,39 +174,34 @@ public class supermarket_details extends AppCompatActivity {
             }
         });
 
+
+        db.collection("tokens").document(auth.getUid()).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                get_token.setVisibility(View.INVISIBLE);
+                                Toast.makeText(supermarket_details.this,"appointment scheduled",Toast.LENGTH_SHORT).show();
+                                token.setText(document.get("token_no").toString());
+                                slot.setText(document.get("slot_allocated").toString());
+                                shop.setText(shop_name);
+
+
+                            } else {
+                                Log.d("", "No Appointment found");
+                                card.setVisibility(View.INVISIBLE);
+                            }
+                        } else {
+                            Log.d("", "get failed with ", task.getException());
+                        }
+                    }
+                });
+
+
+
     }
 
-//    Bitmap TextToImageEncode (String Value) throws WriterException {
-//        BitMatrix bitMatrix;
-//        try {
-//            bitMatrix = new MultiFormatWriter().encode(
-//                    Value,
-//                    BarcodeFormat.DATA_MATRIX.QR_CODE,
-//                    QRcodeWidth, QRcodeWidth, null
-//            );
-//
-//        } catch (IllegalArgumentException Illegalargumentexception) {
-//
-//            return null;
-//        }
-//        int bitMatrixWidth = bitMatrix.getWidth();
-//
-//        int bitMatrixHeight = bitMatrix.getHeight();
-//
-//        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
-//
-//        for (int y = 0; y < bitMatrixHeight; y++) {
-//            int offset = y * bitMatrixWidth;
-//
-//            for (int x = 0; x < bitMatrixWidth; x++) {
-//
-//                pixels[offset + x] = bitMatrix.get(x, y) ?
-//                        getResources().getColor(R.color.black) : getResources().getColor(R.color.white);
-//            }
-//        }
-//        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
-//
-//        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
-//        return bitmap;
-//    }
+
 }

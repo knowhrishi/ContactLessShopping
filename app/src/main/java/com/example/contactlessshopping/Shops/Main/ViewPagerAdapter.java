@@ -1,7 +1,5 @@
 package com.example.contactlessshopping.Shops.Main;
 
-import android.icu.text.CaseMap;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;

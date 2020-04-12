@@ -1,18 +1,15 @@
 package com.example.contactlessshopping.Customers.Supermarket;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.contactlessshopping.Customers.Customer_MainActivity;
-import com.example.contactlessshopping.Customers.ShopDetails;
-import com.example.contactlessshopping.Customers.ShopsAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.contactlessshopping.Customers.Shopsclass;
 import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;

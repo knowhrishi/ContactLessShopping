@@ -1,8 +1,5 @@
 package com.example.contactlessshopping.Customers;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +8,9 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.contactlessshopping.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -91,7 +91,7 @@ public class Customer_survey extends AppCompatActivity {
                                                     public void onSuccess(DocumentReference documentReference) {
                                                         Log.d("", "Feedback Noted: " + documentReference.getId());
                                                         Toast.makeText(Customer_survey.this,"Feedback Noted",Toast.LENGTH_SHORT).show();
-                                                        Intent i=new Intent(Customer_survey.this,customer_dash.class);
+                                                        Intent i=new Intent(Customer_survey.this, customer_dash.class);
                                                         startActivity(i);
 
                                                     }

@@ -16,7 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-public class vegetableAdapter extends FirestoreRecyclerAdapter<Shopsclass , vegetableAdapter.NoteHolder> {
+public class vegetableAdapter extends FirestoreRecyclerAdapter<Shopsclass, vegetableAdapter.NoteHolder> {
     private OrderAdapterPending.OnItemClickListener listener;
     double dlat, dlon;
     Vegetable_MainActivity context;

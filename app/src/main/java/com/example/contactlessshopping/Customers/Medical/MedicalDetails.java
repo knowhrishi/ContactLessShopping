@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.contactlessshopping.Customers.Make_list;
-import com.example.contactlessshopping.Customers.ShopDetails;
 import com.example.contactlessshopping.Customers.Upload_list;
 import com.example.contactlessshopping.R;
 import com.google.android.gms.tasks.OnCompleteListener;

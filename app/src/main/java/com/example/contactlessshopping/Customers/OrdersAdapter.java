@@ -1,25 +1,22 @@
 package com.example.contactlessshopping.Customers;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.contactlessshopping.R;
-import com.example.contactlessshopping.Shops.Main.OrderAdapterAccepted;
-import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
 import com.example.contactlessshopping.Shops.Main.OrderModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
-
-import static androidx.core.content.ContextCompat.getColor;
-import static com.google.common.io.Resources.getResource;
 
 public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAdapter.NoteHolder> {
 
@@ -34,6 +31,7 @@ public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAd
         super(options);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onBindViewHolder(@NonNull OrdersAdapter.NoteHolder holder, int i, @NonNull OrderModel model) {
@@ -43,19 +41,18 @@ public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAd
         if(Integer.parseInt(model.getStatus())==1)
         {
             holder.textViewStatus.setText("Slot not Allocated");
-            holder.textViewStatus.setTextColor(R.color.red);
+            holder.textViewStatus.setTextColor(Color.RED);
         }
         else if(Integer.parseInt(model.getStatus())==2)
         {
             holder.textViewStatus.setText("Pick Up Pending");
-            holder.textViewStatus.setTextColor(R.color.green);
+            holder.textViewStatus.setTextColor(Color.GREEN);
         }
         else if(Integer.parseInt(model.getStatus())==3)
         {
             holder.textViewStatus.setText("Give Feedback");
-            holder.textViewStatus.setTextColor(R.color.red);
+            holder.textViewStatus.setTextColor(Color.RED);
         }
-
 
     }
 
@@ -66,7 +63,7 @@ public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAd
                 .inflate(R.layout.orders_list, parent, false);
 
         return new OrdersAdapter.NoteHolder(v);
-        
+
     }
 
     public class NoteHolder extends RecyclerView.ViewHolder {
@@ -80,7 +77,6 @@ public class OrdersAdapter extends FirestoreRecyclerAdapter<OrderModel, OrdersAd
             textViewContent = (TextView) itemView.findViewById(R.id.orderstext);
             textViewShopName = (TextView) itemView.findViewById(R.id.shop_name);
             textViewStatus=itemView.findViewById(R.id.status);
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

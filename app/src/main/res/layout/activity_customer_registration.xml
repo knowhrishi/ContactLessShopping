@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:layout_marginTop="100dp"
     tools:context=".Customers.Customer_registration">
 
 
@@ -13,8 +14,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
+        android:fontFamily="@font/nunito_sans_bold"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:text="Enter Details "
+        android:textColor="#000"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="80dp"
 
         android:text="Name: "
         android:textColor="#000"
@@ -22,7 +35,7 @@
 
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text=""
@@ -41,7 +54,7 @@
 
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text=""
@@ -54,41 +67,49 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/opensans_regular"
-        android:text="Electricity Bill Cuttomer NO: "
+        android:text="Electricity Bill Consumer NO: "
         android:textColor="#000"
         android:textSize="17dp" />
 
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text=""
+
         android:id="@+id/custno"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/opensans_regular"
-        android:text="Password:  "
-        android:textColor="#000"
-        android:textSize="17dp" />
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="left"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:fontFamily="@font/opensans_regular"-->
+<!--        android:text="Password:  "-->
+<!--        android:textColor="#000"-->
+<!--        android:textSize="17dp" />-->
 
 
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text=""
-        android:id="@+id/pass"/>
+<!--    <EditText-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:text=""-->
+<!--        android:id="@+id/pass"/>-->
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"
         android:id="@+id/submitbt"/>
+
+
+
 
 </LinearLayout>
