@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.contactlessshopping.Customers.Shopsclass;
-import com.example.contactlessshopping.Customers.Supermarket.supermarket_details;
 import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -69,7 +68,6 @@ public class Fishmarket_MainActivity extends AppCompatActivity {
                 .setQuery(query, Shopsclass.class)
                 .build();
         adapter=new fishmarketAdapter(response,dlat,dlon, com.example.contactlessshopping.Customers.Fishmarket.Fishmarket_MainActivity.this);
-
         adapter.notifyDataSetChanged();
         shoplist.setAdapter(adapter);
 

@@ -22,13 +22,32 @@
             android:textColor="@color/black"
             android:textSize="18dp" />
 
-        <TextView
-            android:id="@+id/shop_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="shop_name"
-            android:textColor="@color/black" />
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="shop_name"
+                android:textColor="@color/black"
+                android:layout_weight="0.8"/>
+            <TextView
+                android:id="@+id/status"
+                android:layout_gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="status"
+                android:textColor="@color/green"
+                android:layout_weight="0.2"/>
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

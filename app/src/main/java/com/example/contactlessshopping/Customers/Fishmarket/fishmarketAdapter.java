@@ -16,7 +16,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-public class fishmarketAdapter extends FirestoreRecyclerAdapter<Shopsclass , fishmarketAdapter.NoteHolder> {
+public class fishmarketAdapter extends FirestoreRecyclerAdapter<Shopsclass, fishmarketAdapter.NoteHolder> {
     private OrderAdapterPending.OnItemClickListener listener;
     double dlat, dlon;
     Fishmarket_MainActivity context;

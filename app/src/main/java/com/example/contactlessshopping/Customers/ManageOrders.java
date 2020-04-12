@@ -1,32 +1,26 @@
 package com.example.contactlessshopping.Customers;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.contactlessshopping.R;
-import com.example.contactlessshopping.Shops.Main.OrderDetails;
 import com.example.contactlessshopping.Shops.Main.OrderModel;
-import com.example.contactlessshopping.Shops.ShopMainActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -34,12 +28,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.security.SecureRandom;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ManageOrders extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -110,7 +100,19 @@ public class ManageOrders extends AppCompatActivity {
 
                 if (documentSnapshot.get("status").toString().equals("1")) {
                     Toast.makeText(ManageOrders.this, "SLOT NOT ALLOCATED YET", Toast.LENGTH_SHORT).show();
-                } else if(documentSnapshot.get("status").toString().equals("2")) {
+                }
+
+                else if(documentSnapshot.get("status").toString().equals("3"))
+                {
+                    //Toast.makeText(ManageOrders.this,order_status+" in",Toast.LENGTH_SHORT).show();
+                    Intent i=new Intent(ManageOrders.this, Customer_survey.class);
+                    i.putExtra("order_id",documentSnapshot.get("order_id").toString());
+                    startActivity(i);
+
+
+                }
+
+                else if(documentSnapshot.get("status").toString().equals("2")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(
                             ManageOrders.this);
                     builder.setTitle("Picking up order?");

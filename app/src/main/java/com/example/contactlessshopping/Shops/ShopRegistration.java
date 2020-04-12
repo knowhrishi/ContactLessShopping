@@ -1,10 +1,5 @@
 package com.example.contactlessshopping.Shops;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
@@ -23,32 +18,31 @@ import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.contactlessshopping.MainActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.example.contactlessshopping.Customers.Supermarket.Supermarket_MainActivity;
 import com.example.contactlessshopping.R;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class ShopRegistration extends AppCompatActivity {
 
@@ -357,7 +351,7 @@ public class ShopRegistration extends AppCompatActivity {
                         });
 
 
-                if(shop_category=="SuperMarket")
+                if(shop_category == "SuperMarket")
                 {
                     slots.put("shop_id",auth.getUid());
                     Toast.makeText(ShopRegistration.this,auth.getUid()+" in cat",Toast.LENGTH_SHORT).show();
@@ -366,7 +360,7 @@ public class ShopRegistration extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     //Toast.makeText(PatientRegister.this, "Data saved", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(ShopRegistration.this, MainActivity.class));
+                                    startActivity(new Intent(ShopRegistration.this, Supermarket_MainActivity.class));
                                     finish();
                                 }
                             })

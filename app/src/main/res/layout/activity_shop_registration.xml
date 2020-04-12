@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Complete Profile"
+            android:fontFamily="@font/nunito_sans_bold"
             android:textAllCaps="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="50dp"
@@ -149,6 +150,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:layout_gravity="center"
                 android:padding="10dp"
                 android:text="Select time" />
@@ -196,6 +199,8 @@
                 android:id="@+id/idBtnToTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:layout_marginRight="30dp"
                 android:layout_gravity="center"
                 android:padding="10dp"
@@ -290,8 +295,10 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="Save"
+            android:background="@drawable/rounded_button"
             android:id="@+id/ShopRegister"
+            android:textColor="@color/white"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:padding="5dp"/>

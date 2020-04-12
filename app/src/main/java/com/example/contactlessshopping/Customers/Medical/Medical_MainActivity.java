@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -13,10 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.contactlessshopping.Customers.Customer_MainActivity;
 import com.example.contactlessshopping.Customers.ManageOrders;
 import com.example.contactlessshopping.Customers.ShopDetails;
-import com.example.contactlessshopping.Customers.ShopsAdapter;
 import com.example.contactlessshopping.Customers.Shopsclass;
 import com.example.contactlessshopping.Customers.profile_customer;
 import com.example.contactlessshopping.R;
@@ -98,7 +95,7 @@ public class Medical_MainActivity extends AppCompatActivity {
 
     public void manage(View v)
     {
-        Intent i=new Intent(this,ManageOrders.class);
+        Intent i=new Intent(this, ManageOrders.class);
         startActivity(i);
     }
     private void getshopList(){
