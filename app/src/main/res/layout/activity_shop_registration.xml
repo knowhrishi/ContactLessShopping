@@ -211,6 +211,7 @@
                                 android:id="@+id/idEtCapacity"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+
                                 android:hint="Order Capacity / Day"
                                 android:inputType="number" />
 

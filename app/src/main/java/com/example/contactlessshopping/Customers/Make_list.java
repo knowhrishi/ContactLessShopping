@@ -82,6 +82,7 @@ Make_list extends AppCompatActivity {
                 final View addView = layoutInflater.inflate(R.layout.row, null);
                 final AutoCompleteTextView textOut = (AutoCompleteTextView)addView.findViewById(R.id.textout);
 
+//                textIn.setText("");
                 textOut.setAdapter(adapter);
                 textOut.setText(textIn.getText().toString());
                 arrayList.add(textIn.getText().toString());
