@@ -32,24 +32,25 @@ public class ShopMainActivity extends AppCompatActivity {
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
     private TextView textViewShopname;
-    Button edit;
+   // Button edit;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth auth;
     private DocumentReference noteRef;
-
+    String IntendedauthID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_main);
 
         auth = FirebaseAuth.getInstance();
-
+        final Intent intent = getIntent();
+        IntendedauthID = intent.getStringExtra("intendAuthUID");
         tabLayout = (TabLayout) findViewById(R.id.idTabLayout);
 //        appBarLayout = (AppBarLayout) findViewById(R.id.idAppbar);
         viewPager = (ViewPager) findViewById(R.id.idViewPager);
         textViewShopname = (TextView) findViewById(R.id.idShopName);
-        edit=(Button) findViewById(R.id.p_edit);
+        //edit=(Button) findViewById(R.id.p_edit);
 
         ViewPagerAdapter adapter = new ViewPagerAdapter((getSupportFragmentManager()));
 
@@ -61,19 +62,19 @@ public class ShopMainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         showInfo();
 
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(ShopMainActivity.this, shop_profile.class);
-                startActivity(intent);
-            }
-        });
+//        edit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(ShopMainActivity.this, shop_profile.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     public void showInfo() {
 
 
-        noteRef = db.collection("shops").document(auth.getUid());
+        noteRef = db.collection("shops").document(IntendedauthID);
         noteRef.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override

@@ -22,11 +22,14 @@ import com.example.contactlessshopping.Customers.Supermarket.Supermarket_MainAct
 import com.example.contactlessshopping.Customers.Vegetable.Vegetable_MainActivity;
 import com.example.contactlessshopping.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -66,6 +69,7 @@ public class customer_dash extends AppCompatActivity {
         setContentView(R.layout.activity_customer_dash);
 
         textViewwelcomemsg = (TextView)findViewById(R.id.welcomemsg);
+        auth = FirebaseAuth.getInstance();
 
         final Intent intent = getIntent();
         slat = intent.getStringExtra("intendLatitude");
@@ -78,27 +82,25 @@ public class customer_dash extends AppCompatActivity {
 
 
 
-        notebookRef
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        noteRef = db.collection("customer").document(auth.getUid());
+        noteRef.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        Toast.makeText(customer_dash.this,"in complete",Toast.LENGTH_SHORT).show();
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("Tag", document.getId() + " => " + document.getData());
-                                //Toast.makeText(customer_dash.this,document.get("Name").toString(),Toast.LENGTH_SHORT).show();
-                                String name=document.get("Name").toString();
-                                textViewwelcomemsg.setText("Hi "+name);
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            String name = documentSnapshot.getString("Name");
 
+                            textViewwelcomemsg.setText( "Hi " + name);
 
-                            }
-                        } else {
-                            Log.d("Tag", "Error getting documents: ", task.getException());
                         }
                     }
-                });
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
+                    }
+                });
 
 
         BottomNavigationView bottomNavigationView= findViewById(R.id.nav);

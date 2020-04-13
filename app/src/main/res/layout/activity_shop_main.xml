@@ -1,108 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:fillViewport="true">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Shops.ShopMainActivity">
 
-    <LinearLayout xmlns:CardView="http://schemas.android.com/apk/res-auto"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/idAppbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
 
-        <!--        <android.support.v7.widget.CardView-->
-        <!--            android:id="@+id/card_view"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:layout_gravity="center"-->
-        <!--            android:layout_marginBottom="500dp"-->
-        <!--            android:backgroundTint="#8e24aa"-->
-        <!--            card_view:cardCornerRadius="10dp"-->
-        <!--            card_view:cardElevation="10dp">-->
+        android:elevation="0dp"
 
-        <!--        </android.support.v7.widget.CardView>-->
+        android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/idShopName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:text="NAME"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
+                android:gravity="end"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="top"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="15dp"
-                    android:src="@drawable/shop_24dp" />
-
-                <TextView
+                    android:id="@+id/p_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/nunito_sans_extra_bold"
-                    android:gravity="start"
-                    android:text="NAME : "
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-            </LinearLayout>
+                    android:layout_margin="10dp"
+                    android:src="@drawable/profile"
+                    android:background="@drawable/textview_rounded"
+                    android:padding="5dp"
 
-            <Button
-                android:id="@+id/p_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/textview_rounded"
-                android:padding="5dp"
-                android:text="Profile"
-                android:textColor="@color/white" />
-        </LinearLayout>
-
-        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="0dp"
-            tools:context=".Customers.Make_list">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/idTabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:background="@color/colorPrimaryDark"
-                    app:tabBackground="@color/colorPrimary"
-                    app:tabGravity="fill"
-                    app:tabIndicatorColor="#FFEE58"
-                    app:tabMode="fixed"
-
-                    app:tabTextColor="@color/tabtextcolor" />
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/idViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:cornerRadius="10dp" />
-
+                    android:text="Profile"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/idTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabBackground="@color/colorPrimary"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/tabtextcolor"
+        app:tabIndicatorColor="#FFEE58"
+        android:background="@color/colorPrimary"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/idViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
