@@ -94,6 +94,8 @@
                             android:hint="Mobile Number"
                             android:inputType="phone"
                             android:maxLength="10"
+                            android:layout_gravity="center"
+                            android:gravity="center"
                             android:outlineAmbientShadowColor="@color/white"
                             android:outlineSpotShadowColor="@color/white"
                             android:padding="5dp"

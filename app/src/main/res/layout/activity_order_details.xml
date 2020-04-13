@@ -13,9 +13,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/top"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shop_24dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ORDERS DETAILS"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nunito_sans_extra_bold"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="start"
+
+            />
+        </LinearLayout>
+
+
         <LinearLayout xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/top"
             android:orientation="horizontal"
             android:padding="0dp"
             tools:context=".Customers.Make_list">

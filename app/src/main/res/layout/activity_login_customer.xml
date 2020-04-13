@@ -90,6 +90,8 @@
                             android:layout_height="match_parent"
                             android:background="@drawable/input_phone"
                             android:ems="10"
+                            android:layout_gravity="center"
+                            android:gravity="center"
                             android:fontFamily="@font/nunito_sans_regular"
                             android:hint="Mobile Number"
                             android:inputType="phone"

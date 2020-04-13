@@ -16,10 +16,37 @@
         <!--Button for choosing image from gallery-->
 
         <!--Button for uploading image-->
+    <LinearLayout
+        android:id="@+id/lay1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/shop_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/nunito_sans_extra_bold"
+            android:gravity="start"
+            android:text="UPLOAD LIST"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/lay1"
 
             android:orientation="vertical">
 
