@@ -26,7 +26,7 @@ public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass, ShopsAdap
     private OrderAdapterPending.OnItemClickListener listener;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     double dlat, dlon;
-    int r;
+    float r;
     Customer_MainActivity context;
     /**
      *
@@ -62,11 +62,11 @@ public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass, ShopsAdap
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            int i=0;
+                            float i=0;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 i++;
                                 Log.d("", document.getId() + " => " + document.get("rating").toString());
-                                r=r+Integer.parseInt(document.get("rating").toString());
+                                r=r+Float.parseFloat(document.get("rating").toString());
                             }
                                 if(i!=0)
                                 { holder.rating.setRating(r/i);}

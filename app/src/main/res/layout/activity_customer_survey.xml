@@ -6,10 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".Customers.Customer_survey">
 
+
+
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/la"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimaryDark">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_gravity="top"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/cart"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CUSTOMER FEEDBACK"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_sans_extra_bold"
+                android:textSize="20sp"
+                android:layout_gravity="top"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="start" />
+        </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -44,63 +73,71 @@
                     android:fontFamily="@font/nunito_sans_regular"
                     android:text="1 is less 5 is more"
                     />
-
-
-                <RadioGroup
-                    android:id="@+id/radioavailability"
-                    android:layout_width="match_parent"
+                <RatingBar
+                    android:id="@+id/one"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tooltipText="Gender"
-                    android:layout_marginBottom="20dp"
-                    tools:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:stepSize=".5"
+                    android:numStars="5"
+                    />
 
-                    <RadioButton
-                        android:id="@+id/avail1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:text="1" />
 
-                    <RadioButton
-                        android:id="@+id/avail2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/nunito_sans_regular"
+<!--                <RadioGroup-->
+<!--                    android:id="@+id/radioavailability"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:tooltipText="Gender"-->
+<!--                    android:layout_marginBottom="20dp"-->
+<!--                    tools:orientation="vertical">-->
 
-                        android:text="2" />
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/avail1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:text="1" />-->
 
-                    <RadioButton
-                        android:id="@+id/avail3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_marginLeft="30dp"
-                        android:layout_weight="1"
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/avail2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
 
-                        android:text="3" />
-                    <RadioButton
-                        android:id="@+id/avail4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
+<!--                        android:text="2" />-->
 
-                        android:text="4" />
-                    <RadioButton
-                        android:id="@+id/avail5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/avail3"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:layout_weight="1"-->
 
-                        android:text="5" />
-                </RadioGroup>
+<!--                        android:text="3" />-->
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/avail4"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
+
+<!--                        android:text="4" />-->
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/avail5"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
+
+<!--                        android:text="5" />-->
+<!--                </RadioGroup>-->
 
             </LinearLayout>
 
@@ -140,61 +177,69 @@
                     android:text="1 is less 5 is more"
                     />
 
-                <RadioGroup
-                    android:id="@+id/radioservice"
-                    android:layout_width="match_parent"
+                <RatingBar
+                    android:id="@+id/two"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tooltipText="Gender"
-                    android:layout_marginBottom="20dp"
-                    tools:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:stepSize=".5"
+                    android:numStars="5"
+                    />
+<!--                <RadioGroup-->
+<!--                    android:id="@+id/radioservice"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:tooltipText="Gender"-->
+<!--                    android:layout_marginBottom="20dp"-->
+<!--                    tools:orientation="vertical">-->
 
-                    <RadioButton
-                        android:id="@+id/service1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
-                        android:text="1" />
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/service1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="1" />-->
 
-                    <RadioButton
-                        android:id="@+id/service2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/service2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
 
-                        android:text="2" />
+<!--                        android:text="2" />-->
 
-                    <RadioButton
-                        android:id="@+id/service3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/service3"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
 
-                        android:text="3" />
-                    <RadioButton
-                        android:id="@+id/service4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
+<!--                        android:text="3" />-->
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/service4"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
 
-                        android:text="4" />
-                    <RadioButton
-                        android:id="@+id/service5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
+<!--                        android:text="4" />-->
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/service5"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
 
-                        android:text="5" />
-                </RadioGroup>
+<!--                        android:text="5" />-->
+<!--                </RadioGroup>-->
 
             </LinearLayout>
 
@@ -233,61 +278,70 @@
                     android:text="1 is less 5 is more"
                     />
 
-                <RadioGroup
-                    android:id="@+id/radiosdm"
-                    android:layout_width="match_parent"
+                <RatingBar
+                    android:id="@+id/three"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tooltipText="Gender"
-                    android:layout_marginBottom="20dp"
-                    tools:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:stepSize=".5"
+                    android:numStars="5"
+                    />
 
-                    <RadioButton
-                        android:id="@+id/sdm1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
-                        android:text="1" />
+<!--                <RadioGroup-->
+<!--                    android:id="@+id/radiosdm"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:tooltipText="Gender"-->
+<!--                    android:layout_marginBottom="20dp"-->
+<!--                    tools:orientation="vertical">-->
 
-                    <RadioButton
-                        android:id="@+id/sdm2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/sdm1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="1" />-->
 
-                        android:text="2" />
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/sdm2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
 
-                    <RadioButton
-                        android:id="@+id/sdm3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
+<!--                        android:text="2" />-->
 
-                        android:text="3" />
-                    <RadioButton
-                        android:id="@+id/sdm4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/sdm3"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
 
-                        android:text="4" />
-                    <RadioButton
-                        android:id="@+id/sdm5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:layout_weight="1"
+<!--                        android:text="3" />-->
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/sdm4"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
 
-                        android:text="5" />
-                </RadioGroup>
+<!--                        android:text="4" />-->
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/sdm5"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="30dp"-->
+<!--                        android:fontFamily="@font/nunito_sans_regular"-->
+<!--                        android:layout_weight="1"-->
+
+<!--                        android:text="5" />-->
+<!--                </RadioGroup>-->
 
             </LinearLayout>
 
@@ -295,11 +349,12 @@
 
 
 <Button
-    android:layout_gravity="center"
+    android:layout_gravity="center|bottom"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_button"
     android:text="Submit"
+
     android:fontFamily="@font/nunito_sans_regular"
     android:textColor="@color/white"
     android:id="@+id/submit"/>

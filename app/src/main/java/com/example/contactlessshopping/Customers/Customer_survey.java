@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,9 +33,10 @@ public class Customer_survey extends AppCompatActivity {
 
     RadioGroup availability,service,sdm;
     RadioButton radio1,radio2,radio3;
+    RatingBar one, two, three;
     Button submit;
 
-    int rating;
+    float rating;
     String order_id,customer_name,shop_id,order_no;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,26 +46,30 @@ public class Customer_survey extends AppCompatActivity {
         Intent i=getIntent();
         order_id=i.getStringExtra("order_id");
         auth=FirebaseAuth.getInstance();
-
+        one=findViewById(R.id.one);
+        two=findViewById(R.id.two);
+        three=findViewById(R.id.three);
 
 
         submit=findViewById(R.id.submit);
-        availability=findViewById(R.id.radioavailability);
-        service=findViewById(R.id.radioservice);
-        sdm=findViewById(R.id.radiosdm);
+//        availability=findViewById(R.id.radioavailability);
+//        service=findViewById(R.id.radioservice);
+//        sdm=findViewById(R.id.radiosdm);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int selectedavail = availability.getCheckedRadioButtonId();
-                int selectedservice = service.getCheckedRadioButtonId();
-                int selectedsdm = sdm.getCheckedRadioButtonId();
+//                int selectedavail = availability.getCheckedRadioButtonId();
+//                int selectedservice = service.getCheckedRadioButtonId();
+//                int selectedsdm = sdm.getCheckedRadioButtonId();
+//
+//                // find the radiobutton by returned id
+//                radio1 = (RadioButton) findViewById(selectedavail);
+//                radio2 = (RadioButton) findViewById(selectedavail);
+//                radio3 = (RadioButton) findViewById(selectedavail);
+//                int total=Integer.parseInt(radio1.getText().toString())+Integer.parseInt(radio2.getText().toString())+Integer.parseInt(radio3.getText().toString());
 
-                // find the radiobutton by returned id
-                radio1 = (RadioButton) findViewById(selectedavail);
-                radio2 = (RadioButton) findViewById(selectedavail);
-                radio3 = (RadioButton) findViewById(selectedavail);
-                int total=Integer.parseInt(radio1.getText().toString())+Integer.parseInt(radio2.getText().toString())+Integer.parseInt(radio3.getText().toString());
+                float total= one.getRating()+two.getRating()+three.getRating();
                 rating=total/3;
 
                 db.collection("orders").document(order_id).get()
