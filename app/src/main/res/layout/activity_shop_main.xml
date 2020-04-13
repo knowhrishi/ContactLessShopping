@@ -2,31 +2,32 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/back1"
     android:fillViewport="true">
 
-    <RelativeLayout xmlns:CardView="http://schemas.android.com/apk/res-auto"
+    <LinearLayout xmlns:CardView="http://schemas.android.com/apk/res-auto"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-<!--        <android.support.v7.widget.CardView-->
-<!--            android:id="@+id/card_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginBottom="500dp"-->
-<!--            android:backgroundTint="#8e24aa"-->
-<!--            card_view:cardCornerRadius="10dp"-->
-<!--            card_view:cardElevation="10dp">-->
+        <!--        <android.support.v7.widget.CardView-->
+        <!--            android:id="@+id/card_view"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:layout_marginBottom="500dp"-->
+        <!--            android:backgroundTint="#8e24aa"-->
+        <!--            card_view:cardCornerRadius="10dp"-->
+        <!--            card_view:cardElevation="10dp">-->
 
-<!--        </android.support.v7.widget.CardView>-->
+        <!--        </android.support.v7.widget.CardView>-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
             android:orientation="vertical">
 
             <LinearLayout
@@ -77,47 +78,31 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="60dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_view2"
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/idTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/colorPrimaryDark"
+                    app:tabBackground="@color/colorPrimary"
+                    app:tabGravity="fill"
+                    app:tabIndicatorColor="#FFEE58"
+                    app:tabMode="fixed"
+
+                    app:tabTextColor="@color/tabtextcolor" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/idViewPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="70dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:backgroundTint="#fff"
-                    card_view:cardCornerRadius="30dp"
-                    card_view:cardElevation="5dp"
-                    card_view:cardMaxElevation="7dp">
+                    app:cornerRadius="10dp" />
 
-
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/idTabLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="0dp"
-                        android:background="@color/colorPrimaryDark"
-                        app:tabBackground="@color/colorPrimary"
-                        app:tabGravity="fill"
-                        app:tabIndicatorColor="#FFEE58"
-                        app:tabMode="fixed"
-
-                        app:tabTextColor="@color/tabtextcolor" />
-
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/idViewPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:cornerRadius="10dp" />
-
-                </androidx.cardview.widget.CardView>
             </LinearLayout>
 
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>

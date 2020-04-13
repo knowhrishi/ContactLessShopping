@@ -34,7 +34,7 @@ public class OrderAdapterPending extends FirestoreRecyclerAdapter<OrderModel, Or
     protected void onBindViewHolder(@NonNull NoteHolder holder, int position, @NonNull OrderModel model) {
         //upload = notes.get(position);
         holder.textViewContent.setText(model.getCustomer_name());
-
+        holder.textViewOrderNo.setText(model.getOrder_no());
     }
 
     @NonNull
@@ -49,14 +49,14 @@ public class OrderAdapterPending extends FirestoreRecyclerAdapter<OrderModel, Or
 
     class NoteHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewContent, textViewAuthorname, timestamp, priority;
+        TextView textViewContent, textViewOrderNo, timestamp, priority;
         ImageView imageView;
 
         public NoteHolder(@NonNull final View itemView) {
             super(itemView);
 
             textViewContent = (TextView) itemView.findViewById(R.id.idCustomerName);
-//            imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            textViewOrderNo = (TextView) itemView.findViewById(R.id.orderno);
 //            textViewAuthorname = (TextView)itemView.findViewById(R.id.name);
 //            timestamp = (TextView)itemView.findViewById(R.id.noticetimestamp);
 

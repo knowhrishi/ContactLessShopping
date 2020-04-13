@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@drawable/round_withborder_1"
+    android:background="@drawable/input_phone"
     android:padding="5dp">
 
     <LinearLayout

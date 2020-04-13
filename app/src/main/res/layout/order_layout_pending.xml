@@ -2,29 +2,80 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFDE7">
+    android:layout_margin="10dp"
+    android:background="@drawable/input_phone"
+    android:padding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/idCustomerName"
-            android:text="ABC"
-            android:textSize="15dp"
-            android:textColor="@color/black"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:padding="5dp"/>
-        <View
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="#C3C3C3"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:fontFamily="@font/nunito_sans_bold"-->
+<!--                android:padding="2dp"-->
+<!--                android:text="CUSTOMER NAME: "-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="15dp" />-->
+
+            <TextView
+                android:id="@+id/idCustomerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:padding="2dp"
+                android:text="ABC"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/nunito_sans_bold"
+                android:padding="2dp"
+                android:text="ORDER NO: "
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/orderno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/nunito_sans_regular"
+                android:padding="2dp"
+                android:text="0000"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+
+
+        <!--        <View-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0.5dp"-->
+        <!--            android:layout_marginLeft="5dp"-->
+        <!--            android:layout_marginRight="5dp"-->
+        <!--            android:background="#C3C3C3"/>-->
     </LinearLayout>
 
 </RelativeLayout>

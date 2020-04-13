@@ -6,8 +6,7 @@
     xmlns:CardView="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customers.Customer_MainActivity"
-    android:background="@drawable/back1">
+    tools:context=".Customers.Customer_MainActivity">
 
 <!--    <androidx.cardview.widget.CardView-->
 <!--        android:id="@+id/card_view"-->
@@ -20,15 +19,21 @@
 <!--        card_view:cardElevation="10dp" >-->
 
 <!--    </androidx.cardview.widget.CardView>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_centerHorizontal="true" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark">
 
         <ImageView
             android:layout_width="40dp"
@@ -36,7 +41,8 @@
             android:layout_gravity="top"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
-            android:src="@drawable/shop_24dp"/>
+            android:src="@drawable/shop_24dp"
+            android:layout_marginBottom="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,27 +56,10 @@
             android:gravity="start" />
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginBottom="50dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:backgroundTint="#fff"
-        card_view:cardCornerRadius="30dp"
-        card_view:cardElevation="5dp"
-        card_view:cardMaxElevation="7dp">
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/shop_list"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -113,9 +102,6 @@
         <!--                android:onClick='manage'-->
         <!--                android:text="manage" />-->
 
-    </androidx.cardview.widget.CardView>
-
-
 
     <!-- <Button
          android:layout_width="wrap_content"
@@ -125,10 +111,10 @@
          android:onClick="loadsupermarket"/>-->
 
 
-
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:background="@color/black"
+        android:background="@drawable/rounded"
         android:id="@+id/nav"
         android:layout_width="match_parent"
         android:layout_height="70dp"

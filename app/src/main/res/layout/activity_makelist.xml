@@ -3,52 +3,46 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:fillViewport="true"
-    android:background="@drawable/back1">
-    <RelativeLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:CardView="http://schemas.android.com/apk/res-auto"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:CardView="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/card_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginBottom="500dp"
-            android:backgroundTint="#8e24aa"
-            card_view:cardCornerRadius="10dp"
-            card_view:cardElevation="10dp" >
-        </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
             android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="30dp"
                 android:layout_gravity="top"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/shop_24dp"/>
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/shop_24dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/nunito_sans_extra_bold"
+                android:gravity="start"
                 android:text="PRODUCT LIST"
                 android:textColor="@color/white"
-                android:fontFamily="@font/nunito_sans_extra_bold"
-                android:textSize="20sp"
-                android:layout_gravity="top"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="10dp"
-                android:gravity="start" />
+                android:textSize="20sp" />
         </LinearLayout>
-        <LinearLayout
-            xmlns:tools="http://schemas.android.com/tools"
+
+        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -60,15 +54,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_view2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginTop="60dp"
                     android:layout_marginLeft="30dp"
+                    android:layout_marginTop="60dp"
                     android:layout_marginRight="30dp"
+                    android:layout_marginBottom="30dp"
                     android:backgroundTint="#fff"
                     card_view:cardCornerRadius="30dp"
                     card_view:cardElevation="5dp"
@@ -81,14 +76,14 @@
                         <Button
                             android:id="@+id/add"
                             android:layout_width="wrap_content"
-                            android:fontFamily="@font/nunito_sans_regular"
                             android:layout_height="40dp"
-                            android:layout_marginTop="50dp"
+                            android:layout_alignParentRight="true"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="50dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="80dp"
-                            android:layout_alignParentRight="true"
-                            android:background="@color/black"
+                            android:background="@color/colorAccent"
+                            android:fontFamily="@font/nunito_sans_regular"
                             android:text="Add"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
@@ -98,44 +93,43 @@
                             android:id="@+id/textin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunito_sans_regular"
+                            android:layout_alignParentLeft="true"
                             android:layout_gravity="bottom"
-                            android:layout_marginTop="50dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="50dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="80dp"
-                            android:textColorHint="@color/colorPrimary"
+                            android:layout_toLeftOf="@id/add"
+                            android:fontFamily="@font/nunito_sans_regular"
                             android:hint="Enter an item here"
-                            android:layout_alignParentLeft="true"
-                            android:layout_toLeftOf="@id/add" />
+                            android:textColorHint="@color/colorPrimary" />
                     </RelativeLayout>
 
                     <LinearLayout
                         android:id="@+id/container"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                    </LinearLayout>
+                        android:orientation="vertical"></LinearLayout>
 
 
                     <Button
+                        android:id="@+id/save"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginBottom="20dp"
-                        android:fontFamily="@font/nunito_sans_regular"
-                        android:id="@+id/save"
                         android:layout_margin="20dp"
-                        android:background="#8e24aa"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/rounded_button"
+                        android:fontFamily="@font/nunito_sans_regular"
                         android:text="Place Order"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
 
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>

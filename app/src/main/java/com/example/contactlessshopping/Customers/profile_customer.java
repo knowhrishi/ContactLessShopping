@@ -126,7 +126,7 @@ public class profile_customer extends AppCompatActivity {
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 name.setText(documentSnapshot.getString("Name"));
 
-                email.setText(documentSnapshot.getString("emailid"));
+//                email.setText(documentSnapshot.getString("emailid"));
                 Customer_no.setText(documentSnapshot.getString("Customer_no"));
 
             }

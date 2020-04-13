@@ -76,6 +76,7 @@
             android:id="@+id/token_id"
             android:textColor="@color/black"
             android:layout_margin="10dp"
+            android:fontFamily="@font/nunito_sans_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Token No: " />
@@ -86,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/token_id"
+            android:fontFamily="@font/nunito_sans_regular"
             android:layout_gravity="center"
             android:text="56456"
             android:textStyle="bold"
@@ -105,6 +107,7 @@
                     android:layout_margin="10dp"
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
+                    android:fontFamily="@font/nunito_sans_bold"
                     android:layout_height="wrap_content"
                     android:text="Slot Allocated : " />
 
@@ -115,6 +118,7 @@
                     android:textColor="@color/black"
                     android:layout_toRightOf="@id/slot_id"
                     android:layout_gravity="center"
+                    android:fontFamily="@font/nunito_sans_regular"
                     android:text=""
                     android:textStyle="bold"
                     android:textSize="15dp" />
@@ -132,6 +136,7 @@
                     android:id="@+id/shop_id"
                     android:layout_margin="10dp"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_sans_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Shop Name : " />
@@ -141,6 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/slot_id"
+                    android:fontFamily="@font/nunito_sans_regular"
                     android:layout_gravity="center"
                     android:text=""
                     android:textColor="@color/black"
@@ -162,7 +168,7 @@
             android:textColor="@color/white"
             android:layout_marginTop="30dp"
             android:text="GET TOKEN"
-            android:background="@color/colorPrimary"/>
+            android:background="@drawable/rounded_button"/>
 
 
 <!--        <ImageView-->

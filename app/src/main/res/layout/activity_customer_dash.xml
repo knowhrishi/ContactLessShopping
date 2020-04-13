@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Customers.customer_dash">
 
 
@@ -11,49 +12,74 @@
         android:id="@+id/lay1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="10dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/shop_24dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:fontFamily="@font/nunito_sans_extra_bold"
-            android:gravity="start"
-            android:text="SELECT A SHOP"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="Hi Hrishikesh"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans_bold"
+            android:text="Welcome"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="25dp"
+            android:layout_marginLeft="10dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location_on_black_24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/nunito_sans_regular"
+                android:layout_marginLeft="5dp"
+                android:text="Noida, sec 64, India" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/drop_down"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
 
     </LinearLayout>
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/lay1"
-        android:background="#f0f0f0"
         android:orientation="vertical"
-        android:weightSum="10"
         tools:context=".Customers.customer_dash">
 
 
         <GridLayout
             android:id="@+id/mainGrid"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
+            android:scrollbars="vertical"
             android:columnOrderPreserved="false"
-            android:padding="14dp"
             android:rowCount="4">
 
             <!-- ROW 1  -->
@@ -65,6 +91,7 @@
                 android:layout_height="0dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
@@ -91,6 +118,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_weight="0.2"
+                        android:fontFamily="@font/nunito_sans_regular"
                         android:gravity="center_horizontal"
                         android:text="Grocery Store"
                         android:textAlignment="center"
@@ -110,6 +138,7 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="8dp"
@@ -409,7 +438,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/rounded"
         app:itemIconTint="@color/white"
