@@ -1,9 +1,11 @@
 package com.example.contactlessshopping.Customers;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,11 +15,18 @@ import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass, ShopsAdapter.NoteHolder> {
     private OrderAdapterPending.OnItemClickListener listener;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     double dlat, dlon;
+    int r;
     Customer_MainActivity context;
     /**
      *
@@ -40,13 +49,37 @@ public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass, ShopsAdap
 
 
     @Override
-    protected void onBindViewHolder(@NonNull NoteHolder holder, int i, @NonNull Shopsclass model) {
+    protected void onBindViewHolder(@NonNull final NoteHolder holder, int i, @NonNull Shopsclass model) {
         String shop_lat="0", shop_lon="0";
+        String docid;
         double lat1, lon1, lat2, lon2;
 
+
+        docid=getSnapshots().getSnapshot(i).getId();
+        db.collection("ratings").whereEqualTo("shop_id",docid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int i=0;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                i++;
+                                Log.d("", document.getId() + " => " + document.get("rating").toString());
+                                r=r+Integer.parseInt(document.get("rating").toString());
+                            }
+                                if(i!=0)
+                                { holder.rating.setRating(r/i);}
+
+                        } else {
+                            Log.d("", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
         holder.textName.setText(model.getshop_name());
         holder.textTitle.setText(model.getfrom_time());
         holder.textCompany.setText(model.getto_time());
+
 
         shop_lat = model.getLatitude();
         shop_lon = model.getLongitude();
@@ -77,6 +110,7 @@ public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass, ShopsAdap
 
 
         TextView textName,textTitle,textCompany,textViewDistance;
+        RatingBar rating;
 
         public NoteHolder(View itemView) {
             super(itemView);
@@ -84,11 +118,10 @@ public class ShopsAdapter extends FirestoreRecyclerAdapter<Shopsclass, ShopsAdap
 
 
             textName=(TextView)view.findViewById(R.id.name_shop);
-
             textTitle=(TextView)view.findViewById(R.id.from);
-
             textCompany=(TextView)view.findViewById(R.id.to);
             textViewDistance = (TextView) view.findViewById(R.id.idDistance);
+            rating=view.findViewById(R.id.ratings);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
