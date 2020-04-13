@@ -205,7 +205,7 @@ public class Login_customer extends AppCompatActivity {
 
         if (fAuth.getCurrentUser() != null) {
             progressBar.setVisibility(View.VISIBLE);
-            state.setText("Checking..");
+            state.setText("Checking...");
             state.setVisibility(View.VISIBLE);
             checkUserProfile();
         }

@@ -167,7 +167,8 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
 
                 </LinearLayout>
 
@@ -211,7 +212,8 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
 
                 </LinearLayout>
 
@@ -253,7 +255,8 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
 
                 </LinearLayout>
 
@@ -297,7 +300,8 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
 
                 </LinearLayout>
 
@@ -339,7 +343,8 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
 
                 </LinearLayout>
 
@@ -382,7 +387,8 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
 
                 </LinearLayout>
 
@@ -424,7 +430,8 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:gravity="center_horizontal" />
 
                 </LinearLayout>
 
