@@ -103,7 +103,7 @@ public class ShopRegistration extends AppCompatActivity {
         timeTo = (Button) findViewById(R.id.idBtnToTime);
         // buttonAddSlot=findViewById(R.id.add_slot_bt);
 
-        buttonShopRegister = (Button) findViewById(R.id.ShopRegister);
+        buttonShopRegister = (Button) findViewById(R.id.submitbt);
         auth = FirebaseAuth.getInstance();
 
         final Intent intent = getIntent();

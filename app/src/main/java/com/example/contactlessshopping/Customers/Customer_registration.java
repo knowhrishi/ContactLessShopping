@@ -43,8 +43,8 @@ public class Customer_registration extends AppCompatActivity {
 //        password=(EditText)findViewById(R.id.pass);
         Context context;
         progressDialog=new ProgressDialog(this);
-        name = (EditText) findViewById(R.id.name);
-        custno = (EditText) findViewById(R.id.custno);
+        name = (EditText) findViewById(R.id.idCustomerName);
+        custno = (EditText) findViewById(R.id.idelectricity);
         submit = (Button) findViewById(R.id.submitbt);
 //        progressBar=(ProgressBar)findViewById(R.id.pro);
 

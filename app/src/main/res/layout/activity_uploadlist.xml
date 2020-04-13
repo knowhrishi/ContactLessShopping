@@ -1,69 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <RelativeLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:CardView="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Customers.Upload_list">
+    android:padding="0dp"
+    tools:context=".Customers.Upload_list"
+    android:background="@drawable/back1">
 
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="500dp"
+        android:backgroundTint="#8e24aa"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="10dp" >
 
+    </android.support.v7.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="#fff"
+        card_view:cardCornerRadius="30dp"
+        card_view:cardElevation="5dp"
+        card_view:cardMaxElevation="7dp">
 
         <!--Button for choosing image from gallery-->
 
         <!--Button for uploading image-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="0dp">
+
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:layout_margin="10dp">
 
 
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/default_image"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+            <Button
+                android:id="@+id/btnChoose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="S E L E C T  I M A G E"
+                android:textColor="@color/white"
+                android:layout_weight="0.5"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
-                android:src="@drawable/default_image"/>
+                android:background="#000"/>
 
-        </androidx.cardview.widget.CardView>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="U P L O A D"
+                android:textColor="@color/white"
+                android:background="#8e24aa"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:id="@+id/btnUpload"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
-
-        <Button
-            android:id="@+id/btnChoose"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="S E L E C T  P H O T O"
-            android:layout_weight="0.5"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            android:background="@drawable/rounded_button_withborder"/>
-
-       <Button
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_weight="0.5"
-           android:layout_margin="5dp"
-           android:text="U P L O A D"
-          android:textColor="@color/white"
-           android:background="@drawable/square_button"
-           android:layout_gravity="center"
-           android:id="@+id/btnUpload"/>
-
-    </LinearLayout>
 
 
 
