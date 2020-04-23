@@ -27,6 +27,7 @@ import androidx.core.content.ContextCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.contactlessshopping.R;
+import com.example.contactlessshopping.admin;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -188,8 +189,19 @@ public class Login_customer extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(Login_customer.this, "Phone Verified." + Objects.requireNonNull(fAuth.getCurrentUser()).getUid(), Toast.LENGTH_SHORT).show();
-                    checkUserProfile();
+                    String ph=phone.getText().toString();
+                    Toast.makeText(Login_customer.this, "Phone Verified." +ph+ Objects.requireNonNull(fAuth.getCurrentUser()).getUid(), Toast.LENGTH_SHORT).show();
+
+
+                    if(ph.equals("9999999999"))
+                    {
+
+                        Intent i=new Intent(Login_customer.this, admin.class);
+                        startActivity(i);
+                    }
+
+                    else{
+                    checkUserProfile();}
                 } else {
                     progressBar.setVisibility(View.GONE);
                     state.setVisibility(View.GONE);
@@ -212,6 +224,8 @@ public class Login_customer extends AppCompatActivity {
     }
 
     private void checkUserProfile() {
+
+
         DocumentReference docRef = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             docRef = fStore.collection("customers").document(Objects.requireNonNull(fAuth.getCurrentUser()).getUid());
