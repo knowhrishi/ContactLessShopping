@@ -33,6 +33,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,6 +71,8 @@ public class customer_dash extends AppCompatActivity {
 
         textViewwelcomemsg = (TextView)findViewById(R.id.welcomemsg);
         auth = FirebaseAuth.getInstance();
+
+        FirebaseMessaging.getInstance().subscribeToTopic("orderupdates"+auth.getUid());
 
         final Intent intent = getIntent();
         slat = intent.getStringExtra("intendLatitude");

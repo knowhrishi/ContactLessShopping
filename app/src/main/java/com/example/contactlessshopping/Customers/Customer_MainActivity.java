@@ -17,9 +17,11 @@ import com.example.contactlessshopping.R;
 import com.example.contactlessshopping.Shops.Main.OrderAdapterPending;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class Customer_MainActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class Customer_MainActivity extends AppCompatActivity {
     RecyclerView  shoplist;
     private ShopsAdapter adapter;
     private FirebaseFirestore db;
+    private FirebaseAuth auth;
     double dlat, dlon;
     String slat,slon;
     LinearLayoutManager gridLayoutManager;
@@ -46,6 +49,8 @@ public class Customer_MainActivity extends AppCompatActivity {
         shoplist=findViewById(R.id.shop_list);
         progressBar=findViewById(R.id.progress_bar);
         //supermarket=findViewById(R.id.supermarket);
+
+
 
 
         final Intent intent = getIntent();
